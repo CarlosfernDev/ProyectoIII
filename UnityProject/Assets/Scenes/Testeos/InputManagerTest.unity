@@ -980,7 +980,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactZone: {fileID: 1368316794}
-  speed: 10
+  sloopyMovement: 1
+  AcceSpeed: 10
+  maxSpeed: 5
+  DesAccSpeed: 100
   hideText:
     m_PersistentCalls:
       m_Calls:

@@ -6,12 +6,16 @@ using UnityEngine.Events;
 public class TestInputs : MonoBehaviour
 {
 
-  
 
     [SerializeField] GameObject interactZone;
     private bool isInteractable = false;
     private GameObject refObjetoInterac;
-    public float speed;
+
+    [SerializeField] bool sloopyMovement;
+    private Rigidbody rb;
+    public float AcceSpeed;
+    public float maxSpeed;
+    public float DesAccSpeed;
 
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
@@ -21,9 +25,17 @@ public class TestInputs : MonoBehaviour
     {
     }
 
+    public void Awake()
+    {
+        rb = transform.GetComponent<Rigidbody>();
+    }
 
     public void Interactuo()
     {
+      
+       
+        sloopyMovement = !sloopyMovement;
+        
         if (isInteractable)
         {
             refObjetoInterac.GetComponent<Iinteractable>().Interact();
@@ -39,16 +51,36 @@ public class TestInputs : MonoBehaviour
     }
     public void MeMuevo(Vector2 vec)
     {
-        if (vec.magnitude == 0)
+        if (sloopyMovement)
         {
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            return;
-        }
-        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(vec.x, 0f, vec.y)* speed;
-        //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, new Vector3(vec.x+transform.position.x, 0f, vec.y+ transform.position.z), 360f, 10f));
-        transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f,transform.position.z));
-        
+            if (vec.magnitude == 0)
+            {
 
+                rb.velocity = rb.velocity * DesAccSpeed * Time.deltaTime;
+                Debug.Log(rb.velocity.magnitude);
+                return;
+
+            }
+            rb.AddForce(new Vector3(vec.x, 0f, vec.y)* AcceSpeed, ForceMode.Acceleration);
+            if (rb.velocity.magnitude>maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+           
+        }
+        else
+        {
+            if (vec.magnitude == 0)
+            {
+                rb.velocity = Vector3.zero;
+                return;
+            }
+            rb.velocity = new Vector3(vec.x, 0f, vec.y) * maxSpeed;
+            
+        }
+
+        transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
+        Debug.Log(rb.velocity.magnitude);
 
     }
 
@@ -73,4 +105,6 @@ public class TestInputs : MonoBehaviour
 
         }
     }
+
+    
 }
