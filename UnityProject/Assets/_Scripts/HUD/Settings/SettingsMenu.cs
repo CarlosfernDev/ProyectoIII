@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
+using TMPro;
+using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
     Resolution[] resolutions;
 
     [Header("UIObjects")]
-    [SerializeField] private Dropdown _resolutionDropdown;
-    [SerializeField] private Dropdown _qualityDropwon;
+    [SerializeField] private TMP_Dropdown _resolutionDropdown;
+    [SerializeField] private TMP_Dropdown _qualityDropwon;
 
     [SerializeField] private Toggle _vsyncToggle;
     [SerializeField] private Toggle _fullscreenToggle;
@@ -28,7 +29,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void StartWindowSizeValue()
     {
-        resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
 
         _resolutionDropdown.ClearOptions();
 
@@ -46,6 +47,8 @@ public class SettingsMenu : MonoBehaviour
                 currentResolutionIndex = i;
             }
         }
+
+        currentResolutionIndex = PlayerPrefs.GetInt("resolutionIndex", currentResolutionIndex);
 
         _resolutionDropdown.AddOptions(options);
         _resolutionDropdown.value = currentResolutionIndex;
