@@ -11,6 +11,8 @@ public class PreloadSettings : MonoBehaviour
 
     private void Awake()
     {
+        SaveManager.CreateDirectory();
+
         /*if (PlayerPrefs.HasKey("resolutionIndex"))
         {
             resolutions = Screen.resolutions;
