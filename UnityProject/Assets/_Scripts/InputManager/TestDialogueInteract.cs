@@ -15,6 +15,6 @@ public class TestDialogueInteract : MonoBehaviour, Iinteractable
 
     public void Interact()
     {
-        DialogueRunnerSingleton.Instance.StartDialogue("CubeDialogue");
+        FindObjectOfType<DialogueRunner>().StartDialogue("Start");
     }
 }
