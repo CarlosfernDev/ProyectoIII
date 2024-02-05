@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28c5abfcfa5bb4c8eeeceec347c1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TextoInteraccion: Pulse E para Interactuar
+  _TextoInteraccion: Pulse E para Interactuar Rojo
 --- !u!136 &402495925
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558226894
 MonoBehaviour:
@@ -591,8 +591,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28c5abfcfa5bb4c8eeeceec347c1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TextoInteraccion: Pulse E para Interactuar
+  _TextoInteraccion: Pulse E para Interactuar Verde
 --- !u!136 &1270381541
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28c5abfcfa5bb4c8eeeceec347c1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TextoInteraccion: Pulse E para Interactuar
+  _TextoInteraccion: Pulse E para Interactuar Negro
 --- !u!136 &1563911597
 CapsuleCollider:
   m_ObjectHideFlags: 0

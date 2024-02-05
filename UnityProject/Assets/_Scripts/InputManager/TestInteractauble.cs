@@ -17,6 +17,6 @@ public class TestInteractauble : MonoBehaviour,Iinteractable
     {
         Debug.Log("INTERACTUO CON " + transform.name+" "+ _TextoInteraccion);
         transform.GetComponent<MeshRenderer>().enabled = false;
-        return;
+        
     }
 }

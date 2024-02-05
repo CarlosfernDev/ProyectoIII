@@ -40,7 +40,6 @@ public class TestInputs : MonoBehaviour
         {
             refObjetoInterac.GetComponent<Iinteractable>().Interact();
             Debug.Log("INTERACTUO");
-            return;
 
         }
         else
@@ -60,37 +59,27 @@ public class TestInputs : MonoBehaviour
                 {
                     rb.velocity = Vector3.zero;
                 }
-                rb.velocity -= DesAccSpeed * rb.velocity;
+                else
+                {
+                    rb.velocity -= DesAccSpeed * rb.velocity;
+                }
+               
                 
                // Debug.Log(rb.velocity.magnitude);
-                return;
 
             }
             else
             {
                 rb.AddForce(new Vector3(vec.x, 0f, vec.y) * AcceSpeed, ForceMode.Acceleration);
+                transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
             }
             if (rb.velocity.magnitude>maxSpeed)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
-            transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
-        }
-        /* Movimiento not sloopy
-        else
-        {
-            if (vec.magnitude == 0)
-            {
-                rb.velocity = Vector3.zero;
-                return;
-            }
-            rb.velocity = new Vector3(vec.x, 0f, vec.y) * maxSpeed;
             
         }
-        */
-
-
-       // Debug.Log(rb.velocity.magnitude);
+      
 
     }
 
