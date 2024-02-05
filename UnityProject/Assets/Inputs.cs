@@ -136,7 +136,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d3b555d0-4570-4973-b211-3851d478ee4c"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
