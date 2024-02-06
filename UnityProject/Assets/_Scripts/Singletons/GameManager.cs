@@ -22,12 +22,30 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        FirstTime();
     }
 
     private void Update()
     {
         Debug.Log(playerName);
     }
+
+    #region FirstTime
+
+    private void FirstTime()
+    {
+        if (!SaveManager.IsDirectoryExist())
+        {
+            SaveManager.CreateDirectory();
+        }
+        else
+        {
+            SaveManager.LoadSaveFileSetUp();
+        }
+    }
+
+    #endregion
 
     #region Setting Variables
 
