@@ -29,6 +29,11 @@ public class PreloadSettings : MonoBehaviour
         _generalMixer.SetFloat("VolumeEffect", PlayerPrefs.GetFloat("VolumeEffect", 0));
         _generalMixer.SetFloat("VolumeMusic", PlayerPrefs.GetFloat("VolumeMusic", 0));
 
+    }
+
+    private void Start()
+    {
+        SaveManager.LoadSaveFileSetUp();
         Destroy(gameObject);
     }
 }
