@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28c5abfcfa5bb4c8eeeceec347c1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isInteractable: 0
   _TextoInteraccion: Pulse E para Interactuar
 --- !u!136 &402495925
 CapsuleCollider:
@@ -677,9 +678,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueView: {fileID: 305171003}
-  continueActionType: 1
+  continueActionType: 3
   continueActionKeyCode: 32
-  continueActionReference: {fileID: 0}
+  continueActionReference: {fileID: 3244150700726846292, guid: 0dc15dda2e1abcf448f4ef8c63b9f3c2,
+    type: 3}
   continueAction:
     m_Name: Skip
     m_Type: 1
@@ -943,7 +945,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7778558434935992802, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2753718018764665327, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
@@ -1057,6 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28c5abfcfa5bb4c8eeeceec347c1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isInteractable: 0
   _TextoInteraccion: Pulse E para Interactuar
 --- !u!136 &1270381541
 CapsuleCollider:
@@ -1286,7 +1290,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactZone: {fileID: 1368316794}
-  speed: 10
+  sloopyMovement: 1
+  actualAcceSpeed: 10
+  actualMaxSpeed: 5
+  actualDesSpeed: 0.8
+  rotationSpeed: 540
   hideText:
     m_PersistentCalls:
       m_Calls:
@@ -1499,6 +1507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28c5abfcfa5bb4c8eeeceec347c1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isInteractable: 0
   _TextoInteraccion: Pulse E para Interactuar
 --- !u!136 &1563911597
 CapsuleCollider:
@@ -1934,7 +1943,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b01963ab7e738e4ba37f0ff2f925c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TextoInteraccion: E to Talk
+  _isInteractable: 1
+  _textoInteraccion: Talk
+  _targetDialogueNode: Start
 --- !u!65 &2133981063
 BoxCollider:
   m_ObjectHideFlags: 0
