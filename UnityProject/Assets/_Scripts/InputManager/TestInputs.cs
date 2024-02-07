@@ -6,12 +6,16 @@ using UnityEngine.Events;
 public class TestInputs : MonoBehaviour
 {
 
-  
 
     [SerializeField] GameObject interactZone;
     private bool isInteractable = false;
     private GameObject refObjetoInterac;
-    public float speed;
+
+    [SerializeField] bool sloopyMovement;
+    private Rigidbody rb;
+    public float AcceSpeed;
+    public float maxSpeed;
+    public float DesAccSpeed;
 
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
@@ -21,9 +25,17 @@ public class TestInputs : MonoBehaviour
     {
     }
 
+    public void Awake()
+    {
+        rb = transform.GetComponent<Rigidbody>();
+    }
 
     public void Interactuo()
     {
+      
+       
+        
+        
         if (isInteractable)
         {
             refObjetoInterac.GetComponent<Iinteractable>().Interact();
@@ -39,16 +51,35 @@ public class TestInputs : MonoBehaviour
     }
     public void MeMuevo(Vector2 vec)
     {
-        if (vec.magnitude == 0)
+        if (sloopyMovement)
         {
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            return;
-        }
-        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(vec.x, 0f, vec.y)* speed;
-        //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, new Vector3(vec.x+transform.position.x, 0f, vec.y+ transform.position.z), 360f, 10f));
-        transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f,transform.position.z));
-        
+            if (vec.magnitude == 0)
+            {
+                if (rb.velocity.magnitude<0.1f)
+                {
+                    rb.velocity = Vector3.zero;
+                }
+                else
+                {
+                    rb.velocity -= DesAccSpeed * rb.velocity;
+                }
+               
+                
+               // Debug.Log(rb.velocity.magnitude);
 
+            }
+            else
+            {
+                rb.AddForce(new Vector3(vec.x, 0f, vec.y) * AcceSpeed, ForceMode.Acceleration);
+                transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
+            }
+            if (rb.velocity.magnitude>maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+            
+        }
+      
 
     }
 
@@ -69,8 +100,10 @@ public class TestInputs : MonoBehaviour
         {
             isInteractable = false;
             hideText.Invoke();
-            Debug.Log("OBJETO INTERACTUABLE A SALIDO DE RANGO");
+           // Debug.Log("OBJETO INTERACTUABLE A SALIDO DE RANGO");
 
         }
     }
+
+    
 }
