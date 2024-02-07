@@ -8,8 +8,8 @@ public class TestInputs : MonoBehaviour
 
 
     [SerializeField] GameObject interactZone;
-    private bool isInteractable = false;
-    private GameObject refObjetoInterac;
+    private bool canInteract = false;
+    private GameObject refObjetoInteract;
 
     [SerializeField] bool sloopyMovement;
     private Rigidbody rb;
@@ -32,22 +32,15 @@ public class TestInputs : MonoBehaviour
 
     public void Interactuo()
     {
-      
-       
-        
-        
-        if (isInteractable)
+        if (canInteract)
         {
-            refObjetoInterac.GetComponent<Iinteractable>().Interact();
+            refObjetoInteract.GetComponent<Iinteractable>().Interact();
             Debug.Log("INTERACTUO");
-
         }
         else
         {
             Debug.Log("NO PUEDO INTERACTUAR");
-
         }
-        
     }
     public void MeMuevo(Vector2 vec)
     {
@@ -85,20 +78,29 @@ public class TestInputs : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable))
+        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && !refObjetoInteract)
         {
-            refObjetoInterac = other.gameObject;
-            isInteractable = true;
-            TextoInteractChange.Invoke(refObjetoInterac.GetComponent<Iinteractable>().TextoInteraccion);
-            
+            refObjetoInteract = other.gameObject;
+            canInteract = true;
+            TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract)
+        {
+            if (interactable.IsInteractable) return;
+            hideText.Invoke();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable))
+        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract == other.gameObject)
         {
-            isInteractable = false;
+            refObjetoInteract = null;
+            canInteract = false;
             hideText.Invoke();
            // Debug.Log("OBJETO INTERACTUABLE A SALIDO DE RANGO");
 
