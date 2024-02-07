@@ -42,12 +42,23 @@ public class GameManager : MonoBehaviour
 
     #region CalleableFunctions
 
+    // Intentar no utilizar, por que puede generar muchos conflictos
     public void NextState()
     {
         state++;
         SaveManager.SavePlayerData();
     }
 
+    /* 0 - Aire
+     * 1 - Puentes
+     * 2 - Reciclajes
+     * 3 - Mar
+     * 4 - AguaLimpia
+     * 5 - GranjaPlantas
+     * 6 - GranjaZoo
+     * 7 - Pancarta
+     * 8 - PostGame
+     */
     public void NextState(int value)
     {
         state = (GameState)Mathf.Clamp(value, 0, 8);
