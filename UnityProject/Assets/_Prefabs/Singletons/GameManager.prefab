@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4899271510622079301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921907486667905275}
+  - component: {fileID: 3199020005684252502}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921907486667905275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899271510622079301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3199020005684252502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899271510622079301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f22b28cd0f1cc419bd0a17789b5587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinigameScripts:
+  - {fileID: 11400000, guid: 0327032e45edbb840ab8a63383c8becc, type: 2}
+  - {fileID: 11400000, guid: 85c8388ca71007940a1556193a78c0d9, type: 2}
+  - {fileID: 11400000, guid: 293e5f254672e7547b89f5e724a6d4d9, type: 2}
+  - {fileID: 11400000, guid: e9491cd80b1cf8d44acafc528271b843, type: 2}
+  - {fileID: 11400000, guid: 3e81f5459a3b63243a5f1f6da1c2fdef, type: 2}
+  - {fileID: 11400000, guid: 0af5b41839f941242b01ef67073400dd, type: 2}
+  - {fileID: 11400000, guid: 62a378aeb39f3c249a4029c44547e359, type: 2}
+  - {fileID: 11400000, guid: 3583f2cae9df04d4d9d2c3f59c6f4d7a, type: 2}
+  playerName: Fred
+  playerCoins: 0
+  state: 0

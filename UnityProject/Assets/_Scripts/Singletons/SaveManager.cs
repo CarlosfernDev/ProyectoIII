@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SaveManager : MonoBehaviour
 {
@@ -28,6 +29,38 @@ public class SaveManager : MonoBehaviour
         SaveSaveString(Json);
     }
 
+    public static void SaveMinigameData(int value)
+    {
+        SaveItemsEquiped saveItemsEquiped = new SaveItemsEquiped();
+
+        saveState.SaveMinigame[value] = GameManager.Instance.MinigameScripts[value].GetSavePuzzle(); 
+        saveState.Work = true;
+
+        string Json = JsonUtility.ToJson(saveState);
+        SaveSaveString(Json);
+    }
+
+    public static void SaveAllMinigameData()
+    {
+        Debug.Log(GameManager.Instance.MinigameScripts.Length);
+        for(int i = 0; i < GameManager.Instance.MinigameScripts.Length; i++)
+        {
+            saveState.SaveMinigame[i] = GameManager.Instance.MinigameScripts[i].GetSavePuzzle();
+            Debug.Log(saveState.SaveMinigame[i].ID);
+        }
+        saveState.Work = true;
+
+        string Json = JsonUtility.ToJson(saveState);
+        SaveSaveString(Json);
+    }
+
+    public static void ResetGame()
+    {
+        CreateDirectory();
+        SaveAllMinigameData();
+        LoadSaveFileSetUp();
+    }
+
     #endregion
 
     #region LoadThings
@@ -43,6 +76,7 @@ public class SaveManager : MonoBehaviour
             savePlayerData = saveState.SavePlayerData;
         }
         catch {
+            ResetGame();
             Debug.LogWarning("No se ha conseguido leer el archivo");
         }
     }
@@ -53,9 +87,20 @@ public class SaveManager : MonoBehaviour
 
         GameManager.Instance.playerName = savePlayerData.name;
         GameManager.Instance.playerCoins = savePlayerData.coins;
+        GameManager.Instance.state = savePlayerData.SaveState;
+
+        for (int i = 0; i > GameManager.Instance.MinigameScripts.Length; i++)
+        {
+            GameManager.Instance.MinigameScripts[i].SetPuzzleOnLoad(saveState.SaveMinigame[i]);
+        }
+
         // Cargara items equipados
 
         // Foreach cargando minijuegos completados
+        for (int i = 0; i < GameManager.Instance.MinigameScripts.Length; i++)
+        {
+            GameManager.Instance.MinigameScripts[i].SetPuzzleOnLoad(saveState.SaveMinigame[i]);
+        }
 
         // Foreach cargando coleccionables desbloqueados
     }
@@ -133,6 +178,7 @@ public class SaveManager : MonoBehaviour
 public class SavePlayerData {
     public string name = "Fred";
     public int coins = 0;
+    public GameManager.GameState SaveState = GameManager.GameState.Aire;
     public SaveItemsEquiped PlayerItems = null;
 }
 
@@ -153,7 +199,6 @@ public class SaveUnlockable {
 public class SaveMinigame
 {
     public int ID;
-    public bool isDone;
     public int MaxPoints;
 }
 

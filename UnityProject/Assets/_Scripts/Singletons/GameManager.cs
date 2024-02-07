@@ -8,10 +8,14 @@ public class GameManager : MonoBehaviour
 
     // Variables condicionales
     public bool isDialogueActive {private set; get; }
+    [SerializeField] public MinigamesScriptableObjectScript[] MinigameScripts;
 
     // Variables del jugador
-    public string playerName = "Fred";
-    public int playerCoins = 0;
+    [HideInInspector] public string playerName = "Fred";
+    [HideInInspector] public int playerCoins = 0;
+
+    [HideInInspector] public enum GameState{Aire, Puentes, Reciclaje, Mar, AguaLimpia, GranjaPlantas, GranjaZoo, Pancarta, PostGame}
+    [HideInInspector] public GameState state = GameState.Aire;
 
     // GamesUnlocked
     //public Dictionary<int, Scriptable> minigamesScriptableDictionary; 
@@ -22,7 +26,10 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
 
+    private void Start()
+    {
         FirstTime();
     }
 
@@ -37,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (!SaveManager.IsDirectoryExist())
         {
-            SaveManager.CreateDirectory();
+            SaveManager.ResetGame();
         }
         else
         {
