@@ -51,13 +51,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NormalStrength: 0.03
+    - _NormalStrength: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SmoothstepEdge1: 0
-    - _SmoothstepEdge2: 1
+    - _SmoothstepEdge1: -0.39
+    - _SmoothstepEdge2: 1.77
     - _VoronoiAngleSpeed: 1
-    - _VoronoiCellDensity: 4.04
+    - _VoronoiCellDensity: 10.47
     m_Colors:
     - _FoamColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
     - _FoamWrinklesColor: {r: 0.4858491, g: 0.9116958, b: 1, a: 0}
