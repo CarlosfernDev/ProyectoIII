@@ -7,10 +7,9 @@ public class TestInputs : MonoBehaviour
 {
 
 
-    [SerializeField] GameObject interactZone;
+    [SerializeField] private GameObject interactZone;
     private bool canInteract = false;
     private GameObject refObjetoInteract;
-    [SerializeField] private GameObject interactZone;
     private bool isInteractable = false;
     private GameObject refObjetoInterac;
 
@@ -46,9 +45,6 @@ public class TestInputs : MonoBehaviour
 
     public void Interactuo()
     {
-        if (canInteract)
-
-
         BoostVelocidad(10f, 100f, 1f, 5f);
         
         if (isInteractable)
