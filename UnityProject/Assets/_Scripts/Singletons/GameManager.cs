@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,14 +32,31 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         FirstTime();
+        NextState(8);
     }
 
     private void Update()
     {
-        Debug.Log(playerName);
+        Debug.Log(state);
     }
 
-    #region FirstTime
+    #region CalleableFunctions
+
+    public void NextState()
+    {
+        state++;
+        SaveManager.SavePlayerData();
+    }
+
+    public void NextState(int value)
+    {
+        state = (GameState)Mathf.Clamp(value, 0, 8);
+        SaveManager.SavePlayerData();
+    }
+
+    #endregion
+
+    #region Private Functions
 
     private void FirstTime()
     {

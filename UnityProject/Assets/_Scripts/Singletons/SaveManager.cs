@@ -21,6 +21,7 @@ public class SaveManager : MonoBehaviour
         savePlayerData.name = GameManager.Instance.playerName;
         savePlayerData.coins = GameManager.Instance.playerCoins;
         savePlayerData.PlayerItems = saveItemsEquiped;
+        savePlayerData.SaveState = GameManager.Instance.state;
 
         saveState.SavePlayerData = savePlayerData;
         saveState.Work = true;
