@@ -90,8 +90,14 @@ public class TestInputs : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract)
         {
-            if (interactable.IsInteractable) return;
-            hideText.Invoke();
+            if (interactable.IsInteractable)
+            {
+                TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
+            }
+            else
+            {
+                hideText.Invoke();
+            }
         }
     }
 
