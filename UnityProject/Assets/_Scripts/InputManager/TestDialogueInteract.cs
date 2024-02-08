@@ -23,13 +23,13 @@ public class TestDialogueInteract : MonoBehaviour, Iinteractable
 
     private void Awake()
     {
-        DialogueRunner.Instance.onDialogueComplete.AddListener(SetInteractTrue);
+        DialogueRunnerSingleton.Instance.onDialogueComplete.AddListener(SetInteractTrue);
     }
 
     public void Interact()
     {
         IsInteractable = false;
-        DialogueRunner.Instance.StartDialogue(_targetDialogueNode);
+        DialogueRunnerSingleton.Instance.StartDialogue(_targetDialogueNode);
     }
     public void SetInteractFalse()
     {

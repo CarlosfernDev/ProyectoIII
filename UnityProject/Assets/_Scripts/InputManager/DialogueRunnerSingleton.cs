@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class DialogueRunnerSingleton : DialogueRunner
+[RequireComponent(typeof(DialogueRunner))]
+public class DialogueRunnerSingleton : MonoBehaviour
 {
-    public static DialogueRunnerSingleton Instance { get; private set; }
+    public static DialogueRunner Instance;
 
     // Start is called before the first frame update
     void Awake()
     {
         if(Instance == null)
         {
-            Instance = this;
+            Instance = GetComponent<DialogueRunner>();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

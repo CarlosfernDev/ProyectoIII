@@ -140,7 +140,7 @@ public class TestInputs : MonoBehaviour
         if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && !refObjetoInteract)
         {
             refObjetoInteract = other.gameObject;
-            canInteract = true;
+            isInteractable = true;
             TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
         }
     }
@@ -165,7 +165,7 @@ public class TestInputs : MonoBehaviour
         if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract == other.gameObject)
         {
             refObjetoInteract = null;
-            canInteract = false;
+            isInteractable = false;
             hideText.Invoke();
            // Debug.Log("OBJETO INTERACTUABLE A SALIDO DE RANGO");
 
