@@ -51,19 +51,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _FoamAmount: 0.32
+    - _FoamCutoff: 1
+    - _FoamScale: 0.72
+    - _FoamSpeed: 1
     - _NormalStrength: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SmoothstepEdge1: -0.39
-    - _SmoothstepEdge2: 1.77
+    - _SmoothstepEdge1: -0.08
+    - _SmoothstepEdge2: 1.5
     - _VoronoiAngleSpeed: 1
-    - _VoronoiCellDensity: 10.47
+    - _VoronoiCellDensity: 9.88
     m_Colors:
     - _FoamColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
     - _FoamWrinklesColor: {r: 0.4858491, g: 0.9116958, b: 1, a: 0}
     - _FoamWrinklesColor1: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
     - _FoamWrinklesColor2: {r: 0.7075471, g: 0.7075471, b: 0.7075471, a: 0}
-    - _WaterColor: {r: 0.07058824, g: 0.28235295, b: 0.24946132, a: 0}
+    - _WaterColor: {r: 0, g: 0.26415092, b: 0.22501747, a: 0}
     - _WaterOffsetSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _WaterTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
