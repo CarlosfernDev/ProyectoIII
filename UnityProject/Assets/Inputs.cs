@@ -53,6 +53,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UsarEquipable"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4135272-a709-4d19-a7d8-efc8c38421fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -143,6 +152,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4366fcb1-8d19-4d50-b887-cad2b904042a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UsarEquipable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +197,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_ActionMap1_Movement = m_ActionMap1.FindAction("Movement", throwIfNotFound: true);
         m_ActionMap1_Interact = m_ActionMap1.FindAction("Interact", throwIfNotFound: true);
         m_ActionMap1_Pausa = m_ActionMap1.FindAction("Pausa", throwIfNotFound: true);
+        m_ActionMap1_UsarEquipable = m_ActionMap1.FindAction("UsarEquipable", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -241,6 +262,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_ActionMap1_Movement;
     private readonly InputAction m_ActionMap1_Interact;
     private readonly InputAction m_ActionMap1_Pausa;
+    private readonly InputAction m_ActionMap1_UsarEquipable;
     public struct ActionMap1Actions
     {
         private @Inputs m_Wrapper;
@@ -248,6 +270,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_ActionMap1_Movement;
         public InputAction @Interact => m_Wrapper.m_ActionMap1_Interact;
         public InputAction @Pausa => m_Wrapper.m_ActionMap1_Pausa;
+        public InputAction @UsarEquipable => m_Wrapper.m_ActionMap1_UsarEquipable;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +289,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Pausa.started += instance.OnPausa;
             @Pausa.performed += instance.OnPausa;
             @Pausa.canceled += instance.OnPausa;
+            @UsarEquipable.started += instance.OnUsarEquipable;
+            @UsarEquipable.performed += instance.OnUsarEquipable;
+            @UsarEquipable.canceled += instance.OnUsarEquipable;
         }
 
         private void UnregisterCallbacks(IActionMap1Actions instance)
@@ -279,6 +305,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Pausa.started -= instance.OnPausa;
             @Pausa.performed -= instance.OnPausa;
             @Pausa.canceled -= instance.OnPausa;
+            @UsarEquipable.started -= instance.OnUsarEquipable;
+            @UsarEquipable.performed -= instance.OnUsarEquipable;
+            @UsarEquipable.canceled -= instance.OnUsarEquipable;
         }
 
         public void RemoveCallbacks(IActionMap1Actions instance)
@@ -319,5 +348,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnPausa(InputAction.CallbackContext context);
+        void OnUsarEquipable(InputAction.CallbackContext context);
     }
 }

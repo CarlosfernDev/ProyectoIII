@@ -5,13 +5,15 @@ using UnityEngine.Events;
 
 public class TestInputs : MonoBehaviour
 {
+    [SerializeField] public GameObject positionRed;
+    public bool isEquipado = false;
+    public GameObject refObjetoEquipado;
 
 
     [SerializeField] private GameObject interactZone;
-    private bool canInteract = false;
     private GameObject refObjetoInteract;
     private bool isInteractable = false;
-    private GameObject refObjetoInterac;
+    
 
     [SerializeField] public bool sloopyMovement;
     private Rigidbody rb;
@@ -45,7 +47,7 @@ public class TestInputs : MonoBehaviour
 
     public void Interactuo()
     {
-        BoostVelocidad(10f, 100f, 1f, 5f);
+       
         
         if (isInteractable)
         {
@@ -135,31 +137,23 @@ public class TestInputs : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && !refObjetoInteract)
-        {
-            refObjetoInteract = other.gameObject;
-            isInteractable = true;
-            TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
-        }
-    }
-
+  
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract)
+        
+        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable))
         {
             if (interactable.IsInteractable)
             {
-                TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
+                refObjetoInteract = other.gameObject;
+                isInteractable = true;
+                TextoInteractChange.Invoke(other.GetComponent<Iinteractable>().TextoInteraccion);
             }
-            else
-            {
-                hideText.Invoke();
-            }
+           
         }
+       
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract == other.gameObject)
@@ -167,8 +161,23 @@ public class TestInputs : MonoBehaviour
             refObjetoInteract = null;
             isInteractable = false;
             hideText.Invoke();
-           // Debug.Log("OBJETO INTERACTUABLE A SALIDO DE RANGO");
+           
 
+        }
+    }
+    
+
+    public void UsarObjetoEquipable()
+    {
+        
+        if (isEquipado)
+        {
+            positionRed.transform.rotation = Quaternion.Euler(90, 0, 0);
+            Debug.Log("OBJETO EQUIPADO");
+        }
+        else
+        {
+            Debug.Log("OBJETO NO EQUIPADO");
         }
     }
 
