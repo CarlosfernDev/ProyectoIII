@@ -705,6 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinigameData: {fileID: 11400000, guid: 293e5f254672e7547b89f5e724a6d4d9, type: 2}
   _uiAnimator: {fileID: 1920334341}
+  isCountdown: 0
   _startTimerCanvas: {fileID: 893834356}
   _textStartTimer: {fileID: 1393200091}
   gameIsActive: 0
