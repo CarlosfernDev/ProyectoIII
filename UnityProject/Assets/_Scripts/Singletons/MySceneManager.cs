@@ -42,12 +42,12 @@ public class MySceneManager : MonoBehaviour
     IEnumerator LoadCorutineFunction(int Value)
     {
         // Ejecuta la animacion de la transicion
-        //_myanimator.SetTrigger("Next");
+        _myanimator.SetTrigger("NextIn");
 
         // Comprueba cuando acaba la animacion
         while (true)
         {
-            //if (_myanimator.GetCurrentAnimatorStateInfo(0).IsName("1"))
+            if (_myanimator.GetCurrentAnimatorStateInfo(0).IsName("1"))
             break;
 
             yield return null;
@@ -72,12 +72,12 @@ public class MySceneManager : MonoBehaviour
         //ChargeScene(Value);
 
         // Ejecuta la siguiente transicion
-        //_myanimator.SetTrigger("Next");
+        _myanimator.SetTrigger("NextOut");
 
         // Comprueba si la transicion se ha acabado
         while (true)
         {
-            //if (_myanimator.GetCurrentAnimatorStateInfo(0).IsName("0"))
+            if (_myanimator.GetCurrentAnimatorStateInfo(0).IsName("0"))
             break;
 
 
@@ -102,14 +102,14 @@ public class MySceneManager : MonoBehaviour
         SceneDictionary = new Dictionary<int, string>();
         SceneDictionary.Add(1, "MainMenu");
 
-        SceneDictionary.Add(10, "Minijuego1");
-        SceneDictionary.Add(20, "Minijuego2");
+        SceneDictionary.Add(10, "SceneManager1");
+        SceneDictionary.Add(20, "SceneManager2");
         SceneDictionary.Add(30, "Minijuego3");
         SceneDictionary.Add(40, "Minijuego4");
         SceneDictionary.Add(50, "Minijuego5");
 
 
-        SceneDictionary.Add(20, "LevelSelector");
+        //SceneDictionary.Add(20, "LevelSelector");
     }
 
 
