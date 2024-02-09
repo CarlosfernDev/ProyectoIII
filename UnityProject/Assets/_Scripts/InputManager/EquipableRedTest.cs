@@ -5,6 +5,7 @@ using UnityEngine;
 public class EquipableRedTest : MonoBehaviour,Iinteractable
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private TestInputs script;
     [SerializeField] private bool _isInteractable;
     public string _TextoInteraccion;
 
@@ -25,11 +26,16 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable
     public void Interact()
     {
         player = GameObject.Find("Player");
-        player.GetComponent<TestInputs>().isEquipado = true;
-        player.GetComponent<TestInputs>().refObjetoEquipado = this.transform.gameObject;
-        transform.position = player.GetComponent<TestInputs>().positionRed.transform.position;
-        transform.rotation = player.transform.rotation;
-        transform.parent = player.GetComponent<TestInputs>().positionRed.transform;
+        script = player.GetComponent<TestInputs>(); 
+        transform.GetComponent<Collider>().enabled = false;
+        script.hideTextFunction();
+
+
+        script.isEquipado = true;
+        script.refObjetoEquipado = this.transform.gameObject;
+        transform.position = script.positionRed.transform.position;
+        transform.localRotation = player.transform.rotation;
+        transform.parent = script.positionRed.transform;
         Debug.Log("INTERACTUO CON " + transform.name + " " + _TextoInteraccion);
         SetInteractFalse();
 
