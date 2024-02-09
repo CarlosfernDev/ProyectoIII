@@ -187,7 +187,7 @@ public class TestInputs : MonoBehaviour
     {
         isEquipableInCooldown = true;
         yield return new WaitForSeconds(0.5f);
-        positionRed.transform.localRotation = Quaternion.Euler(0, -90, 0);
+        positionRed.transform.localRotation = Quaternion.Euler(0, 0, 0);
         isEquipableInCooldown = false;
 
     }

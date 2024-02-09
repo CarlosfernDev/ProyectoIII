@@ -76,10 +76,16 @@ public class InputManager : MonoBehaviour
     void movement()
     {
         Vector2 vec = playerInputs.ActionMap1.Movement.ReadValue<Vector2>();
+        var Matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45f, 0));
+        var inputChueca = Matrix.MultiplyPoint3x4(new Vector3(vec.x,0f,vec.y));
+        Debug.Log(vec+"<br>"+inputChueca);
+        vec = new Vector2(inputChueca.x, inputChueca.z);
         movementEvent.Invoke(vec);
 
 
     }
+
+   
 
 
 }
