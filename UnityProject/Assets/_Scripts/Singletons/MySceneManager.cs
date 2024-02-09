@@ -103,10 +103,10 @@ public class MySceneManager : MonoBehaviour
         SceneDictionary.Add(1, "MainMenu");
 
         SceneDictionary.Add(10, "Minijuego1");
-        SceneDictionary.Add(3, "Minijuego2");
-        SceneDictionary.Add(4, "Minijuego3");
-        SceneDictionary.Add(5, "Minijuego4");
-        SceneDictionary.Add(5, "Minijuego5");
+        SceneDictionary.Add(20, "Minijuego2");
+        SceneDictionary.Add(30, "Minijuego3");
+        SceneDictionary.Add(40, "Minijuego4");
+        SceneDictionary.Add(50, "Minijuego5");
 
 
         SceneDictionary.Add(20, "LevelSelector");
