@@ -11,6 +11,11 @@ public class MySceneManager : MonoBehaviour
     private Coroutine LoadCorutine;
 
     [SerializeField] private Animator _myanimator;
+    [SerializeField] private float _tiempoMinimo;
+
+    [Header("Panel Tutorial")]
+    [SerializeField] private RectTransform panelReference;
+    [SerializeField] private Animator _panelAnimator;
 
     private Dictionary<int, string> SceneDictionary;
 
@@ -25,6 +30,8 @@ public class MySceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _panelAnimator.gameObject.SetActive(false);
 
         LearnDictionary();
     }
@@ -63,13 +70,42 @@ public class MySceneManager : MonoBehaviour
             Debug.LogError("La escena no existe en el diccionario.");
 
         // Comprueba cuando ha acabado de cargar la pantalla (se puede poner mas tiempo si es necesario)
-        while (!loadLevel.isDone)
+        float time = 0;
+        while (true)
         {
+            if (loadLevel.isDone && time >= _tiempoMinimo)
+                break;
+
+            time += Time.deltaTime;
             yield return null;
         }
 
-        // Esto hace una carga directa, no es recomendable
-        //ChargeScene(Value);
+        if(Value >= 10 && Value < 100)
+        {
+            _panelAnimator.gameObject.SetActive(true);
+
+            _panelAnimator.SetTrigger("NextIn");
+
+            while (true)
+            {
+                if (_panelAnimator.GetCurrentAnimatorStateInfo(0).IsName("1"))
+                    break;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(5f);
+
+            _panelAnimator.SetTrigger("NextOut");
+            while (true)
+            {
+                if (_panelAnimator.GetCurrentAnimatorStateInfo(0).IsName("0"))
+                    break;
+                yield return null;
+            }
+
+            _panelAnimator.gameObject.SetActive(false);
+        }
+
 
         // Ejecuta la siguiente transicion
         _myanimator.SetTrigger("NextOut");
@@ -100,7 +136,7 @@ public class MySceneManager : MonoBehaviour
     private void LearnDictionary()
     {
         SceneDictionary = new Dictionary<int, string>();
-        SceneDictionary.Add(1, "MainMenu");
+        SceneDictionary.Add(1, "Setting");
 
         SceneDictionary.Add(10, "SceneManager1");
         SceneDictionary.Add(20, "SceneManager2");
