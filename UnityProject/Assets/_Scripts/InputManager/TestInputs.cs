@@ -8,6 +8,7 @@ public class TestInputs : MonoBehaviour
     [SerializeField] public GameObject positionRed;
     public bool isEquipado = false;
     public GameObject refObjetoEquipado;
+    public bool isEquipableInCooldown;
 
 
     [SerializeField] private GameObject interactZone;
@@ -26,7 +27,8 @@ public class TestInputs : MonoBehaviour
     private float baseMaxSpeed;
     private float baseDesAccSpeed;
 
-    private IEnumerator coroutineWaparda;
+    private IEnumerator coroutineBoostVelocidad;
+    
 
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
@@ -115,13 +117,13 @@ public class TestInputs : MonoBehaviour
 
     public void BoostVelocidad(float velocidadMaximaNueva,float velocidadAceleracionNueva, float velocidadDesacNueva, float Tiempo)
     {
-        if (coroutineWaparda != null)
+        if (coroutineBoostVelocidad != null)
         {
-            StopCoroutine(coroutineWaparda);
+            StopCoroutine(coroutineBoostVelocidad);
         }
         
-        coroutineWaparda = BoostVelocidadCoroutine(velocidadMaximaNueva, velocidadAceleracionNueva, velocidadDesacNueva, Tiempo);
-        StartCoroutine(coroutineWaparda);
+        coroutineBoostVelocidad = BoostVelocidadCoroutine(velocidadMaximaNueva, velocidadAceleracionNueva, velocidadDesacNueva, Tiempo);
+        StartCoroutine(coroutineBoostVelocidad);
     }
 
     public IEnumerator BoostVelocidadCoroutine(float velocidadMaximaNueva, float velocidadAceleracionNueva,float velocidadDesacNueva, float Tiempo)
@@ -170,9 +172,10 @@ public class TestInputs : MonoBehaviour
     public void UsarObjetoEquipable()
     {
         
-        if (isEquipado)
+        if (isEquipado && !isEquipableInCooldown)
         {
-            positionRed.transform.rotation = Quaternion.Euler(90, 0, 0);
+            positionRed.transform.localRotation = Quaternion.Euler(0, 90, 90);
+            StartCoroutine("ResetPosRed");
             Debug.Log("OBJETO EQUIPADO");
         }
         else
@@ -181,5 +184,12 @@ public class TestInputs : MonoBehaviour
         }
     }
 
-    
+    IEnumerator ResetPosRed()
+    {
+        isEquipableInCooldown = true;
+        yield return new WaitForSeconds(0.5f);
+        positionRed.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        isEquipableInCooldown = false;
+
+    }
 }
