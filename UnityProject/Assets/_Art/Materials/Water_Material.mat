@@ -58,10 +58,10 @@ Material:
     - _NormalStrength: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SmoothstepEdge1: -0.08
-    - _SmoothstepEdge2: 1.5
+    - _SmoothstepEdge1: 0.41
+    - _SmoothstepEdge2: 0.87
     - _VoronoiAngleSpeed: 1
-    - _VoronoiCellDensity: 9.88
+    - _VoronoiCellDensity: 20.46
     m_Colors:
     - _FoamColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
     - _FoamWrinklesColor: {r: 0.4858491, g: 0.9116958, b: 1, a: 0}
