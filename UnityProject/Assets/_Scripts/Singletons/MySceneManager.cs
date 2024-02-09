@@ -17,6 +17,8 @@ public class MySceneManager : MonoBehaviour
     [SerializeField] private RectTransform panelReference;
     [SerializeField] private Animator _panelAnimator;
 
+    private bool anyKeyIsPressed = false;
+
     private Dictionary<int, string> SceneDictionary;
 
     private void Awake()
@@ -93,7 +95,19 @@ public class MySceneManager : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(5f);
+            InputManager.Instance.anyKeyEvent.AddListener(SetPressedButton);
+
+            while (true)
+            {
+                if (anyKeyIsPressed)
+                    break;
+
+                yield return null;
+            }
+
+            InputManager.Instance.anyKeyEvent.RemoveListener(SetPressedButton);
+
+            anyKeyIsPressed = false;
 
             _panelAnimator.SetTrigger("NextOut");
             while (true)
@@ -119,6 +133,11 @@ public class MySceneManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void SetPressedButton()
+    {
+        anyKeyIsPressed = true;
     }
 
     private void ChargeScene(int Value)

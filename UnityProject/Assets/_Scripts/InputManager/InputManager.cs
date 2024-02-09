@@ -8,10 +8,10 @@ public class InputManager : MonoBehaviour
     Inputs playerInputs;
     public static InputManager Instance;
 
-    [SerializeField] private UnityEvent interactEvent;
-    [SerializeField] private UnityEvent equipableEvent;
-    [SerializeField] private UnityEvent anyKeyEvent;
-    [SerializeField] private UnityEvent<Vector2> movementEvent;
+    [SerializeField] public UnityEvent interactEvent;
+    [SerializeField] public UnityEvent equipableEvent;
+    [SerializeField] public UnityEvent anyKeyEvent;
+    [SerializeField] public UnityEvent<Vector2> movementEvent;
 
 
 
@@ -43,7 +43,6 @@ public class InputManager : MonoBehaviour
         playerInputs.ActionMap1.Interact.performed += Interact_performed;
         playerInputs.ActionMap1.UsarEquipable.performed += UsarEquipable_performed;
         playerInputs.ActionMap1.AnyKey.performed += AnyKey_performed;
-
     }
 
     private void AnyKey_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
