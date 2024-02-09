@@ -5,13 +5,16 @@ using UnityEngine.Events;
 
 public class TestInputs : MonoBehaviour
 {
+    [SerializeField] public GameObject positionRed;
+    public bool isEquipado = false;
+    public GameObject refObjetoEquipado;
+    public bool isEquipableInCooldown;
 
 
     [SerializeField] private GameObject interactZone;
-    private bool canInteract = false;
     private GameObject refObjetoInteract;
     private bool isInteractable = false;
-    private GameObject refObjetoInterac;
+    
 
     [SerializeField] public bool sloopyMovement;
     private Rigidbody rb;
@@ -24,7 +27,8 @@ public class TestInputs : MonoBehaviour
     private float baseMaxSpeed;
     private float baseDesAccSpeed;
 
-    private IEnumerator coroutineWaparda;
+    private IEnumerator coroutineBoostVelocidad;
+    
 
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
@@ -45,7 +49,7 @@ public class TestInputs : MonoBehaviour
 
     public void Interactuo()
     {
-        BoostVelocidad(10f, 100f, 1f, 5f);
+       
         
         if (isInteractable)
         {
@@ -113,13 +117,13 @@ public class TestInputs : MonoBehaviour
 
     public void BoostVelocidad(float velocidadMaximaNueva,float velocidadAceleracionNueva, float velocidadDesacNueva, float Tiempo)
     {
-        if (coroutineWaparda != null)
+        if (coroutineBoostVelocidad != null)
         {
-            StopCoroutine(coroutineWaparda);
+            StopCoroutine(coroutineBoostVelocidad);
         }
         
-        coroutineWaparda = BoostVelocidadCoroutine(velocidadMaximaNueva, velocidadAceleracionNueva, velocidadDesacNueva, Tiempo);
-        StartCoroutine(coroutineWaparda);
+        coroutineBoostVelocidad = BoostVelocidadCoroutine(velocidadMaximaNueva, velocidadAceleracionNueva, velocidadDesacNueva, Tiempo);
+        StartCoroutine(coroutineBoostVelocidad);
     }
 
     public IEnumerator BoostVelocidadCoroutine(float velocidadMaximaNueva, float velocidadAceleracionNueva,float velocidadDesacNueva, float Tiempo)
@@ -135,31 +139,23 @@ public class TestInputs : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && !refObjetoInteract)
-        {
-            refObjetoInteract = other.gameObject;
-            isInteractable = true;
-            TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
-        }
-    }
-
+  
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract)
+        
+        if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable))
         {
             if (interactable.IsInteractable)
             {
-                TextoInteractChange.Invoke(refObjetoInteract.GetComponent<Iinteractable>().TextoInteraccion);
+                refObjetoInteract = other.gameObject;
+                isInteractable = true;
+                TextoInteractChange.Invoke(other.GetComponent<Iinteractable>().TextoInteraccion);
             }
-            else
-            {
-                hideText.Invoke();
-            }
+           
         }
+       
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent<Iinteractable>(out Iinteractable interactable) && refObjetoInteract == other.gameObject)
@@ -167,10 +163,33 @@ public class TestInputs : MonoBehaviour
             refObjetoInteract = null;
             isInteractable = false;
             hideText.Invoke();
-           // Debug.Log("OBJETO INTERACTUABLE A SALIDO DE RANGO");
+           
 
         }
     }
-
     
+
+    public void UsarObjetoEquipable()
+    {
+        
+        if (isEquipado && !isEquipableInCooldown)
+        {
+            positionRed.transform.localRotation = Quaternion.Euler(0, 90, 90);
+            StartCoroutine("ResetPosRed");
+            Debug.Log("OBJETO EQUIPADO");
+        }
+        else
+        {
+            Debug.Log("OBJETO NO EQUIPADO");
+        }
+    }
+
+    IEnumerator ResetPosRed()
+    {
+        isEquipableInCooldown = true;
+        yield return new WaitForSeconds(0.5f);
+        positionRed.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        isEquipableInCooldown = false;
+
+    }
 }
