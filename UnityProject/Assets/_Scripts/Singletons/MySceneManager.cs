@@ -19,6 +19,7 @@ public class MySceneManager : MonoBehaviour
 
     private bool anyKeyIsPressed = false;
 
+    public Action OnLoadFinish;
     private Dictionary<int, string> SceneDictionary;
 
     private void Awake()
@@ -133,6 +134,11 @@ public class MySceneManager : MonoBehaviour
 
             yield return null;
         }
+
+        if(OnLoadFinish != null)
+        {
+            OnLoadFinish();
+        }
     }
 
     public void SetPressedButton()
@@ -159,8 +165,8 @@ public class MySceneManager : MonoBehaviour
 
         SceneDictionary.Add(10, "SceneManager1");
         SceneDictionary.Add(20, "SceneManager2");
-        SceneDictionary.Add(30, "Minijuego3");
-        SceneDictionary.Add(40, "Minijuego4");
+        SceneDictionary.Add(30, "ODS7_FRAN");
+        SceneDictionary.Add(40, "InputManagerTest");
         SceneDictionary.Add(50, "Minijuego5");
 
 

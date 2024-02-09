@@ -22,25 +22,46 @@ public class MinigameParent : MonoBehaviour
 
     private void Awake()
     {
+        _startTimerCanvas.SetActive(false);
+        // MySceneManager.Instance.OnLoadFinish += StartCountdown;
         personalAwake();
     }
 
     private void Start()
     {
         // El timer debe llamarlo la pantalla de carga
+
+        personalStart();
+
+        // Quitar ANTES DEL BUILD
+        StartCountdown();
+    }
+
+    private void OnDestroy()
+    {
+        if (MySceneManager.Instance.OnLoadFinish != null && !gameIsActive)
+            MySceneManager.Instance.OnLoadFinish -= StartCountdown;
+    }
+
+    private void StartCountdown()
+    {
         if (isCountdown)
         {
             Timer(3);
         }
-        else{
+        else
+        {
             Timer(0);
         }
-        personalStart();
+
+        if(MySceneManager.Instance.OnLoadFinish != null)
+            MySceneManager.Instance.OnLoadFinish -= StartCountdown;
     }
 
     private void Timer(int value)
     {
-        if(_timerCoroutine != null)
+        _startTimerCanvas.SetActive(true);
+        if (_timerCoroutine != null)
         {
             StopCoroutine(_timerCoroutine);
         }

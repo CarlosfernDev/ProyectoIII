@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Testeos/SceneManager/SceneManager1.unity
     guid: 7f74ae0f1360ee249aed997aaa6fb914
   - enabled: 1
+    path: Assets/Scenes/Minijuegos/ODS7_FRAN/ODS7_FRAN.unity
+    guid: 57773b2c9bf2ef242aff2de09531618c
+  - enabled: 1
     path: Assets/Scenes/Testeos/SceneManager/SceneManager2.unity
     guid: dce16c69a4a8df5499a55c57dd93ec81
   - enabled: 1
     path: Assets/Scenes/Testeos/Setting.unity
     guid: feee5bd542dc17f46aa85e5a57cb795b
+  - enabled: 1
+    path: Assets/Scenes/Testeos/InputManagerTest.unity
+    guid: 2bfef318309f506469407310ea946411
   m_configObjects: {}
