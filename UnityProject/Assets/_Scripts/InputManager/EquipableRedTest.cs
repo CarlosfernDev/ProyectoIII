@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// Revision: Esta god, pero deberiamos buscar una manera de que no sea en el pickup, setea como singleton el testinputs y haz que siempre en el awake sea machada por uno nuevo.
+/// De esta manera mantienes las referencias al jugador sin necesidad de que ponerselas a mano en Unity, y luego lo suyo seria crear una manera de poder implementar el powerup a mano en el inspector,
+/// La solucion mas rapida es asignarlo todo a un padre llamado "PlayerUpgrade" y donde tienes el "TestInput" cambiar la logica de "refObjetoEquipado" que ya seria de esa clase en vez de ser un gameobject.
+/// A su vez la logica de TestInputs seria agarrar la clase UseEquipment del padre. 
+
 public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
 {
     [SerializeField] private GameObject player;
@@ -57,6 +62,7 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
 
     public void UseEquipment()
     {
+        /// Revision: Falta gestionar que la corutina no se repita guardandola en una variable Coroutine y revisando que si no es null lo pare o no ejecute el start
         StartCoroutine(AccionUsarRed());
       
     }
@@ -82,6 +88,8 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
         
         foreach (var item in hitColliders)
         {
+            /// Revision: Usa FindObjectsOfType, ademas de restringir colisiones con una layer. Esto nos permitira en un futuro reutilizar codigo y tenerlo todo mas centralizado,
+            /// ademas de no abusar de las tags que se usa para postprocesado tambien y no son ilimitadas.
             if (item.gameObject.tag == "Nube")
             {
                 if (_isCloudCaptured == false)
@@ -96,6 +104,7 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
                 
             }
         }
+        /// Revision: Si la animacion es esto, mejor separa el codigo principal fuera de la corutina y una vez realizado que ejecute una corutina u otra
         yield return new WaitForSeconds(0.5f);
 
         transform.localRotation = Quaternion.Euler(0, 0, 0);
