@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Threading;
+using System;
 
 [RequireComponent(typeof(Animator))]
 public class MinigameParent : MonoBehaviour
 {
+    public Action OnGameStartEvent;
+
     [Header("Minigame Scriptable Object")]
     [SerializeField] protected MinigamesScriptableObjectScript MinigameData;
     [SerializeField] private Animator _uiAnimator;
@@ -108,6 +111,9 @@ public class MinigameParent : MonoBehaviour
         }
         _startTimerCanvas.SetActive(false);
         gameIsActive = true;
+
+        if(OnGameStartEvent != null)
+            OnGameStartEvent();
     }
 
     protected virtual void personalAwake()
