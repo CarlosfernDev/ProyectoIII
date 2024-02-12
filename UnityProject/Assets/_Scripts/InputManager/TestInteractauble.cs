@@ -31,6 +31,7 @@ public class TestInteractauble : MonoBehaviour, Iinteractable
     public void SetInteractFalse()
     {
         IsInteractable = false;
+        
     }
 
     public void SetInteractTrue()

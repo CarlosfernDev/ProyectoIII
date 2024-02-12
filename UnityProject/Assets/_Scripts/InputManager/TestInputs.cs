@@ -5,17 +5,21 @@ using UnityEngine.Events;
 
 public class TestInputs : MonoBehaviour
 {
-    [SerializeField] public GameObject positionRed;
+
+    //Equipment (Red nubes fran)
+    [SerializeField] public Transform positionEquipable;
     public bool isEquipado = false;
     public GameObject refObjetoEquipado;
     public bool isEquipableInCooldown;
 
-
-    [SerializeField] private GameObject interactZone;
+    //Interaction
+    [SerializeField] public GameObject interactZone;
     private GameObject refObjetoInteract;
     private bool isInteractable = false;
     
 
+
+    //Movement
     [SerializeField] public bool sloopyMovement;
     private Rigidbody rb;
     public float actualAcceSpeed;
@@ -29,7 +33,7 @@ public class TestInputs : MonoBehaviour
 
     private IEnumerator coroutineBoostVelocidad;
     
-
+    //Actualizador de UI? maybe hay que moverlo a los scripts interactuables y hacer que los objetos busquen la ui en la escena
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
     //Modificacion de la clase event para poder pasar en las llamadas strings
@@ -171,11 +175,12 @@ public class TestInputs : MonoBehaviour
     public void UsarObjetoEquipable()
     {
         
-        if (isEquipado && !isEquipableInCooldown)
+        if (isEquipado)
         {
-            positionRed.transform.localRotation = Quaternion.Euler(0, 90, 90);
-            StartCoroutine("ResetPosRed");
-            Debug.Log("OBJETO EQUIPADO");
+            //Llamo a la funcion que deben implementar todos los objetos equipables.
+            refObjetoEquipado.GetComponent<Iequipable>().UseEquipment();
+            
+            Debug.Log("Uso objeto"+ refObjetoEquipado.name);
         }
         else
         {
@@ -183,14 +188,6 @@ public class TestInputs : MonoBehaviour
         }
     }
 
-    IEnumerator ResetPosRed()
-    {
-        isEquipableInCooldown = true;
-        yield return new WaitForSeconds(0.5f);
-        positionRed.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        isEquipableInCooldown = false;
-
-    }
 
     public void hideTextFunction()
     {
