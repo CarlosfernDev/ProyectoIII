@@ -2,21 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloudSpawner : LInteractableParent
 {
     public enum factoryState {Wait, Spawning, Loading, Disable}
-    [HideInInspector] public factoryState myFactoryState = factoryState.Wait;
+    public factoryState myFactoryState = factoryState.Wait;
     [SerializeField] private Transform spawnTransform;
+    [SerializeField] private Slider SpawnSlider;
 
     private bool _IsRecalculateTime;
 
     private float _TimeReferenceDestroy;
     
     private float _TimeReferenceSpawn;
+    private float _SpawnTimeOffset = 0;
 
     private void Start()
     {
+        SpawnSlider.maxValue = ODS7Singleton.Instance.timeCloudSpawn;
+        SpawnSlider.value = ODS7Singleton.Instance.timeCloudSpawn;
         ODS7Singleton.Instance.OnGameStartEvent += OnGameStart;
         _TimeReferenceSpawn = Time.time;
     }
@@ -61,11 +66,16 @@ public class CloudSpawner : LInteractableParent
 
     bool IsCloudSpawneable()
     {
+        if (myFactoryState != factoryState.Spawning)
+            return false;
+
         if(ODS7Singleton.Instance.maxClouds <= ODS7Singleton.Instance.cloudList.Count)
             return false;
 
-        float TimeSpawn = ODS7Singleton.Instance.timeCloudSpawn - (Time.time - _TimeReferenceSpawn);
+        float TimeSpawn = ODS7Singleton.Instance.timeCloudSpawn - ((Time.time - _TimeReferenceSpawn));
         TimeSpawn = Mathf.Clamp(TimeSpawn, 0, ODS7Singleton.Instance.timeCloudSpawn);
+
+        SpawnSlider.value = TimeSpawn;
 
         if (TimeSpawn == 0)
             return true;
@@ -77,10 +87,11 @@ public class CloudSpawner : LInteractableParent
     {
         GameObject Cloud = Instantiate(ODS7Singleton.Instance.CloudPrefab, spawnTransform);
 
-        int Value = 0;
+        Cloud.transform.parent = ODS7Singleton.Instance.SpawnParent;
 
         ODS7Singleton.Instance.cloudList.Add(Cloud);
         _TimeReferenceSpawn = Time.time;
+        _SpawnTimeOffset = 0;
     }
 
     void OnGameStart()
@@ -92,11 +103,13 @@ public class CloudSpawner : LInteractableParent
 
     void DisableFactory()
     {
+        _SpawnTimeOffset = Time.time - _TimeReferenceSpawn;
         myFactoryState = factoryState.Disable;
     }
 
     void RestoreFactory()
     {
+        _TimeReferenceSpawn = Time.time - _SpawnTimeOffset;
         myFactoryState = factoryState.Spawning;
     }
 
