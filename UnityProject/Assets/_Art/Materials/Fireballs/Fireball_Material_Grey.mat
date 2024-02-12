@@ -54,5 +54,5 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _FireColor: {r: 0, g: 2.270603, b: 0.3492994, a: 0}
+    - _FireColor: {r: 1.8588978, g: 1.8588978, b: 1.8588978, a: 0}
   m_BuildTextureStacks: []
