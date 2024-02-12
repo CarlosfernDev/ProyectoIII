@@ -15,6 +15,8 @@ public class ODS7Singleton : MinigameParent
     public List<GameObject> cloudList;
     public GameObject CloudPrefab;
 
+    public Transform SpawnParent;
+
     protected override void personalAwake()
     {
         cloudList = new List<GameObject>();
