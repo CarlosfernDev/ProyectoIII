@@ -111,8 +111,9 @@ public class MinigameParent : MonoBehaviour
         }
         _startTimerCanvas.SetActive(false);
         gameIsActive = true;
+        OnGameStart();
 
-        if(OnGameStartEvent != null)
+        if (OnGameStartEvent != null)
             OnGameStartEvent();
     }
 
@@ -122,6 +123,11 @@ public class MinigameParent : MonoBehaviour
     }
 
     protected virtual void personalStart()
+    {
+
+    }
+
+    protected virtual void OnGameStart()
     {
 
     }

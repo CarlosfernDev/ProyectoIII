@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
+[RequireComponent(typeof(TimerMinigame))]
 public class ODS7Singleton : MinigameParent
 {
     public static ODS7Singleton Instance;
+
+    public TimerMinigame timer;
 
     [Header("Fabricas Variables")]
     public float timeFabricaDestroy;
@@ -14,6 +17,9 @@ public class ODS7Singleton : MinigameParent
     public int maxClouds;
     public List<GameObject> cloudList;
     public GameObject CloudPrefab;
+
+    [Header("Punto Ecologico")]
+    public float AddTime;
 
     public Transform SpawnParent;
 
@@ -35,5 +41,10 @@ public class ODS7Singleton : MinigameParent
         
     }
 
+    protected override void OnGameStart()
+    {
+        base.OnGameStart();
+        timer.SetTimer();
+    }
 
 }
