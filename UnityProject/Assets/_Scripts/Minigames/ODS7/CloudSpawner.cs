@@ -21,8 +21,13 @@ public class CloudSpawner : LInteractableParent
 
     private void Start()
     {
+        FixSlider.gameObject.SetActive(false);
+        FixSlider.maxValue = ODS7Singleton.Instance.timeFabricaDestroy;
+        FixSlider.value = 0;
+
         SpawnSlider.maxValue = ODS7Singleton.Instance.timeCloudSpawn;
         SpawnSlider.value = ODS7Singleton.Instance.timeCloudSpawn;
+
         ODS7Singleton.Instance.OnGameStartEvent += OnGameStart;
         _TimeReferenceSpawn = Time.time;
     }
@@ -47,8 +52,15 @@ public class CloudSpawner : LInteractableParent
 
     void UpdateValue()
     {
+        if (!FixSlider.gameObject.activeSelf)
+        {
+            FixSlider.gameObject.SetActive(true);
+        }
+
        float TimeLoad = ODS7Singleton.Instance.timeFabricaDestroy - (Time.time - _TimeReferenceDestroy);
         TimeLoad = Mathf.Clamp(TimeLoad, 0, ODS7Singleton.Instance.timeFabricaDestroy);
+
+        FixSlider.value = TimeLoad;
 
         // Valorar suma de fantasmas
 
@@ -58,8 +70,9 @@ public class CloudSpawner : LInteractableParent
             return; 
         } */
 
-        if(TimeLoad == 0)
+        if (TimeLoad == 0)
         {
+            FixSlider.gameObject.SetActive(false);
             DisableFactory();
             return;
         }
@@ -112,6 +125,7 @@ public class CloudSpawner : LInteractableParent
 
     void RestoreFactory()
     {
+        FixSlider.gameObject.SetActive(false);
         _TimeReferenceSpawn = Time.time - _SpawnTimeOffset;
         myFactoryState = factoryState.Spawning;
     }
