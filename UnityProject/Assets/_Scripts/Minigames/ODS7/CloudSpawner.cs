@@ -10,6 +10,7 @@ public class CloudSpawner : LInteractableParent
     public factoryState myFactoryState = factoryState.Wait;
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private Slider SpawnSlider;
+    [SerializeField] private Slider FixSlider;
 
     private bool _IsRecalculateTime;
 
@@ -69,8 +70,11 @@ public class CloudSpawner : LInteractableParent
         if (myFactoryState != factoryState.Spawning)
             return false;
 
-        if(ODS7Singleton.Instance.maxClouds <= ODS7Singleton.Instance.cloudList.Count)
+        if (ODS7Singleton.Instance.maxClouds <= ODS7Singleton.Instance.cloudList.Count)
+        {
+            _TimeReferenceSpawn = Time.time;
             return false;
+        }
 
         float TimeSpawn = ODS7Singleton.Instance.timeCloudSpawn - ((Time.time - _TimeReferenceSpawn));
         TimeSpawn = Mathf.Clamp(TimeSpawn, 0, ODS7Singleton.Instance.timeCloudSpawn);
