@@ -9,6 +9,8 @@ public class IAnube : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LayerMask layer;
+    [SerializeField] public bool isReturningToFactory = false;
+    [SerializeField] public bool isStandBY = false;
 
     private void Awake()
     {
@@ -17,7 +19,19 @@ public class IAnube : MonoBehaviour
     }
     private void Update()
     {
-        rb.velocity = transform.forward*speed;
+        if (isStandBY)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+        if (isReturningToFactory)
+        {
+            rb.velocity = (this.transform.position - posFactory.position).normalized;
+            return;
+        }
+
+        rb.velocity = transform.forward * speed;
+
     }
 
     void getRandomDir()
@@ -39,6 +53,8 @@ public class IAnube : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+
+        //Funcion de detectar cosas con lo que rebotar, deben tener la misma layer
         Debug.Log(collision.gameObject.layer + "////" + ToLayer(layer));
         if (collision.gameObject.layer == ToLayer(layer))
         {
