@@ -10,6 +10,8 @@ public class CloudSpawner : LInteractableParent
     public factoryState myFactoryState = factoryState.Wait;
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private Slider SpawnSlider;
+    [SerializeField] private float minSpawnRadius = 1f;
+    [SerializeField] private float maxSpawnRadius = 5f;
 
     private bool _IsRecalculateTime;
 
@@ -17,6 +19,9 @@ public class CloudSpawner : LInteractableParent
     
     private float _TimeReferenceSpawn;
     private float _SpawnTimeOffset = 0;
+
+    private Vector3 _randomSpawnPoint;
+    private bool _isSpawnPointSet;
 
     private void Start()
     {
@@ -34,6 +39,8 @@ public class CloudSpawner : LInteractableParent
         // Chequear si puede spawnear
         if (IsCloudSpawneable())
         {
+            SetSpawnLocation();
+            if (!_isSpawnPointSet) return;
             SpawnCloud();
         }
         // Si puede spawnea
@@ -85,13 +92,14 @@ public class CloudSpawner : LInteractableParent
 
     void SpawnCloud()
     {
-        GameObject Cloud = Instantiate(ODS7Singleton.Instance.CloudPrefab, spawnTransform);
+        GameObject Cloud = Instantiate(ODS7Singleton.Instance.CloudPrefab, _randomSpawnPoint, Quaternion.identity);
 
         Cloud.transform.parent = ODS7Singleton.Instance.SpawnParent;
 
         ODS7Singleton.Instance.cloudList.Add(Cloud);
         _TimeReferenceSpawn = Time.time;
         _SpawnTimeOffset = 0;
+        _isSpawnPointSet = false;
     }
 
     void OnGameStart()
@@ -122,6 +130,43 @@ public class CloudSpawner : LInteractableParent
 
         myFactoryState = factoryState.Loading;
         _TimeReferenceDestroy = Time.time;
+    }
+
+    private void SetSpawnLocation()
+    {
+        if (_isSpawnPointSet) return;
+        Vector3 _calculatedSpawnPoint = RandomPointInRing(spawnTransform, new Vector2(transform.position.x, transform.position.z), minSpawnRadius, maxSpawnRadius);
+        if (CanSpawnHere(_calculatedSpawnPoint))
+        {
+            _randomSpawnPoint = _calculatedSpawnPoint;
+            _isSpawnPointSet = true;
+        }
+        else
+        {
+            _isSpawnPointSet = false;
+        }
+    }
+
+    private bool CanSpawnHere(Vector3 _spawnPoint)
+    {
+        Physics.Raycast(_spawnPoint, Vector3.down, out RaycastHit rayHit, 10f);
+        
+        if (rayHit.collider.CompareTag("Ground"))
+            return true;
+        else
+            return false;
+    }
+
+    private Vector3 RandomPointInRing(Transform _spawnTransform, Vector2 origin, float minRadius, float maxRadius) 
+    {
+        Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+        float minRadius2 = minRadius * minRadius;
+        float maxRadius2 = maxRadius * maxRadius;
+        float randomDistance = Mathf.Sqrt(UnityEngine.Random.value * (maxRadius2 - minRadius2) + minRadius2);
+
+        Vector2 randomPoint2D = (origin + randomDirection * randomDistance);
+        
+        return new Vector3(randomPoint2D.x, _spawnTransform.position.y, randomPoint2D.y);
     }
 
 }
