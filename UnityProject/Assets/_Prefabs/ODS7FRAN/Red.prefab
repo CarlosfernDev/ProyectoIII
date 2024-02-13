@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9010433578275841881}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: InsideRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4874251748793982276}
   - component: {fileID: 4863165373258512012}
   - component: {fileID: 7556319974748195737}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3144319449299962319}
   - component: {fileID: 7061608569914801988}
   - component: {fileID: 3301337970451627808}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RED
   m_TagString: Untagged
   m_Icon: {fileID: 0}

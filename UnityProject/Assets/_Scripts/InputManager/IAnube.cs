@@ -26,7 +26,8 @@ public class IAnube : MonoBehaviour
         }
         if (isReturningToFactory)
         {
-            rb.velocity = (this.transform.position - posFactory.position).normalized;
+            rb.velocity = (posFactory.position- this.transform.position).normalized*speed;
+            transform.LookAt(posFactory);
             return;
         }
 
@@ -38,15 +39,15 @@ public class IAnube : MonoBehaviour
     {
         vecMovementDir = new Vector3(0, Random.Range(0, 360), 0);
     }
-    void setRotation()
+    void setRotation(Vector3 vec)
     {
-        transform.rotation = Quaternion.Euler(vecMovementDir);
+        transform.rotation = Quaternion.Euler(vec);
     }
 
     void moveNewDirection()
     {
         getRandomDir();
-        setRotation();
+        setRotation(vecMovementDir);
     }
 
   
@@ -58,8 +59,14 @@ public class IAnube : MonoBehaviour
         Debug.Log(collision.gameObject.layer + "////" + ToLayer(layer));
         if (collision.gameObject.layer == ToLayer(layer))
         {
-            Debug.Log("rarw");
+           
             moveNewDirection();
+        }
+
+        if (TryGetComponent<CloudSpawner>(out CloudSpawner cloud))
+        {
+            Debug.Log("FACTORY DETECTED");
+            isReturningToFactory = false;
         }
     }
 
@@ -72,5 +79,11 @@ public class IAnube : MonoBehaviour
             result++;
         }
         return result;
+    }
+
+    public void WEGOINGTOFACTORYYYYYYYYBOYSSS(Transform _posFactory)
+    {
+        posFactory = _posFactory;
+        isReturningToFactory = true;
     }
 }
