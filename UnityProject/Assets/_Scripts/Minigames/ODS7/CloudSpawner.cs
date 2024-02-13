@@ -168,10 +168,11 @@ public class CloudSpawner : LInteractableParent
     private bool CanSpawnHere(Vector3 _spawnPoint)
     {
         Physics.Raycast(_spawnPoint, Vector3.down, out RaycastHit rayHit, 10f);
-        
+
         if (rayHit.collider.CompareTag("Ground"))
             return true;
         else
+            Debug.LogWarning("No se pudo spawnear el enemigo");
             return false;
     }
 
