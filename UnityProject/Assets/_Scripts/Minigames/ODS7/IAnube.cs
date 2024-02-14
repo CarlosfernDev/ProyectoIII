@@ -12,6 +12,10 @@ public class IAnube : MonoBehaviour
     [SerializeField] public bool isReturningToFactory = false;
     [SerializeField] public bool isStandBY = false;
 
+    private Vector3 factoryDirection;
+
+    [HideInInspector] public CloudSpawner objectiveCloudSpawner;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,8 +30,8 @@ public class IAnube : MonoBehaviour
         }
         if (isReturningToFactory)
         {
-            rb.velocity = (posFactory.position- this.transform.position).normalized*speed;
-            transform.LookAt(posFactory);
+            rb.velocity = factoryDirection * speed;
+            //transform.LookAt(posFactory);
             return;
         }
 
@@ -57,16 +61,26 @@ public class IAnube : MonoBehaviour
 
         //Funcion de detectar cosas con lo que rebotar, deben tener la misma layer
         Debug.Log(collision.gameObject.layer + "////" + ToLayer(layer));
-        if (collision.gameObject.layer == ToLayer(layer))
+        if (collision.gameObject.layer == ToLayer(layer) && !isReturningToFactory)
         {
            
             moveNewDirection();
         }
 
-        if (TryGetComponent<CloudSpawner>(out CloudSpawner cloud))
+        if (collision.gameObject.TryGetComponent<CloudSpawner>(out CloudSpawner cloud))
         {
             Debug.Log("FACTORY DETECTED");
-            isReturningToFactory = false;
+            if (isReturningToFactory)
+            {
+
+                // Aqui metere cosas yo AT: Stamp
+                cloud.RestoreFactory();
+                isReturningToFactory = false;
+            }
+            else
+            {
+                moveNewDirection();
+            }
         }
     }
 
@@ -84,6 +98,7 @@ public class IAnube : MonoBehaviour
     public void WEGOINGTOFACTORYYYYYYYYBOYSSS(Transform _posFactory)
     {
         posFactory = _posFactory;
+        factoryDirection = new Vector3(posFactory.position.x - this.transform.position.x, 0, posFactory.position.z - this.transform.position.z).normalized;
         isReturningToFactory = true;
     }
 }

@@ -22,8 +22,15 @@ public class PuntoEcologicoODS7 : LInteractableParent
             //Llamar funcion de puntuacion?
             redScript.cloudCaptured.transform.parent = null;
 
-            if (ODS7Singleton.Instance.cloudList.Contains(redScript.cloudCaptured.gameObject)) {
-                ODS7Singleton.Instance.cloudList.Remove(redScript.cloudCaptured.gameObject);
+            IAnube ia = redScript.cloudCaptured.gameObject.GetComponent<IAnube>();
+
+            if (ia.objectiveCloudSpawner)
+            {
+                ia.objectiveCloudSpawner.IAObjective = null;
+            }
+
+            if (ODS7Singleton.Instance.cloudList.Contains(ia)) {
+                ODS7Singleton.Instance.cloudList.Remove(ia);
             }
             Destroy(redScript.cloudCaptured.gameObject);
 

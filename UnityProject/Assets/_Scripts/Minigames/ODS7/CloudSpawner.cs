@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
 
 public class CloudSpawner : LInteractableParent
@@ -13,6 +14,8 @@ public class CloudSpawner : LInteractableParent
     [SerializeField] private Slider FixSlider;
     [SerializeField] private float minSpawnRadius = 1f;
     [SerializeField] private float maxSpawnRadius = 5f;
+
+    public IAnube IAObjective;
 
     private bool _IsRecalculateTime;
 
@@ -113,7 +116,7 @@ public class CloudSpawner : LInteractableParent
 
         Cloud.transform.parent = ODS7Singleton.Instance.SpawnParent;
 
-        ODS7Singleton.Instance.cloudList.Add(Cloud);
+        ODS7Singleton.Instance.cloudList.Add(Cloud.GetComponent<IAnube>());
         _TimeReferenceSpawn = Time.time;
         _SpawnTimeOffset = 0;
         _isSpawnPointSet = false;
@@ -132,9 +135,13 @@ public class CloudSpawner : LInteractableParent
         myFactoryState = factoryState.Disable;
     }
 
-    void RestoreFactory()
+    public void RestoreFactory()
     {
         FixSlider.gameObject.SetActive(false);
+        ODS7Singleton.Instance.spawnersDisablingList.Remove(this);
+        IAObjective.isReturningToFactory = false;
+        IAObjective.objectiveCloudSpawner = null;
+        IAObjective = null;
         _TimeReferenceSpawn = Time.time - _SpawnTimeOffset;
         myFactoryState = factoryState.Spawning;
     }
@@ -148,6 +155,7 @@ public class CloudSpawner : LInteractableParent
 
         myFactoryState = factoryState.Loading;
         _TimeReferenceDestroy = Time.time;
+        ODS7Singleton.Instance.spawnersDisablingList.Add(this);
     }
 
     private void SetSpawnLocation()
@@ -186,6 +194,12 @@ public class CloudSpawner : LInteractableParent
         Vector2 randomPoint2D = (origin + randomDirection * randomDistance);
         
         return new Vector3(randomPoint2D.x, _spawnTransform.position.y, randomPoint2D.y);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Handles.DrawWireDisc(transform.position, Vector3.up, maxSpawnRadius);
+        Handles.DrawWireDisc(transform.position, Vector3.up,minSpawnRadius);
     }
 
 }

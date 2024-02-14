@@ -11,12 +11,19 @@ public class ODS7Singleton : MinigameParent
     public TimerMinigame timer;
 
     [Header("Fabricas Variables")]
+    public List<CloudSpawner> spawnersDisablingList;
+
     public float timeFabricaDestroy;
     public float[] timeCloudRestoration;
     public float timeCloudSpawn;
     public int maxClouds;
-    public List<GameObject> cloudList;
+    public List<IAnube> cloudList;
     public GameObject CloudPrefab;
+
+    [Header("Ghost Try")]
+    public float tryintervalFix;
+    public int ChanceBase;
+    private float TimeTryReference;
 
     [Header("Punto Ecologico")]
     public float AddTime;
@@ -25,7 +32,8 @@ public class ODS7Singleton : MinigameParent
 
     protected override void personalAwake()
     {
-        cloudList = new List<GameObject>();
+        cloudList = new List<IAnube>();
+        spawnersDisablingList = new List<CloudSpawner>();
         Instance = this;
         base.personalAwake();
     }
@@ -38,13 +46,36 @@ public class ODS7Singleton : MinigameParent
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time - TimeTryReference < tryintervalFix)
+            return;
+
+        Debug.Log("Intento ciclo");
+
+        if (Random.Range(0, ChanceBase) != 1 || spawnersDisablingList.Count == 0 || cloudList.Count == 0)
+        {
+            TimeTryReference = Time.time;
+            return;
+        }
+
+        Debug.Log("ChanceDada");
+
+        CloudSpawner objectiveFabric = spawnersDisablingList[Random.Range(0, spawnersDisablingList.Count)];
+        IAnube objectiveCloud = cloudList[Random.Range(0, cloudList.Count)];
+
+        if (objectiveFabric.IAObjective != null || objectiveCloud.objectiveCloudSpawner != null)
+            return;
+
+        objectiveFabric.IAObjective = objectiveCloud;
+        objectiveCloud.objectiveCloudSpawner = objectiveFabric;
+
+        objectiveCloud.WEGOINGTOFACTORYYYYYYYYBOYSSS(objectiveFabric.transform);
     }
 
     protected override void OnGameStart()
     {
         base.OnGameStart();
         timer.SetTimer();
+        TimeTryReference = Time.time;
     }
 
 }
