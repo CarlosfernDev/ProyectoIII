@@ -9,6 +9,7 @@ public class IAnube : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LayerMask layer;
+    [SerializeField] private Collider col;
     [SerializeField] public bool isReturningToFactory = false;
     [SerializeField] public bool isStandBY = false;
 
@@ -64,7 +65,7 @@ public class IAnube : MonoBehaviour
         if (collision.gameObject.layer == ToLayer(layer) && !isReturningToFactory)
         {
            
-            moveNewDirection();
+           moveNewDirection();
         }
 
         if (collision.gameObject.TryGetComponent<CloudSpawner>(out CloudSpawner cloud))
@@ -84,6 +85,21 @@ public class IAnube : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<CloudSpawner>(out CloudSpawner cloud))
+        {
+            if (isReturningToFactory)
+            {
+
+                // Aqui metere cosas yo AT: Stamp
+                col.isTrigger = false;
+                cloud.RestoreFactory();
+                isReturningToFactory = false;
+            }
+        }
+    }
+
     public static int ToLayer(int bitmask)
     {
         int result = bitmask > 0 ? 0 : 31;
@@ -97,6 +113,7 @@ public class IAnube : MonoBehaviour
 
     public void WEGOINGTOFACTORYYYYYYYYBOYSSS(Transform _posFactory)
     {
+        col.isTrigger = true;
         posFactory = _posFactory;
         factoryDirection = new Vector3(posFactory.position.x - this.transform.position.x, 0, posFactory.position.z - this.transform.position.z).normalized;
         isReturningToFactory = true;

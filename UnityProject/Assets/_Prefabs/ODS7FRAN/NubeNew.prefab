@@ -167,6 +167,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 32769
+  col: {fileID: 2914289228716340812}
   isReturningToFactory: 0
   isStandBY: 0
   objectiveCloudSpawner: {fileID: 0}
