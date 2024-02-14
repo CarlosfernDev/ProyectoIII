@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleSync : MonoBehaviour
+public class XRayShaderScript : MonoBehaviour
 {
     public static int PosID = Shader.PropertyToID("_Player_Position");
     public static int SizeID = Shader.PropertyToID("_Size");
