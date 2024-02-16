@@ -11,6 +11,7 @@ public class XRayShaderScript : MonoBehaviour
     private Material _WallMaterial;
     [SerializeField] private Camera _Camera;
     [SerializeField] private LayerMask _Mask;
+    [SerializeField] private float _Opacity = 0.5f;
 
     void Update()
     {
@@ -18,15 +19,20 @@ public class XRayShaderScript : MonoBehaviour
         var ray = new Ray(transform.position, dir.normalized);
 
 
-        if (Physics.Raycast(ray,out RaycastHit hit, 3000, _Mask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 3000, _Mask))
         {
             _WallMaterial = hit.collider.gameObject.GetComponent<Renderer>().material;
-            _WallMaterial.SetFloat(SizeID, 0.5f);
+            _WallMaterial.SetFloat(SizeID, _Opacity);
         }
         else
+        {
+            if(_WallMaterial != null)
             _WallMaterial.SetFloat(SizeID, 0);
+        }
 
         var view = _Camera.WorldToViewportPoint(transform.position);
+
+        if(_WallMaterial != null)
         _WallMaterial.SetVector(PosID, view);
     }
 }
