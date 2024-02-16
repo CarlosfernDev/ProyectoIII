@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618fb46db89231a47bf48f17b759a38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionRed: {fileID: 0}
+  positionEquipable: {fileID: 0}
   isEquipado: 0
   refObjetoEquipado: {fileID: 0}
   isEquipableInCooldown: 0

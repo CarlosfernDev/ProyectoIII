@@ -6,6 +6,11 @@ public class ODS2Singleton : MinigameParent
 {
     public static ODS2Singleton Instance;
 
+    public TimerMinigame timer;
+
+    [Header("Granjas Valor")]
+    public float AddTime;
+
     protected override void personalStart()
     {
         base.personalStart();
