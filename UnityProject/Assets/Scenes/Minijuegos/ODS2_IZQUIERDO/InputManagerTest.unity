@@ -510,18 +510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b831ce34385eb904f836d48dba6980e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &752373926 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8017976015116815472, guid: caf713cdd46824447b9782e980c6986f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1618427839}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618fb46db89231a47bf48f17b759a38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1042766721
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,52 +646,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 752373926}
-        m_TargetAssemblyTypeName: TestInputs, Assembly-CSharp
-        m_MethodName: Interactuo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   equipableEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 752373926}
-        m_TargetAssemblyTypeName: TestInputs, Assembly-CSharp
-        m_MethodName: UsarObjetoEquipable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   anyKeyEvent:
     m_PersistentCalls:
       m_Calls: []
   movementEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 752373926}
-        m_TargetAssemblyTypeName: TestInputs, Assembly-CSharp
-        m_MethodName: MeMuevo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1252226818
 Transform:
   m_ObjectHideFlags: 0
@@ -908,6 +860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595281987014314127, guid: caf713cdd46824447b9782e980c6986f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5619251688407953414, guid: caf713cdd46824447b9782e980c6986f,
         type: 3}

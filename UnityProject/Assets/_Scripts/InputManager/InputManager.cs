@@ -13,8 +13,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] public UnityEvent anyKeyEvent;
     [SerializeField] public UnityEvent<Vector2> movementEvent;
 
-
-
     //Modificacion de la clase event para poder pasar en las llamadas vector2
     [System.Serializable]
     public class MyVector2Event : UnityEvent<Vector2>
@@ -34,15 +32,23 @@ public class InputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    void Start()
-    {
         playerInputs = new Inputs();
+
+        interactEvent = new UnityEvent();
+        equipableEvent = new UnityEvent();
+        anyKeyEvent = new UnityEvent();
+        movementEvent = new UnityEvent<Vector2>();
+
+
         playerInputs.ActionMap1.Enable();
         playerInputs.ActionMap1.Interact.performed += Interact_performed;
         playerInputs.ActionMap1.UsarEquipable.performed += UsarEquipable_performed;
         playerInputs.ActionMap1.AnyKey.performed += AnyKey_performed;
+    }
+
+    void Start()
+    {
     }
 
     private void AnyKey_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[DefaultExecutionOrder(1)]
 public class TestInputs : MonoBehaviour
 {
 
@@ -50,6 +51,26 @@ public class TestInputs : MonoBehaviour
         baseDesAccSpeed = actualDesSpeed;
 
 }
+
+    private void OnEnable()
+    {
+        try
+        {
+            InputManager.Instance.movementEvent.AddListener(MeMuevo);
+            InputManager.Instance.equipableEvent.AddListener(UsarObjetoEquipable);
+            InputManager.Instance.interactEvent.AddListener(Interactuo);
+        }catch(System.Exception e)
+        {
+            Debug.LogWarning("No se pudo asignar los eventos, probablemente te faltara un InputManager");
+        }
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.movementEvent.RemoveListener(MeMuevo);
+        InputManager.Instance.equipableEvent.RemoveListener(UsarObjetoEquipable);
+        InputManager.Instance.interactEvent.RemoveListener(Interactuo);
+    }
 
     public void Interactuo()
     {
