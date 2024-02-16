@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5635789261657259236}
   - component: {fileID: 3938696040794890221}
   - component: {fileID: 2979255115768792301}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 8406344341758129696}
   - component: {fileID: 2608240295920928698}
   - component: {fileID: 6413216801796740357}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: InteractZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 4479661840301383666}
   - component: {fileID: 1688055444773336836}
   - component: {fileID: 5982525991251808492}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
