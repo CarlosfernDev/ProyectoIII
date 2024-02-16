@@ -27,6 +27,15 @@ public class TimerMinigame : MonoBehaviour
         }
     }
 
+    public void PreSetTimmer()
+    {
+        Value = TimerValue;
+        if (UpdateText != null)
+        {
+            UpdateText.Invoke(GetTimeInSeconds());
+        }
+    }
+
     public void SetTimer()
     {
         TimeReference = Time.time;

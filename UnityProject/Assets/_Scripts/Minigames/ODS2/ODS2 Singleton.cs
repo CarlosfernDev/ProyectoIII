@@ -11,11 +11,12 @@ public class ODS2Singleton : MinigameParent
     [Header("Granjas Valor")]
     public float AddTime;
     public float SeedTimer;
-    public float WaterTimer;
+
 
     protected override void personalStart()
     {
         base.personalStart();
+        timer.PreSetTimmer();
     }
 
     protected override void personalAwake()
@@ -27,6 +28,7 @@ public class ODS2Singleton : MinigameParent
     protected override void OnGameStart()
     {
         base.OnGameStart();
+        timer.SetTimer();
     }
 
 }

@@ -109,9 +109,6 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
 
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         script.isEquipableInCooldown = false;
-
-
-
     }
 
     public void SetInteractFalse()

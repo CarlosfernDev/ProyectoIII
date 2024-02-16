@@ -146,6 +146,7 @@ public class CloudSpawner : LInteractableParent
         myFactoryState = factoryState.Spawning;
     }
 
+    // Cambiar el sistema respetando la bool de isInterecteable
     public override void Interact()
     {
         base.Interact();
