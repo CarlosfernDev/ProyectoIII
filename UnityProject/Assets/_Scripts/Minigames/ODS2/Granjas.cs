@@ -84,7 +84,6 @@ public class Granjas : LInteractableParent
 
         if (TimeLoad == ODS2Singleton.Instance.SeedTimer    )
         {
-            SliderReady.gameObject.SetActive(false);
             IsInteractable = true;
             _farmState = FarmState.Recolect;
             return;
