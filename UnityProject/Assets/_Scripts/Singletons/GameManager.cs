@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // Variables condicionales
-    public bool isDialogueActive {private set; get; }
+    public bool isDialogueActive = false;
     [SerializeField] public MinigamesScriptableObjectScript[] MinigameScripts;
 
     // Variables del jugador
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -87,7 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void SetisDialogueActive(bool value)
     {
-        isDialogueActive = value;
+        Instance.isDialogueActive = value;
+        Debug.Log("Dialogue Set To " + isDialogueActive);
     }
     #endregion
 }

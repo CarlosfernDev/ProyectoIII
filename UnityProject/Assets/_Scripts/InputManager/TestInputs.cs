@@ -17,10 +17,11 @@ public class TestInputs : MonoBehaviour
     [SerializeField] public GameObject interactZone;
     private GameObject refObjetoInteract;
     private bool isInteractable = false;
-    
+
 
 
     //Movement
+    [SerializeField] private bool canMove = true;
     [SerializeField] public bool sloopyMovement;
     private Rigidbody rb;
     public float actualAcceSpeed;
@@ -88,6 +89,7 @@ public class TestInputs : MonoBehaviour
     }
     public void MeMuevo(Vector2 vec)
     {
+        if (GameManager.Instance.isDialogueActive) return;
         if (sloopyMovement)
         {
             if (vec.magnitude == 0)
