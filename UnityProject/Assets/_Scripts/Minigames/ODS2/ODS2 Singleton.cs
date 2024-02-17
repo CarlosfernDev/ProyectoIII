@@ -17,6 +17,9 @@ public class ODS2Singleton : MinigameParent
     public float WaterMaxTimer;
     public float CollectingTimer;
 
+    public int ScoreWatering;
+    public int ScoreCollecting;
+    public int ScoreCollectingDone;
 
 
     protected override void personalStart()

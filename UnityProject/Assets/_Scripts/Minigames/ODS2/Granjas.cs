@@ -82,10 +82,19 @@ public class Granjas : LInteractableParent
 
         SliderSecondary.gameObject.SetActive(false);
 
-        if (_farmState == FarmState.Recolect)
+        switch (_farmState)
         {
-            FarmComplete();
-            return;
+            case FarmState.Recolect:
+            {
+                    ODS2Singleton.Instance.AddScore(ODS2Singleton.Instance.ScoreWatering);
+                    FarmComplete();
+                    return;
+            }
+            case FarmState.WaitingWater:
+                {
+                    ODS2Singleton.Instance.AddScore(ODS2Singleton.Instance.ScoreWatering);
+                    break;
+                }
         }
 
         SetSeed();

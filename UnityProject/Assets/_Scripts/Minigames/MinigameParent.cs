@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Threading;
 using System;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public class MinigameParent : MonoBehaviour
@@ -20,6 +21,9 @@ public class MinigameParent : MonoBehaviour
     [SerializeField] private GameObject _startTimerCanvas;
     [SerializeField] private TMP_Text _textStartTimer;
     private Coroutine _timerCoroutine;
+
+    [HideInInspector] public int Score;
+    public UnityEvent<int> OnScoreUpdate;
 
     [HideInInspector] public bool gameIsActive = false;
 
@@ -37,6 +41,7 @@ public class MinigameParent : MonoBehaviour
         personalStart();
 
         // Quitar ANTES DEL BUILD
+        UpdateScore();
         StartCountdown();
     }
 
@@ -131,4 +136,26 @@ public class MinigameParent : MonoBehaviour
     {
 
     }
+
+    #region Score
+
+    public void AddScore(int value)
+    {
+        Score = Score + value;
+        UpdateScore();
+    }
+
+    public void RemoveScore(int value)
+    {
+        Score = Score - value;
+        UpdateScore();
+    }
+
+    public void UpdateScore()
+    {
+        if (OnScoreUpdate != null)
+            OnScoreUpdate.Invoke(Score);
+    }
+
+    #endregion
 }
