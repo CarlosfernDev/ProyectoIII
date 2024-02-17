@@ -12,34 +12,77 @@ public class Granjas : LInteractableParent
 
     public FarmState _farmState = FarmState.Wait;
 
-    [SerializeField] private Slider SliderReady;
-    private float TimeReference;
+    [SerializeField] private Slider SliderMain;
+    [SerializeField] private Slider SliderSecondary;
+
+    private float TimeReferenceSeed;
+    private float TimeReferenceSecondary;
+    private float TimeExtraWater;
+
+    public int waterindex = 0;
 
     private void Start()
     {
-        SliderReady.gameObject.SetActive(false);
-        SliderReady.maxValue = ODS2Singleton.Instance.SeedTimer;
-        SliderReady.value = 0;
+        SliderMain.gameObject.SetActive(false);
+        SliderSecondary.gameObject.SetActive(false);
+        SliderMain.maxValue = ODS2Singleton.Instance.SeedTimer;
+        SliderMain.value = 0;
         IsInteractable = false;
 
         ODS2Singleton.Instance.OnGameStartEvent += OnGameStart;
     }
 
+    void OnGameStart()
+    {
+        ResetFarm();
+        SetSeed();
+        ODS2Singleton.Instance.OnGameStartEvent -= OnGameStart;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (_farmState != FarmState.LoadSeed)
-            return;
-
-        UpdateValue();
+        switch (_farmState)
+        {
+            case FarmState.LoadSeed:
+                {
+                    if (UpdateCoreTimer()) 
+                    {
+                        MainSliderComplete();
+                    };
+                    break;
+                }
+            case FarmState.WaitingWater:
+                {
+                    if (UpdateSecondarySlider())
+                    {
+                        FarmDestroyed();
+                    }
+                    break;
+                }
+            case FarmState.Recolect:
+                if (UpdateSecondarySlider())
+                {
+                    FarmDestroyed();
+                }
+                break;
+            default:
+                {
+                    return;
+                }
+        }
     }
+
+    #region Interaction with farm
 
     public override void Interact()
     {
-        if (_farmState != FarmState.WaitPlayerInteraction && _farmState != FarmState.WaitingWater &&  _farmState != FarmState.Recolect)
+        if (_farmState != FarmState.WaitPlayerInteraction && _farmState != FarmState.WaitingWater && _farmState != FarmState.Recolect)
             return;
 
-        if(_farmState == FarmState.Recolect)
+        SliderSecondary.gameObject.SetActive(false);
+
+        if (_farmState == FarmState.Recolect)
         {
             FarmComplete();
             return;
@@ -55,39 +98,74 @@ public class Granjas : LInteractableParent
     {
         if (_farmState == FarmState.WaitPlayerInteraction)
         {
-            TimeReference = Time.time;
-            SliderReady.gameObject.SetActive(true);
+            waterindex = 0;
+            TimeExtraWater = 0;
         }
+        SliderMain.gameObject.SetActive(true);
+        TimeReferenceSeed = Time.time;
 
         IsInteractable = false;
         _farmState = FarmState.LoadSeed;
     }
 
-    void OnGameStart()
-    {
-        ResetFarm();
-        SetSeed();
-        ODS2Singleton.Instance.OnGameStartEvent -= OnGameStart;
-    }
+    #endregion
 
-    void UpdateValue()
+    #region Timers
+    bool UpdateCoreTimer()
     {
-        if (!SliderReady.gameObject.activeSelf)
+        if (!SliderMain.gameObject.activeSelf)
         {
-            SliderReady.gameObject.SetActive(true);
+            SliderMain.gameObject.SetActive(true);
         }
 
-        float TimeLoad = (Time.time - TimeReference);
+        float TimeLoad = TimeExtraWater + (Time.time - TimeReferenceSeed);
         TimeLoad = Mathf.Clamp(TimeLoad, 0, ODS2Singleton.Instance.SeedTimer);
 
-        SliderReady.value = TimeLoad;
+        SliderMain.value = TimeLoad;
 
-        if (TimeLoad == ODS2Singleton.Instance.SeedTimer    )
+        if (TimeLoad == ODS2Singleton.Instance.SeedTimer)
         {
-            IsInteractable = true;
-            _farmState = FarmState.Recolect;
-            return;
+            return true;
         }
+
+        IsWatereable(TimeLoad);
+
+        return false;
+    }
+
+    bool UpdateSecondarySlider()
+    {
+        float TimeLoad = Time.time - TimeReferenceSecondary;
+        SliderSecondary.value = TimeLoad;
+
+        if (SliderSecondary.value == SliderSecondary.maxValue)
+            return true;
+
+        return false; 
+    }
+
+    #endregion
+
+    void FarmDestroyed()
+    {
+        IsInteractable = true;
+
+        ODS2Singleton.Instance.timer.RestTime(ODS2Singleton.Instance.ReduceTime);
+
+        SliderSecondary.gameObject.SetActive(false);
+        _farmState = FarmState.WaitPlayerInteraction;
+    }
+
+    void MainSliderComplete()
+    {
+        TimeReferenceSecondary = Time.time;
+        SliderSecondary.maxValue = ODS2Singleton.Instance.CollectingTimer;
+        SliderSecondary.value = 0;
+
+        SliderSecondary.gameObject.SetActive(true);
+
+        IsInteractable = true;
+        _farmState = FarmState.Recolect;
     }
 
     void FarmComplete()
@@ -103,9 +181,30 @@ public class Granjas : LInteractableParent
 
     void ResetFarm()
     {
-        SliderReady.gameObject.SetActive(false);
+        SliderMain.gameObject.SetActive(false);
         _farmState = FarmState.WaitPlayerInteraction;
         IsInteractable = true;
+        waterindex = 0;
+    }
+
+    bool IsWatereable(float value)
+    {
+        if (waterindex > ODS2Singleton.Instance.WaterTime.Length - 1)
+            return false;
+
+        if (ODS2Singleton.Instance.WaterTime[waterindex] > value) return false;
+
+        _farmState = FarmState.WaitingWater;
+        IsInteractable = true;
+        waterindex += 1;
+
+        SliderSecondary.gameObject.SetActive(true);
+        SliderSecondary.value = 0;
+        SliderSecondary.maxValue = ODS2Singleton.Instance.WaterMaxTimer;
+
+        TimeReferenceSecondary = Time.time;
+        TimeExtraWater = value;
+        return true;
     }
 
 }

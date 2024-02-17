@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -933,7 +933,9 @@ MonoBehaviour:
   VegetalPrefab: {fileID: 8815717973394203160, guid: 9bc093b14fd16b34d8e2eaa9f03b75f3,
     type: 3}
   _farmState: 0
-  SliderReady: {fileID: 1192167516}
+  SliderMain: {fileID: 1544306811}
+  SliderSecondary: {fileID: 1192167516}
+  waterindex: 0
 --- !u!1 &1192167514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,7 +2578,13 @@ MonoBehaviour:
   gameIsActive: 0
   timer: {fileID: 8818038937464687921}
   AddTime: 5
+  ReduceTime: 10
+  WaterTime:
+  - 4
+  - 8
   SeedTimer: 10
+  WaterMaxTimer: 4
+  CollectingTimer: 7
 --- !u!114 &8818038937464687921
 MonoBehaviour:
   m_ObjectHideFlags: 0
