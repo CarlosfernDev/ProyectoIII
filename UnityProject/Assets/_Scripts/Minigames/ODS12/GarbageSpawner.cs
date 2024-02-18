@@ -1,46 +1,93 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static CloudSpawner;
 
 public class GarbageSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject glass;
-    [SerializeField] private GameObject paper;
-    [SerializeField] private GameObject plastic;
+    [SerializeField] private GameObject _glass;
+    [SerializeField] private GameObject _paper;
+    [SerializeField] private GameObject _plastic;
+
+    [SerializeField] private Transform garbageSpawnTransform;
 
     [SerializeField] private Slider spawnTimerSlider;
 
-    [SerializeField] private float timeBetweenSpawn;
+    private float _timeToSpawnReference;
 
     private bool _canSpawn;
-    private TimerMinigame _spawnTimer;
 
     private void Awake()
     {
         
     }
 
-    private bool SpawnTimer()
+    private void Start()
+    {
+        ODS12Singleton.Instance.OnGameStartEvent += OnGameStart;
+        spawnTimerSlider.maxValue = ODS12Singleton.Instance.currentGarbSpawnTime;
+        spawnTimerSlider.value = ODS12Singleton.Instance.currentGarbSpawnTime;
+        _timeToSpawnReference = Time.time;
+    }
+
+    private void Update()
+    {
+        if (!ODS12Singleton.Instance.gameIsActive) return;
+        if (CanSpawnGarbage())
+        {
+            SpawnGarbage();
+        }
+    }
+
+    private void OnGameStart()
+    {
+        _timeToSpawnReference = Time.time;
+        _canSpawn = true;
+        ODS12Singleton.Instance.OnGameStartEvent -= OnGameStart;
+    }
+
+    private bool CanSpawnGarbage()
     {
         if (!_canSpawn)
             return false;
-
-        if (ODS7Singleton.Instance.maxClouds <= ODS7Singleton.Instance.cloudList.Count)
+    
+        if (ODS12Singleton.Instance.maxGarbage <= ODS12Singleton.Instance.currentGarbage)
         {
-            _TimeReferenceSpawn = Time.time;
+            _timeToSpawnReference = Time.time;
             return false;
         }
-
-        float TimeSpawn = ODS7Singleton.Instance.timeCloudSpawn - ((Time.time - _TimeReferenceSpawn));
-        TimeSpawn = Mathf.Clamp(TimeSpawn, 0, ODS7Singleton.Instance.timeCloudSpawn);
-
-        SpawnSlider.value = TimeSpawn;
-
+    
+        float TimeSpawn = ODS12Singleton.Instance.currentGarbSpawnTime - ((Time.time - _timeToSpawnReference));
+        TimeSpawn = Mathf.Clamp(TimeSpawn, 0, ODS12Singleton.Instance.currentGarbSpawnTime);
+    
+        spawnTimerSlider.value = TimeSpawn;
+    
         if (TimeSpawn == 0)
             return true;
-
+    
         return false;
+    }
+
+    private void SpawnGarbage()
+    {
+        int garbageType = UnityEngine.Random.Range(0, 3);
+        
+        switch (garbageType)
+        {
+            case 0:
+                GameObject Plastic = Instantiate(_plastic, garbageSpawnTransform);
+                break;
+            case 1:
+                GameObject Paper = Instantiate(_paper, garbageSpawnTransform);
+                break;
+            case 2:
+                GameObject Glass = Instantiate(_glass, garbageSpawnTransform);
+                break;
+        }
+        _timeToSpawnReference = Time.time;
+        ODS12Singleton.Instance.OnGarbageCreated.Invoke();
     }
 }

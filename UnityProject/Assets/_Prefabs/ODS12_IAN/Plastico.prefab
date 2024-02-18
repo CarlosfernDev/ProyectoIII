@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2629377846484317120}
   - component: {fileID: 3540507102476555077}
   - component: {fileID: 5425168403326155128}
+  - component: {fileID: 4961037273174979059}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -95,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4a7bc4b4f054d3c4599b2bd0414d5d76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,3 +166,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4961037273174979059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287683184474826922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2039fef43a67e4b448eb346c7c3715cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TextoInteraccion: Pick Up Plastic
+  _isInteractable: 1
+  thisGarbageType: 2

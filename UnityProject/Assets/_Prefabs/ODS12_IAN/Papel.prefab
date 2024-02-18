@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 1936222778035368115}
   - component: {fileID: 6620460945010961388}
   - component: {fileID: 8091196258590135922}
-  - component: {fileID: 7356646453227755414}
+  - component: {fileID: 1352081054578418724}
+  - component: {fileID: 8360355055268820841}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -95,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 903f6b85dcd842742b022cf3663d426d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,7 +139,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7356646453227755414
+--- !u!54 &1352081054578418724
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,3 +166,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8360355055268820841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402470597000047783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2039fef43a67e4b448eb346c7c3715cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TextoInteraccion: Pick Up Paper
+  _isInteractable: 1
+  thisGarbageType: 1
