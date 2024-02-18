@@ -6,11 +6,11 @@ using static CloudSpawner;
 
 public class Granjas : LInteractableParent
 {
-    public enum FarmState { Wait, WaitPlayerInteraction, LoadSeed, WaitingWater, Recolect }
+    public enum FarmState {Disable, Wait, WaitPlayerInteraction, LoadSeed, WaitingWater, Recolect }
 
     public GameObject VegetalPrefab;
 
-    public FarmState _farmState = FarmState.Wait;
+    public FarmState _farmState = FarmState.Disable;
 
     [SerializeField] private Slider SliderMain;
     [SerializeField] private Slider SliderSecondary;
@@ -28,15 +28,12 @@ public class Granjas : LInteractableParent
         SliderMain.maxValue = ODS2Singleton.Instance.SeedTimer;
         SliderMain.value = 0;
         IsInteractable = false;
-
-        ODS2Singleton.Instance.OnGameStartEvent += OnGameStart;
     }
 
-    void OnGameStart()
+    public void StarFarm()
     {
         ResetFarm();
         SetSeed();
-        ODS2Singleton.Instance.OnGameStartEvent -= OnGameStart;
     }
 
     // Update is called once per frame
@@ -44,6 +41,11 @@ public class Granjas : LInteractableParent
     {
         switch (_farmState)
         {
+            case FarmState.Disable:
+                {
+                    return;
+                }
+
             case FarmState.LoadSeed:
                 {
                     if (UpdateCoreTimer()) 

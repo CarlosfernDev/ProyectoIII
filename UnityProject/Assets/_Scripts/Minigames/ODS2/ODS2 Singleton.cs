@@ -21,6 +21,10 @@ public class ODS2Singleton : MinigameParent
     public int ScoreCollecting;
     public int ScoreCollectingDone;
 
+    public List<Granjas> FarmOrderList;
+    public int[] WhenActiveOne;
+    private int IndexFarm = 0;
+    private int TotalVegetal = 0;
 
     protected override void personalStart()
     {
@@ -38,6 +42,32 @@ public class ODS2Singleton : MinigameParent
     {
         base.OnGameStart();
         timer.SetTimer();
+        FarmCheck();
+    }
+
+    public void OnVegetalDone()
+    {
+        TotalVegetal++;
+        FarmCheck();
+    }
+
+    public void FarmCheck()
+    {
+        if (IndexFarm >= WhenActiveOne.Length)
+            return;
+
+        Debug.Log("Pasas1");
+
+        if (WhenActiveOne[IndexFarm] > TotalVegetal)
+            return;
+
+        Debug.Log("Pasas2");
+
+        FarmOrderList[IndexFarm].StarFarm();
+
+        IndexFarm++;
+
+        FarmCheck();
     }
 
 }
