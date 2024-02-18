@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Threading;
 using System;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public class MinigameParent : MonoBehaviour
@@ -17,15 +18,18 @@ public class MinigameParent : MonoBehaviour
 
     [Header("StartGameMinigame")]
     [SerializeField] private bool isCountdown;
-    [SerializeField] private GameObject _startTimerCanvas;
-    [SerializeField] private TMP_Text _textStartTimer;
-    private Coroutine _timerCoroutine;
+    [SerializeField] private TMP_Text _TextCanvas;
+    private Coroutine _Coroutine;
+
+    [HideInInspector] public int Score;
+    public UnityEvent<int> OnScoreUpdate;
+    private bool anyKeyIsPressed = false;
 
     [HideInInspector] public bool gameIsActive = false;
 
     private void Awake()
     {
-        _startTimerCanvas.SetActive(false);
+        _TextCanvas.gameObject.transform.parent.gameObject.SetActive(false);
         // MySceneManager.Instance.OnLoadFinish += StartCountdown;
         personalAwake();
     }
@@ -37,6 +41,7 @@ public class MinigameParent : MonoBehaviour
         personalStart();
 
         // Quitar ANTES DEL BUILD
+        UpdateScore();
         StartCountdown();
     }
 
@@ -63,20 +68,20 @@ public class MinigameParent : MonoBehaviour
 
     private void Timer(int value)
     {
-        _startTimerCanvas.SetActive(true);
-        if (_timerCoroutine != null)
+        _TextCanvas.gameObject.transform.parent.gameObject.SetActive(true);
+        if (_Coroutine != null)
         {
-            StopCoroutine(_timerCoroutine);
+            StopCoroutine(_Coroutine);
         }
         StartCoroutine(TimerCorutine(value));
     }
     private IEnumerator TimerCorutine(int value)
     {
-        _startTimerCanvas.SetActive(true);
+        _TextCanvas.gameObject.transform.parent.gameObject.SetActive(true);
         if (value != 0)
         {
             string text = "Time trial!";
-            _textStartTimer.text = text;
+            _TextCanvas.text = text;
 
 
             yield return new WaitForSeconds(1);
@@ -91,7 +96,7 @@ public class MinigameParent : MonoBehaviour
                     text = value.ToString();
                 }
 
-                _textStartTimer.text = text;
+                _TextCanvas.text = text;
                 // Hacer animacion
 
                 yield return new WaitForSeconds(1);
@@ -104,12 +109,12 @@ public class MinigameParent : MonoBehaviour
         else
         {
             string text = "Go!";
-            _textStartTimer.text = text;
+            _TextCanvas.text = text;
 
 
             yield return new WaitForSeconds(1);
         }
-        _startTimerCanvas.SetActive(false);
+        _TextCanvas.gameObject.transform.parent.gameObject.SetActive(false);
         gameIsActive = true;
         OnGameStart();
 
@@ -131,4 +136,67 @@ public class MinigameParent : MonoBehaviour
     {
 
     }
+
+    public virtual void OnGameFinish()
+    {
+        gameIsActive = false;
+        Debug.Log("Finished");
+        try
+        {
+            MinigameData.FinishCheckScore(Score);
+        }catch(Exception e)
+        {
+            Debug.LogWarning("No se ha podido guardar, probablemente te falta el SaveManager");
+        }
+        _Coroutine = StartCoroutine(CoroutineOnGameFinish());
+    }
+
+    IEnumerator CoroutineOnGameFinish()
+    {
+        _TextCanvas.text = "Times Over";
+        _TextCanvas.gameObject.transform.parent.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        InputManager.Instance.anyKeyEvent.AddListener(SetPressedButton);
+
+        _TextCanvas.text = "Press A to continue";
+        while (true)
+        {
+            if (anyKeyIsPressed)
+                break;
+
+            yield return null;
+        }
+        InputManager.Instance.anyKeyEvent.RemoveListener(SetPressedButton);
+        anyKeyIsPressed = false;
+        // SceneManager hara cosas
+    }
+
+    public void SetPressedButton()
+    {
+        anyKeyIsPressed = true;
+    }
+
+    #region Score
+
+    public void AddScore(int value)
+    {
+        Score = Score + value;
+        UpdateScore();
+    }
+
+    public void RemoveScore(int value)
+    {
+        Score = Score - value;
+        UpdateScore();
+    }
+
+    public void UpdateScore()
+    {
+        if (OnScoreUpdate != null)
+            OnScoreUpdate.Invoke(Score);
+    }
+
+    #endregion
 }

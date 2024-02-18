@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public MinigamesScriptableObjectScript[] MinigameScripts;
 
     // Variables del jugador
+    [HideInInspector] public TestInputs playerScript;
     [HideInInspector] public string playerName = "Fred";
     [HideInInspector] public int playerCoins = 0;
 
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(state);
+
     }
 
     #region CalleableFunctions
