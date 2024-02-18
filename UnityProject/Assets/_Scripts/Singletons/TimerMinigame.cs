@@ -7,6 +7,7 @@ public class TimerMinigame : MonoBehaviour
 {
     public float TimerValue;
     public UnityEvent<string> UpdateText;
+    public UnityEvent OnTimerOver;
 
     private float ExtraTime;
     private float TimeReference;
@@ -20,10 +21,25 @@ public class TimerMinigame : MonoBehaviour
             return;
 
         Value = Mathf.Clamp((TimerValue + ExtraTime) - (Time.time - TimeReference), 0, TimerValue + ExtraTime);
-        
-        if(UpdateText != null)
+
+        if (UpdateText != null)
         {
             UpdateText.Invoke(GetTimeInSeconds());
+        }
+
+        if (Value > 0) return;
+
+        TimerEnd();
+
+    }
+
+    private void TimerEnd()
+    {
+        isCountdown = false;
+
+        if (OnTimerOver != null)
+        {
+            OnTimerOver.Invoke();
         }
     }
 

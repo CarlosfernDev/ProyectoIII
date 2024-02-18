@@ -1002,6 +1002,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1808403426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 398803855856683758, guid: 143202c3c9abf304baea67a93650e5c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5603154083366792317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1831473697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1290,6 +1302,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398803855856683758, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 398803855856683758, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 267.35
+      objectReference: {fileID: 0}
     - target: {fileID: 1128674848377333447, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1340,16 +1362,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415924197635257518, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: TimerValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4907210212479523558, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: m_Name
       value: MinigameManagerODS2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770087191096309172, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1464.28
       objectReference: {fileID: 0}
     - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: SeedTimer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: _TextCanvas
+      value: 
+      objectReference: {fileID: 1808403426}
     - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: WaterMaxTimer

@@ -26,6 +26,16 @@ public class ODS2Singleton : MinigameParent
     private int IndexFarm = 0;
     private int TotalVegetal = 0;
 
+    private void OnEnable()
+    {
+        timer.OnTimerOver.AddListener(OnGameFinish);
+    }
+
+    private void OnDisable()
+    {
+        timer.OnTimerOver.RemoveListener(OnGameFinish);
+    }
+
     protected override void personalStart()
     {
         base.personalStart();

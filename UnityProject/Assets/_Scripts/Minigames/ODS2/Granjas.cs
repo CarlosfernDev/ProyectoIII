@@ -39,6 +39,9 @@ public class Granjas : LInteractableParent
     // Update is called once per frame
     void Update()
     {
+        if (!ODS2Singleton.Instance.gameIsActive)
+            return;
+
         switch (_farmState)
         {
             case FarmState.Disable:
