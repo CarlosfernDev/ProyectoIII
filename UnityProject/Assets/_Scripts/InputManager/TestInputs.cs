@@ -99,7 +99,7 @@ public class TestInputs : MonoBehaviour
     }
     public void MeMuevo(Vector2 vec)
     {
-        
+        if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false)) return;
         if (sloopyMovement)
         {
             if (vec.magnitude == 0)
