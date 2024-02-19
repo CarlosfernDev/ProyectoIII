@@ -21,8 +21,10 @@ public class GarbageScript : LInteractableParent
     public override void Interact()
     {
         base.Interact();
+        SetInteractFalse();
         isPickedUp = true;
         _playerPickupTransform = ODS12Singleton.Instance.playerPickupTransform;
+        transform.parent = _playerPickupTransform;
         gameObject.GetComponent<Rigidbody>().freezeRotation = true;
     }
 }

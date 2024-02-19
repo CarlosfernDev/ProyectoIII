@@ -189,6 +189,7 @@ public class MinigameParent : MonoBehaviour
     public void RemoveScore(int value)
     {
         Score = Score - value;
+        Score = Mathf.Clamp(Score, 0, 999999);
         UpdateScore();
     }
 

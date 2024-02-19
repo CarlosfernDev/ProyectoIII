@@ -15,13 +15,14 @@ public class GarbageCollectionPoint : MonoBehaviour
         if (!other.TryGetComponent(out GarbageScript thisGarbage)) return;
         if (thisGarbage.thisGarbageType.ToString() == thisCollectorType.ToString())
         {
-            //TODO: Add points
+            ODS12Singleton.Instance.AddScore(ODS12Singleton.Instance.scoreAdd);
             ODS12Singleton.Instance.OnGarbageDelivered.Invoke();
             Destroy(thisGarbage.gameObject);
         }
         else
         {
-            //TODO: Subtract points, subtract time
+            ODS12Singleton.Instance.RemoveScore(ODS12Singleton.Instance.scoreRemove);
+            ODS12Singleton.Instance.gameTimer.RestTime(ODS12Singleton.Instance.timePenalty);
             ODS12Singleton.Instance.OnGarbageDelivered.Invoke();
             Destroy(thisGarbage.gameObject);
         }

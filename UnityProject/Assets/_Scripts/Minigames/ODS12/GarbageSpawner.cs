@@ -53,7 +53,11 @@ public class GarbageSpawner : MonoBehaviour
     {
         if (!_canSpawn)
             return false;
-    
+        
+        ODS12Singleton.Instance.CheckStageChange();
+        spawnTimerSlider.maxValue = ODS12Singleton.Instance.currentGarbSpawnTime;
+        spawnTimerSlider.value = ODS12Singleton.Instance.currentGarbSpawnTime;
+
         if (ODS12Singleton.Instance.maxGarbage <= ODS12Singleton.Instance.currentGarbage)
         {
             _timeToSpawnReference = Time.time;
