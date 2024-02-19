@@ -182,7 +182,7 @@ public class MySceneManager : MonoBehaviour
         SceneDictionary.Add(1, "MainMenu");
         SceneDictionary.Add(2, "TestMainMenu");
 
-        SceneDictionary.Add(10, "SceneManager1");
+        SceneDictionary.Add(10, "ODS2_Scene");
         SceneDictionary.Add(20, "SceneManager2");
         SceneDictionary.Add(30, "ODS7_FRAN");
         SceneDictionary.Add(40, "InputManagerTest");
