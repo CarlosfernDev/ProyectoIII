@@ -1365,7 +1365,7 @@ PrefabInstance:
     - target: {fileID: 1415924197635257518, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: TimerValue
-      value: 3
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4907210212479523558, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}

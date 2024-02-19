@@ -15,6 +15,7 @@ public class VegetalCollector : LInteractableParent
         ODS2Singleton.Instance.AddScore(ODS2Singleton.Instance.ScoreCollectingDone);
         ODS2Singleton.Instance.OnVegetalDone();
 
+        
         Destroy(script.gameObject);
         GameManager.Instance.playerScript.isEquipado = false;
     }
