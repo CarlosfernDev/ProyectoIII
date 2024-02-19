@@ -95,9 +95,13 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
                 if (_isCloudCaptured == false)
                 {
                     _isCloudCaptured = true;
-                    item.gameObject.transform.parent = this.transform;
-                    item.gameObject.transform.position = insideRed.position;
-                    item.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    item.gameObject.GetComponent<IAnube>().isStandBY = true;
+                    item.gameObject.GetComponent<Collider>().enabled = false;
+                    item.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                    item.gameObject.transform.parent = insideRed.transform;
+                    item.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+                    //item.gameObject.transform.position = insideRed.position;
+                   // item.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     cloudCaptured = item.gameObject;
 
                 }
