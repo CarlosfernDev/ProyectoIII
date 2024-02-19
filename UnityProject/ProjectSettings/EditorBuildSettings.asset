@@ -6,18 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Testeos/SceneManager/SceneManager1.unity
-    guid: 7f74ae0f1360ee249aed997aaa6fb914
+    path: Assets/Scenes/Finales/Preload/Preload.unity
+    guid: f360e7ad0a1721644bc3c8323d595298
   - enabled: 1
-    path: Assets/Scenes/Minijuegos/ODS7_FRAN/ODS7_FRAN.unity
-    guid: 57773b2c9bf2ef242aff2de09531618c
+    path: Assets/Scenes/Finales/MainMenu/MainMenu.unity
+    guid: 09fcf348c7a2a3449a13b57cd4e37625
   - enabled: 1
-    path: Assets/Scenes/Testeos/SceneManager/SceneManager2.unity
-    guid: dce16c69a4a8df5499a55c57dd93ec81
+    path: Assets/Scenes/Testeos/MenuGameSelecter/TestMainMenu.unity
+    guid: 1757c0c32d06c574d960806933cc6de1
   - enabled: 1
-    path: Assets/Scenes/Testeos/Setting.unity
-    guid: feee5bd542dc17f46aa85e5a57cb795b
-  - enabled: 1
-    path: Assets/Scenes/Testeos/InputManagerTest.unity
-    guid: 2bfef318309f506469407310ea946411
+    path: Assets/Scenes/Minijuegos/ODS2_IZQUIERDO/ODS2_Scene.unity
+    guid: 7af0b8e4a92af114ebb3f57814d7eb9d
   m_configObjects: {}

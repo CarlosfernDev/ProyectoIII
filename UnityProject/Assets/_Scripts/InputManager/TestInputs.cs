@@ -17,12 +17,14 @@ public class TestInputs : MonoBehaviour
     [SerializeField] public GameObject interactZone;
     private GameObject refObjetoInteract;
     private bool isInteractable = false;
-
+    
 
 
     //Movement
-    [SerializeField] private bool canMove = true;
     [SerializeField] public bool sloopyMovement;
+    [SerializeField] public PhysicMaterial materialStop;
+    [SerializeField] public PhysicMaterial materialDrag;
+    [SerializeField] public PhysicMaterial materialNormal;
     private Rigidbody rb;
     public float actualAcceSpeed;
     public float actualMaxSpeed;
@@ -97,36 +99,36 @@ public class TestInputs : MonoBehaviour
     }
     public void MeMuevo(Vector2 vec)
     {
-        if (GameManager.Instance.isDialogueActive) return;
+        
         if (sloopyMovement)
         {
             if (vec.magnitude == 0)
             {
                 if (rb.velocity.magnitude<0.1f)
                 {
-                    rb.velocity = Vector3.zero;
+                    transform.GetComponent<Collider>().material = materialStop;
                 }
                 else
                 {
-                    rb.velocity -= actualDesSpeed * rb.velocity;
+
+                    transform.GetComponent<Collider>().material = materialDrag;
+
                 }
-               
-                
+
+                rb.AddForce(Vector3.down * 9.8f, ForceMode.Acceleration);
                // Debug.Log(rb.velocity.magnitude);
 
             }
             else
             {
-                rb.AddForce(new Vector3(vec.x, 0f, vec.y) * actualAcceSpeed, ForceMode.Acceleration);
+
+                transform.GetComponent<Collider>().material = null;
                 //RotacionPJ
                 //transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
 
-                
+
 
                 Quaternion toRotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
-
-
-
                 if (Mathf.Rad2Deg * Mathf.Abs(rb.rotation.y - toRotation.y)>45f)
                 {
                     transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
@@ -135,18 +137,19 @@ public class TestInputs : MonoBehaviour
                 {
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
                 }
-                
-                
 
-                
-            }
-            if (rb.velocity.magnitude>actualMaxSpeed)
-            {
-                rb.velocity = rb.velocity.normalized * actualMaxSpeed;
+                if (rb.velocity.magnitude > actualMaxSpeed)
+                {
+                    rb.velocity = rb.velocity.normalized * actualMaxSpeed;
+                }
+                //Movement con gravedad
+                rb.AddForce(new Vector3(vec.x * actualAcceSpeed, -1 * 9.8f, vec.y * actualAcceSpeed), ForceMode.Acceleration);
             }
             
+            
         }
-      
+        //Gravedad falsa
+        
 
     }
 

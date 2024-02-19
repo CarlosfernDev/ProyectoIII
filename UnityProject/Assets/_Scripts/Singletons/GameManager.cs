@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
 
     private void FirstTime()
     {
+        if (Application.isEditor)
+            return;
+
         if (!SaveManager.IsDirectoryExist())
         {
             SaveManager.ResetGame();

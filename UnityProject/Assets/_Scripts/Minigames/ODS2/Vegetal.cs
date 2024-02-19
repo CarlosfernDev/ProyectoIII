@@ -14,6 +14,10 @@ public class Vegetal : MonoBehaviour, Iequipable
 
     public void SetEquipableToPlayer()
     {
+        if (GameManager.Instance.playerScript.refObjetoEquipado != null) 
+        {
+            return;
+        }
         GameManager.Instance.playerScript.isEquipado = true;
         GameManager.Instance.playerScript.refObjetoEquipado = transform.gameObject;
 

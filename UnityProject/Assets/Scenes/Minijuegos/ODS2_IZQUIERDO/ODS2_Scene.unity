@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1002,6 +1002,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1787474549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7817170014100054786, guid: 143202c3c9abf304baea67a93650e5c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5603154083366792317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2682c66c5f766943a5ee5b03fab44da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1808403426 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 398803855856683758, guid: 143202c3c9abf304baea67a93650e5c3,
@@ -1365,7 +1377,17 @@ PrefabInstance:
     - target: {fileID: 1415924197635257518, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: TimerValue
-      value: 3
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415924197635257518, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnTimerOver.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415924197635257518, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnTimerOver.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4907210212479523558, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
@@ -1387,6 +1409,11 @@ PrefabInstance:
       propertyPath: _TextCanvas
       value: 
       objectReference: {fileID: 1808403426}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: IsDeveloping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
         type: 3}
       propertyPath: WaterMaxTimer
@@ -1446,6 +1473,36 @@ PrefabInstance:
         type: 3}
       propertyPath: WhenActiveOne.Array.data[3]
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnScoreUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnScoreUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1787474549}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnScoreUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnScoreUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnScoreUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScoreText, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028171949028573966, guid: 143202c3c9abf304baea67a93650e5c3,
+        type: 3}
+      propertyPath: OnScoreUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

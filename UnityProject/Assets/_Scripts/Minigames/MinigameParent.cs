@@ -10,6 +10,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class MinigameParent : MonoBehaviour
 {
+    public bool IsDeveloping;
+
     public Action OnGameStartEvent;
 
     [Header("Minigame Scriptable Object")]
@@ -30,7 +32,10 @@ public class MinigameParent : MonoBehaviour
     private void Awake()
     {
         _TextCanvas.gameObject.transform.parent.gameObject.SetActive(false);
-        // MySceneManager.Instance.OnLoadFinish += StartCountdown;
+        if (!IsDeveloping)
+        {
+            MySceneManager.Instance.OnLoadFinish += StartCountdown;
+        }
         personalAwake();
     }
 
@@ -42,7 +47,10 @@ public class MinigameParent : MonoBehaviour
 
         // Quitar ANTES DEL BUILD
         UpdateScore();
-        StartCountdown();
+        if (IsDeveloping)
+        {
+            StartCountdown();
+        }
     }
 
     private void OnDestroy()
@@ -62,7 +70,7 @@ public class MinigameParent : MonoBehaviour
             Timer(0);
         }
 
-        if(MySceneManager.Instance.OnLoadFinish != null)
+        if (MySceneManager.Instance.OnLoadFinish != null)
             MySceneManager.Instance.OnLoadFinish -= StartCountdown;
     }
 
@@ -144,7 +152,8 @@ public class MinigameParent : MonoBehaviour
         try
         {
             MinigameData.FinishCheckScore(Score);
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
             Debug.LogWarning("No se ha podido guardar, probablemente te falta el SaveManager");
         }
