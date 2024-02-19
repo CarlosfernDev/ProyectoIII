@@ -6,6 +6,6 @@ public class SelectLevel : MonoBehaviour
 {
    public void NextLevel(int i)
     {
-        MySceneManager.Instance.NextScene(i,1, 1);
+        MySceneManager.Instance.NextScene(i,1, 1,0);
     }
 }

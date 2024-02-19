@@ -42,17 +42,17 @@ public class MySceneManager : MonoBehaviour
         LearnDictionary();
     }
 
-    public void NextScene(int Value, int fadein, int fadeout)
+    public void NextScene(int Value, int fadein, int fadeout, float MinimalTime)
     {
         if (LoadCorutine != null)
         {
             StopCoroutine(LoadCorutine);
             LoadCorutine = null;
         }
-        LoadCorutine = StartCoroutine(LoadCorutineFunction(Value, fadein, fadeout));
+        LoadCorutine = StartCoroutine(LoadCorutineFunction(Value, fadein, fadeout, MinimalTime));
     }
 
-    IEnumerator LoadCorutineFunction(int Value, int fadein, int fadeout)
+    IEnumerator LoadCorutineFunction(int Value, int fadein, int fadeout, float LoadTime)
     {
         isLoading = true;
 
@@ -91,7 +91,7 @@ public class MySceneManager : MonoBehaviour
         float time = 0;
         while (true)
         {
-            if (loadLevel.isDone && time >= _tiempoMinimo)
+            if (loadLevel.isDone && time >= LoadTime + _tiempoMinimo)
                 break;
 
             time += Time.deltaTime;

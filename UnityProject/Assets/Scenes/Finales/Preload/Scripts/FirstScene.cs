@@ -25,7 +25,7 @@ public class FirstScene : MonoBehaviour
 
     private void NextScene()
     {
-        MySceneManager.Instance.NextScene(1, 1, 1);
+        MySceneManager.Instance.NextScene(1, 1, 1, 0);
     }
 
     IEnumerator startingAnimation()

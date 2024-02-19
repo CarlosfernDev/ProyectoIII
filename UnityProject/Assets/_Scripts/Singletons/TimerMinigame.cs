@@ -89,6 +89,7 @@ public class TimerMinigame : MonoBehaviour
         int minutos = Mathf.FloorToInt(Value / 60);
         int segundos = Mathf.FloorToInt(Value % 60);
         float milisegundos = (Value * 100) % 100;
+        milisegundos = Mathf.Floor(milisegundos);
 
         return string.Format("{0:00}:{1:00}:{2:00}", minutos, segundos, milisegundos);
     }

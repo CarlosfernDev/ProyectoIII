@@ -779,10 +779,11 @@ MonoBehaviour:
   fadeTransition:
   - {fileID: 22100000, guid: f7b1a2760cb22c24fa84b09d6ecd4fd3, type: 2}
   - {fileID: 22100000, guid: 83542007f193ce84ca5412589601268a, type: 2}
-  _tiempoMinimo: 2
+  _tiempoMinimo: 0.025
   ingameCanvas: {fileID: 7146721326093337504}
   panelReference: {fileID: 4404336666610787636}
   _panelAnimator: {fileID: 302472204296768180}
+  isLoading: 0
 --- !u!95 &596929503229336670
 Animator:
   serializedVersion: 5

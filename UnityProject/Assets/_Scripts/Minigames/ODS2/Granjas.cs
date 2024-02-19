@@ -85,6 +85,11 @@ public class Granjas : LInteractableParent
         if (_farmState != FarmState.WaitPlayerInteraction && _farmState != FarmState.WaitingWater && _farmState != FarmState.Recolect)
             return;
 
+        if (GameManager.Instance.playerScript.isEquipado && _farmState == FarmState.Recolect)
+        {
+            return;
+        }
+
         SliderSecondary.gameObject.SetActive(false);
 
         switch (_farmState)
@@ -189,6 +194,7 @@ public class Granjas : LInteractableParent
 
         GameObject vegetal = Instantiate(VegetalPrefab);
         Vegetal script = vegetal.GetComponent<Vegetal>();
+
         script.SetEquipableToPlayer();
         script.myFarm = this;
     }

@@ -179,6 +179,8 @@ public class MinigameParent : MonoBehaviour
         }
         InputManager.Instance.anyKeyEvent.RemoveListener(SetPressedButton);
         anyKeyIsPressed = false;
+
+        MySceneManager.Instance.NextScene(2, 1, 1, 0);
         // SceneManager hara cosas
     }
 
