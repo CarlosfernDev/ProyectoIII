@@ -401,6 +401,7 @@ MonoBehaviour:
   FixSlider: {fileID: 1970214168026976016}
   minSpawnRadius: 1
   maxSpawnRadius: 5
+  IAObjective: {fileID: 0}
 --- !u!1 &7639844555333046940
 GameObject:
   m_ObjectHideFlags: 0
