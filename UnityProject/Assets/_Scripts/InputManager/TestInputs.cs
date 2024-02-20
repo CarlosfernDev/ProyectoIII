@@ -72,6 +72,7 @@ public class TestInputs : MonoBehaviour
             InputManager.Instance.interactEvent.AddListener(Interactuo);
         }catch(System.Exception e)
         {
+            Debug.Log(e.ToString());
             Debug.LogWarning("No se pudo asignar los eventos, probablemente te faltara un InputManager");
         }
     }
@@ -99,7 +100,8 @@ public class TestInputs : MonoBehaviour
     }
     public void MeMuevo(Vector2 vec)
     {
-        if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false)) return;
+      //  Comento la linea por que si no el char controller no va en la escena de inputtest
+      //  if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false)) return;
         if (sloopyMovement)
         {
             if (vec.magnitude == 0)
@@ -123,8 +125,7 @@ public class TestInputs : MonoBehaviour
             {
 
                 transform.GetComponent<Collider>().material = null;
-                //RotacionPJ
-                //transform.rotation = Quaternion.LookRotation(new Vector3(vec.x + transform.position.x, 0f, vec.y + transform.position.z) - new Vector3(transform.position.x, 0f, transform.position.z));
+                
 
 
 
@@ -148,7 +149,7 @@ public class TestInputs : MonoBehaviour
             
             
         }
-        //Gravedad falsa
+       
         
 
     }
