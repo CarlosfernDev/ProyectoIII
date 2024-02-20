@@ -8,72 +8,59 @@ using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
-    Resolution[] resolutions;
-
     [Header("UIObjects")]
-    [SerializeField] private TMP_Dropdown _resolutionDropdown;
-    [SerializeField] private TMP_Dropdown _qualityDropwon;
-
-    [SerializeField] private Toggle _vsyncToggle;
-    [SerializeField] private Toggle _fullscreenToggle;
-
-    [SerializeField] private Slider _generalAudioSlider;
-    [SerializeField] private Slider _generalMusicSlider;
-    [SerializeField] private Slider _generalEffectSlider;
+    [SerializeField] private LateralSlider _resolutionSlider;
 
     private void OnEnable()
     {
         StartWindowSizeValue();
-        LoadValues();
     }
 
     private void StartWindowSizeValue()
     {
-        resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
+        //resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
 
-        _resolutionDropdown.ClearOptions();
+        _resolutionSlider.TextSettings.Clear();
 
-        List<string> options = new List<string>();
+        _resolutionSlider.TextSettings = new List<SettingData>();
 
         int currentResolutionIndex = 0;
-        for (int i = 0 ; i< resolutions.Length ; i++)
+        for (int i = 0 ; i< Screen.resolutions.Length ; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            SettingData temporalData = new SettingData();
 
-            if (resolutions[i].width == Screen.currentResolution.width && 
-                resolutions[i].height == Screen.currentResolution.height)
+            string option = Screen.resolutions[i].width + " x " + Screen.resolutions[i].height + " (" + Mathf.Floor((float)Screen.resolutions[i].refreshRateRatio.value) + ") Hz";
+
+            temporalData.Name = option;
+            temporalData.ValueAction.AddListener(SetResolution);
+
+            _resolutionSlider.TextSettings.Add(temporalData);
+
+            if (Screen.resolutions[i].width == Screen.currentResolution.width &&
+                Screen.resolutions[i].height == Screen.currentResolution.height && Screen.resolutions[i].refreshRateRatio.value == Screen.currentResolution.refreshRateRatio.value)
             {
                 currentResolutionIndex = i;
             }
         }
 
         currentResolutionIndex = PlayerPrefs.GetInt("resolutionIndex", currentResolutionIndex);
-
-        _resolutionDropdown.AddOptions(options);
-        _resolutionDropdown.value = currentResolutionIndex;
-        _resolutionDropdown.RefreshShownValue();
-    }
-
-    public void LoadValues()
-    {
-        _qualityDropwon.value = PlayerPrefs.GetInt("qualityIndex", 3);
-
-        _vsyncToggle.isOn = (PlayerPrefs.GetInt("isVsync", 1) == 1 ? true : false);
-        _fullscreenToggle.isOn = (PlayerPrefs.GetInt("isFullscreen", 1) == 1 ? true : false);
-
-        _generalAudioSlider.value = PlayerPrefs.GetFloat("VolumeMaster", 0);
-        _generalMusicSlider.value = PlayerPrefs.GetFloat("VolumeMusic", 0);
-        _generalEffectSlider.value = PlayerPrefs.GetFloat("VolumeEffect", 0);
+        _resolutionSlider.IndexState = currentResolutionIndex;
 
     }
 
     #region ImageSettings
 
+    public void SetResolution()
+    {
+        Resolution resolution = Screen.resolutions[_resolutionSlider.IndexState];
+        Screen.SetResolution(resolution.width, resolution.height, (Screen.fullScreen) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed, resolution.refreshRateRatio);
+        PlayerPrefs.SetInt("resolutionIndex", _resolutionSlider.IndexState);
+    }
+
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Resolution resolution = Screen.resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, (Screen.fullScreen) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed , resolution.refreshRateRatio);
         PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
     }
 
