@@ -1,22 +1,120 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+
+[Serializable]
+public class SettingBack
+{
+    public SettingsMenu.SettingMenuState MenuValue;
+    public GameObject Menu;
+    public GameObject FirstSelected;
+}
 
 public class SettingsMenu : MonoBehaviour
 {
     [Header("UIObjects")]
     [SerializeField] private LateralSlider _resolutionSlider;
 
-    private void OnEnable()
+    public enum SettingMenuState { None, Main, Display, Audio, Accesibility }
+
+    SettingMenuState MenuState = SettingMenuState.None;
+    [SerializeField] private GameObject Menu;
+    [SerializeField] private SettingBack[] Menus;
+    Dictionary<SettingMenuState, SettingBack> DictionaryMenu;
+
+    private void Awake()
     {
-        StartWindowSizeValue();
+        LearnDictionary();
     }
 
-    private void StartWindowSizeValue()
+    public void EnableMenu()
+    {
+        InputManager.Instance.pauseEvent.AddListener(OnCancelState);
+
+        Menu.SetActive(true);
+        UpdateMenu(SettingMenuState.Main);
+    }
+
+    private void DisableMenu()
+    {
+        InputManager.Instance.pauseEvent.RemoveListener(OnCancelState);
+        MenuState = SettingMenuState.None;
+        Time.timeScale = 1;
+        GameManager.Instance.isPlaying = true;
+    }
+
+    private void LearnDictionary()
+    {
+        DictionaryMenu = new Dictionary<SettingMenuState, SettingBack>();
+
+        foreach (SettingBack Menu in Menus)
+        {
+            DictionaryMenu.Add(Menu.MenuValue, Menu);
+        }
+    }
+
+    public void OnCancelState()
+    {
+        switch (MenuState)
+        {
+            case SettingMenuState.Main:
+                Menu.SetActive(false);
+                DisableMenu();
+                GameManager.Instance.SetPause(true);
+                break;
+
+            case SettingMenuState.Audio:
+                UpdateMenu(SettingMenuState.Main);
+                break;
+
+            case SettingMenuState.Display:
+                UpdateMenu(SettingMenuState.Main);
+                break;
+
+            case SettingMenuState.Accesibility:
+                UpdateMenu(SettingMenuState.Main);
+                break;
+        }
+    }
+
+    public void UpdateMenu(int value)
+    {
+        DictionaryMenu[MenuState].Menu.SetActive(false);
+        DictionaryMenu[(SettingMenuState)value].Menu.SetActive(true);
+
+        GameManager.Instance.eventSystem.SetSelectedGameObject(DictionaryMenu[(SettingMenuState)value].FirstSelected);
+
+        MenuState = (SettingMenuState)value;
+
+        if (MenuState == SettingMenuState.Display)
+            StartWindowSizeValue();
+    }
+
+    public void UpdateMenu(SettingMenuState value)
+    {
+        if (DictionaryMenu.ContainsKey(MenuState))
+            DictionaryMenu[MenuState].Menu.SetActive(false);
+
+        if (DictionaryMenu.ContainsKey(value))
+            DictionaryMenu[value].Menu.SetActive(true);
+
+
+        if (DictionaryMenu.ContainsKey(value))
+            GameManager.Instance.eventSystem.SetSelectedGameObject(DictionaryMenu[value].FirstSelected);
+
+        MenuState = value;
+
+        if (MenuState == SettingMenuState.Display)
+            StartWindowSizeValue();
+    }
+
+    public void StartWindowSizeValue()
     {
         //resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
 
@@ -25,7 +123,7 @@ public class SettingsMenu : MonoBehaviour
         _resolutionSlider.TextSettings = new List<SettingData>();
 
         int currentResolutionIndex = 0;
-        for (int i = 0 ; i< Screen.resolutions.Length ; i++)
+        for (int i = 0; i < Screen.resolutions.Length; i++)
         {
             SettingData temporalData = new SettingData();
 
@@ -60,7 +158,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = Screen.resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, (Screen.fullScreen) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed , resolution.refreshRateRatio);
+        Screen.SetResolution(resolution.width, resolution.height, (Screen.fullScreen) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed, resolution.refreshRateRatio);
         PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
     }
 
@@ -87,7 +185,7 @@ public class SettingsMenu : MonoBehaviour
     #region AudioSettings
     [Header("AudiomMixers")]
     [SerializeField] private AudioMixer _generalMixer;
-    public void SetVolumeMaster (float volume)
+    public void SetVolumeMaster(float volume)
     {
         _generalMixer.SetFloat("VolumeMaster", volume);
         PlayerPrefs.SetFloat("VolumeMaster", volume);

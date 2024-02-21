@@ -36,12 +36,14 @@ public class MinigameParent : MonoBehaviour
         {
             MySceneManager.Instance.OnLoadFinish += StartCountdown;
         }
+
         personalAwake();
     }
 
     private void Start()
     {
         // El timer debe llamarlo la pantalla de carga
+        GameManager.Instance.isPlaying = true;
 
         personalStart();
 
