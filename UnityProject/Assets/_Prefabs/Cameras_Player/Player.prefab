@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6059010995022122269}
   - component: {fileID: 5085661082730180070}
   - component: {fileID: 3977950331061450014}
-  - component: {fileID: 6409912470906324363}
   - component: {fileID: 5635789261657259236}
   - component: {fileID: 3938696040794890221}
   - component: {fileID: 2979255115768792301}
+  - component: {fileID: 7690361768158032854}
   m_Layer: 14
   m_Name: Player
   m_TagString: Untagged
@@ -89,27 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6409912470906324363
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195366115382933531}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5635789261657259236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +107,9 @@ MonoBehaviour:
   isEquipableInCooldown: 0
   interactZone: {fileID: 5225492134499970531}
   sloopyMovement: 1
+  materialStop: {fileID: 13400000, guid: 130871eeb04d9cb47ba79abba8935a2e, type: 2}
+  materialDrag: {fileID: 13400000, guid: f426d13a9b14ffb428490391173c0b71, type: 2}
+  materialNormal: {fileID: 13400000, guid: 3aff51da40a170c4fab4375ff31ad792, type: 2}
   actualAcceSpeed: 10
   actualMaxSpeed: 5
   actualDesSpeed: 0.8
@@ -224,6 +206,29 @@ MonoBehaviour:
   holdTime: 1
   autoAdvance: 0
   palette: {fileID: 0}
+--- !u!136 &7690361768158032854
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195366115382933531}
+  m_Material: {fileID: 13400000, guid: 130871eeb04d9cb47ba79abba8935a2e, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5225492134499970531
 GameObject:
   m_ObjectHideFlags: 0

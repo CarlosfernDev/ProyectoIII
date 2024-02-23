@@ -96,6 +96,12 @@ public class Granjas : LInteractableParent
         {
             case FarmState.Recolect:
             {
+                    GameObject go = GameObject.Find("Player");
+                    if(go.GetComponent<TestInputs>().isEquipado == true) 
+                    {
+                        Debug.Log("Objeto ya equipado");
+                        return; 
+                    }
                     ODS2Singleton.Instance.AddScore(ODS2Singleton.Instance.ScoreWatering);
                     FarmComplete();
                     return;
