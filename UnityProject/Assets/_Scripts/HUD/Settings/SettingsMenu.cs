@@ -1,79 +1,164 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
+[Serializable]
+public class SettingBack
+{
+    public SettingsMenu.SettingMenuState MenuValue;
+    public GameObject Menu;
+    public GameObject FirstSelected;
+}
+
 public class SettingsMenu : MonoBehaviour
 {
-    Resolution[] resolutions;
-
     [Header("UIObjects")]
-    [SerializeField] private TMP_Dropdown _resolutionDropdown;
-    [SerializeField] private TMP_Dropdown _qualityDropwon;
+    [SerializeField] private LateralSlider _resolutionSlider;
 
-    [SerializeField] private Toggle _vsyncToggle;
-    [SerializeField] private Toggle _fullscreenToggle;
+    public enum SettingMenuState { None, Main, Display, Audio, Accesibility }
 
-    [SerializeField] private Slider _generalAudioSlider;
-    [SerializeField] private Slider _generalMusicSlider;
-    [SerializeField] private Slider _generalEffectSlider;
+    SettingMenuState MenuState = SettingMenuState.None;
+    [SerializeField] private GameObject Menu;
+    [SerializeField] private SettingBack[] Menus;
+    Dictionary<SettingMenuState, SettingBack> DictionaryMenu;
 
-    private void OnEnable()
+    private void Awake()
     {
-        StartWindowSizeValue();
-        LoadValues();
+        LearnDictionary();
     }
 
-    private void StartWindowSizeValue()
+    public void EnableMenu()
     {
-        resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
+        InputManager.Instance.pauseEvent.AddListener(OnCancelState);
 
-        _resolutionDropdown.ClearOptions();
+        Menu.SetActive(true);
+        UpdateMenu(SettingMenuState.Main);
+    }
 
-        List<string> options = new List<string>();
+    private void DisableMenu()
+    {
+        InputManager.Instance.pauseEvent.RemoveListener(OnCancelState);
+        MenuState = SettingMenuState.None;
+        Time.timeScale = 1;
+        GameManager.Instance.isPlaying = true;
+    }
+
+    private void LearnDictionary()
+    {
+        DictionaryMenu = new Dictionary<SettingMenuState, SettingBack>();
+
+        foreach (SettingBack Menu in Menus)
+        {
+            DictionaryMenu.Add(Menu.MenuValue, Menu);
+        }
+    }
+
+    public void OnCancelState()
+    {
+        switch (MenuState)
+        {
+            case SettingMenuState.Main:
+                Menu.SetActive(false);
+                DisableMenu();
+                GameManager.Instance.SetPause(true);
+                break;
+
+            case SettingMenuState.Audio:
+                UpdateMenu(SettingMenuState.Main);
+                break;
+
+            case SettingMenuState.Display:
+                UpdateMenu(SettingMenuState.Main);
+                break;
+
+            case SettingMenuState.Accesibility:
+                UpdateMenu(SettingMenuState.Main);
+                break;
+        }
+    }
+
+    public void UpdateMenu(int value)
+    {
+        DictionaryMenu[MenuState].Menu.SetActive(false);
+        DictionaryMenu[(SettingMenuState)value].Menu.SetActive(true);
+
+        GameManager.Instance.eventSystem.SetSelectedGameObject(DictionaryMenu[(SettingMenuState)value].FirstSelected);
+
+        MenuState = (SettingMenuState)value;
+
+        if (MenuState == SettingMenuState.Display)
+            StartWindowSizeValue();
+    }
+
+    public void UpdateMenu(SettingMenuState value)
+    {
+        if (DictionaryMenu.ContainsKey(MenuState))
+            DictionaryMenu[MenuState].Menu.SetActive(false);
+
+        if (DictionaryMenu.ContainsKey(value))
+            DictionaryMenu[value].Menu.SetActive(true);
+
+
+        if (DictionaryMenu.ContainsKey(value))
+            GameManager.Instance.eventSystem.SetSelectedGameObject(DictionaryMenu[value].FirstSelected);
+
+        MenuState = value;
+
+        if (MenuState == SettingMenuState.Display)
+            StartWindowSizeValue();
+    }
+
+    public void StartWindowSizeValue()
+    {
+        //resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
+
+        _resolutionSlider.TextSettings.Clear();
+
+        _resolutionSlider.TextSettings = new List<SettingData>();
 
         int currentResolutionIndex = 0;
-        for (int i = 0 ; i< resolutions.Length ; i++)
+        for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            SettingData temporalData = new SettingData();
 
-            if (resolutions[i].width == Screen.currentResolution.width && 
-                resolutions[i].height == Screen.currentResolution.height)
+            string option = Screen.resolutions[i].width + " x " + Screen.resolutions[i].height + " (" + Mathf.Floor((float)Screen.resolutions[i].refreshRateRatio.value) + ") Hz";
+
+            temporalData.Name = option;
+            temporalData.ValueAction.AddListener(SetResolution);
+
+            _resolutionSlider.TextSettings.Add(temporalData);
+
+            if (Screen.resolutions[i].width == Screen.currentResolution.width &&
+                Screen.resolutions[i].height == Screen.currentResolution.height && Screen.resolutions[i].refreshRateRatio.value == Screen.currentResolution.refreshRateRatio.value)
             {
                 currentResolutionIndex = i;
             }
         }
 
         currentResolutionIndex = PlayerPrefs.GetInt("resolutionIndex", currentResolutionIndex);
-
-        _resolutionDropdown.AddOptions(options);
-        _resolutionDropdown.value = currentResolutionIndex;
-        _resolutionDropdown.RefreshShownValue();
-    }
-
-    public void LoadValues()
-    {
-        _qualityDropwon.value = PlayerPrefs.GetInt("qualityIndex", 3);
-
-        _vsyncToggle.isOn = (PlayerPrefs.GetInt("isVsync", 1) == 1 ? true : false);
-        _fullscreenToggle.isOn = (PlayerPrefs.GetInt("isFullscreen", 1) == 1 ? true : false);
-
-        _generalAudioSlider.value = PlayerPrefs.GetFloat("VolumeMaster", 0);
-        _generalMusicSlider.value = PlayerPrefs.GetFloat("VolumeMusic", 0);
-        _generalEffectSlider.value = PlayerPrefs.GetFloat("VolumeEffect", 0);
+        _resolutionSlider.IndexState = currentResolutionIndex;
 
     }
 
     #region ImageSettings
 
+    public void SetResolution()
+    {
+        Resolution resolution = Screen.resolutions[_resolutionSlider.IndexState];
+        Screen.SetResolution(resolution.width, resolution.height, (Screen.fullScreen) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed, resolution.refreshRateRatio);
+        PlayerPrefs.SetInt("resolutionIndex", _resolutionSlider.IndexState);
+    }
+
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Resolution resolution = Screen.resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, (Screen.fullScreen) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed, resolution.refreshRateRatio);
         PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
     }
 
@@ -100,7 +185,7 @@ public class SettingsMenu : MonoBehaviour
     #region AudioSettings
     [Header("AudiomMixers")]
     [SerializeField] private AudioMixer _generalMixer;
-    public void SetVolumeMaster (float volume)
+    public void SetVolumeMaster(float volume)
     {
         _generalMixer.SetFloat("VolumeMaster", volume);
         PlayerPrefs.SetFloat("VolumeMaster", volume);

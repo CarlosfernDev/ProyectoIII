@@ -41,6 +41,7 @@ public class ODS7Singleton : MinigameParent
     protected override void personalStart()
     {
         base.personalStart();
+        timer.PreSetTimmer();
     }
 
     // Update is called once per frame

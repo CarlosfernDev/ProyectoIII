@@ -52,6 +52,14 @@ public class TestInputs : MonoBehaviour
 
 }
 
+    private void Start()
+    {
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.playerScript = this;
+        }
+    }
+
     private void OnEnable()
     {
         try
