@@ -37,7 +37,7 @@ public class InteractuableMateriales : MonoBehaviour, Iinteractable
     void Start()
     {
         //Buscar refrencia de donde se guarda el script de materiales
-        UItext = GameObject.Find("UIMATERIAL");
+        //UItext = GameObject.Find("UIMATERIAL");
     }
 
     // Update is called once per frame
