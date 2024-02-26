@@ -57,6 +57,7 @@ public class MinigameParent : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (IsDeveloping) return;
         if (MySceneManager.Instance.OnLoadFinish != null && !gameIsActive)
             MySceneManager.Instance.OnLoadFinish -= StartCountdown;
     }
@@ -71,6 +72,8 @@ public class MinigameParent : MonoBehaviour
         {
             Timer(0);
         }
+
+        if (IsDeveloping) return;
 
         if (MySceneManager.Instance.OnLoadFinish != null)
             MySceneManager.Instance.OnLoadFinish -= StartCountdown;
