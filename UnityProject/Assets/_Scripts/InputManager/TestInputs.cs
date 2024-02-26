@@ -25,6 +25,7 @@ public class TestInputs : MonoBehaviour
     [SerializeField] public PhysicMaterial materialStop;
     [SerializeField] public PhysicMaterial materialDrag;
     [SerializeField] public PhysicMaterial materialNormal;
+    [SerializeField] public PhysicMaterial materialRampa;
     private Rigidbody rb;
     public float actualAcceSpeed;
     public float actualMaxSpeed;
@@ -101,7 +102,7 @@ public class TestInputs : MonoBehaviour
     public void MeMuevo(Vector2 vec)
     {
         //  Comento la linea por que si no el char controller no va en la escena de inputtest
-        if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false) && (GameManager.Instance == null ? GameManager.Instance.isPaused : false)) return;
+       // if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false) && (GameManager.Instance == null ? GameManager.Instance.isPaused : false)) return;
         if (sloopyMovement)
         {
             if (vec.magnitude == 0)
@@ -123,8 +124,29 @@ public class TestInputs : MonoBehaviour
             }
             else
             {
+                bool rampa = false;
+                RaycastHit[] hit;
+                hit = Physics.RaycastAll(transform.position, Vector3.down, 3F);
+                
+                foreach (var obj in hit)
+                {
+                    if (obj.transform.tag == "Rampa")
+                    {
+                        rampa = true;
+                        transform.GetComponent<Collider>().material = materialRampa;
 
-                transform.GetComponent<Collider>().material = null;
+                    }
+                }
+
+                if (!rampa)
+                {
+                    transform.GetComponent<Collider>().material = materialNormal;
+                }
+                        
+                        
+                  
+                
+                
                 
 
 
