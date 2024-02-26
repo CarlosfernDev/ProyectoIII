@@ -11,14 +11,17 @@ public class MySceneManager : MonoBehaviour
     private Coroutine LoadCorutine;
 
     [SerializeField] private Animator _myanimator;
+    [SerializeField] private List<AnimatorOverrideController> fadeTransition;
     [SerializeField] private float _tiempoMinimo;
 
     [Header("Panel Tutorial")]
+    [SerializeField] private GameObject ingameCanvas;
     [SerializeField] private RectTransform panelReference;
     [SerializeField] private Animator _panelAnimator;
 
     private bool anyKeyIsPressed = false;
 
+    public bool isLoading;
     public Action OnLoadFinish;
     private Dictionary<int, string> SceneDictionary;
 
@@ -39,19 +42,31 @@ public class MySceneManager : MonoBehaviour
         LearnDictionary();
     }
 
-    public void NextScene(int Value)
+    public void NextScene(int Value, int fadein, int fadeout, float MinimalTime)
     {
         if (LoadCorutine != null)
         {
             StopCoroutine(LoadCorutine);
             LoadCorutine = null;
         }
-        LoadCorutine = StartCoroutine(LoadCorutineFunction(Value));
+        LoadCorutine = StartCoroutine(LoadCorutineFunction(Value, fadein, fadeout, MinimalTime));
     }
 
-    IEnumerator LoadCorutineFunction(int Value)
+    IEnumerator LoadCorutineFunction(int Value, int fadein, int fadeout, float LoadTime)
     {
+        isLoading = true;
+
+        if (Value >= 10 && Value < 100)
+        {
+            ingameCanvas.SetActive(true);
+        }
+        else
+        {
+            ingameCanvas.SetActive(false);
+        }
+
         // Ejecuta la animacion de la transicion
+        _myanimator.runtimeAnimatorController = fadeTransition[fadein];
         _myanimator.SetTrigger("NextIn");
 
         // Comprueba cuando acaba la animacion
@@ -76,7 +91,7 @@ public class MySceneManager : MonoBehaviour
         float time = 0;
         while (true)
         {
-            if (loadLevel.isDone && time >= _tiempoMinimo)
+            if (loadLevel.isDone && time >= LoadTime + _tiempoMinimo)
                 break;
 
             time += Time.deltaTime;
@@ -123,6 +138,7 @@ public class MySceneManager : MonoBehaviour
 
 
         // Ejecuta la siguiente transicion
+        _myanimator.runtimeAnimatorController = fadeTransition[fadeout];
         _myanimator.SetTrigger("NextOut");
 
         // Comprueba si la transicion se ha acabado
@@ -139,6 +155,8 @@ public class MySceneManager : MonoBehaviour
         {
             OnLoadFinish();
         }
+
+        isLoading = false;
     }
 
     public void SetPressedButton()
@@ -161,9 +179,10 @@ public class MySceneManager : MonoBehaviour
     private void LearnDictionary()
     {
         SceneDictionary = new Dictionary<int, string>();
-        SceneDictionary.Add(1, "Setting");
+        SceneDictionary.Add(1, "MainMenu");
+        SceneDictionary.Add(2, "TestMainMenu");
 
-        SceneDictionary.Add(10, "SceneManager1");
+        SceneDictionary.Add(10, "ODS2_Scene");
         SceneDictionary.Add(20, "SceneManager2");
         SceneDictionary.Add(30, "ODS7_FRAN");
         SceneDictionary.Add(40, "InputManagerTest");

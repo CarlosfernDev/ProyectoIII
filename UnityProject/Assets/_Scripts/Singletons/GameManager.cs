@@ -2,18 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     // Variables condicionales
-    public bool isDialogueActive {private set; get; }
+    public bool isDialogueActive = false;
     [SerializeField] public MinigamesScriptableObjectScript[] MinigameScripts;
 
+    [Header("PauseUI")]
+    [SerializeField] public GameObject PauseUI;
+    [SerializeField] public Button FirstButton;
+    [SerializeField] public EventSystem eventSystem;
+    [SerializeField] public SettingsMenu settingsScript;
+
     // Variables del jugador
+    [HideInInspector] public TestInputs playerScript;
     [HideInInspector] public string playerName = "Fred";
     [HideInInspector] public int playerCoins = 0;
+
+    [HideInInspector] public bool isPaused = false;
+    [HideInInspector] public bool isPlaying = false;
 
     [HideInInspector] public enum GameState{Aire, Puentes, Reciclaje, Mar, AguaLimpia, GranjaPlantas, GranjaZoo, Pancarta, PostGame}
     [HideInInspector] public GameState state = GameState.Aire;
@@ -26,18 +38,23 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
     private void Start()
     {
+        InputManager.Instance.pauseEvent.AddListener(SetPause);
+
+        PauseUI.SetActive(false);
+
         FirstTime();
         NextState(8);
     }
 
     private void Update()
     {
-        Debug.Log(state);
+
     }
 
     #region CalleableFunctions
@@ -71,6 +88,9 @@ public class GameManager : MonoBehaviour
 
     private void FirstTime()
     {
+        if (Application.isEditor)
+            return;
+
         if (!SaveManager.IsDirectoryExist())
         {
             SaveManager.ResetGame();
@@ -83,11 +103,55 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region PauseMenu
+
+    public void SetPause(bool value)
+    {
+        if (!isPlaying)
+            return;
+
+        isPaused = value;
+
+        CheckPause();
+    }
+
+    public void SetPause()
+    {
+        if (!isPlaying)
+            return;
+
+        isPaused = !isPaused;
+
+        CheckPause();
+    }
+
+    public void CheckPause()
+    {
+        PauseUI.SetActive(isPaused);
+        if (isPaused) eventSystem.SetSelectedGameObject(FirstButton.gameObject);
+    }
+
+    public void OpenSettings()
+    {
+        settingsScript.EnableMenu();
+        Time.timeScale = 0;
+        isPlaying = false;
+        PauseUI.SetActive(false);
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    #endregion
+
     #region Setting Variables
 
     public void SetisDialogueActive(bool value)
     {
-        isDialogueActive = value;
+        Instance.isDialogueActive = value;
+        Debug.Log("Dialogue Set To " + isDialogueActive);
     }
     #endregion
 }

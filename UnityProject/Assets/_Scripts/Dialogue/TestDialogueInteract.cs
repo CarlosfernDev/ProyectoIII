@@ -28,6 +28,7 @@ public class TestDialogueInteract : MonoBehaviour, Iinteractable
 
     public void Interact()
     {
+        if (!IsInteractable) return; 
         IsInteractable = false;
         DialogueRunnerSingleton.Instance.StartDialogue(_targetDialogueNode);
     }

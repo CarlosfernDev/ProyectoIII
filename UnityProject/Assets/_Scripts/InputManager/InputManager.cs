@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     Inputs playerInputs;
     public static InputManager Instance;
 
+    [SerializeField] public UnityEvent pauseEvent;
     [SerializeField] public UnityEvent interactEvent;
     [SerializeField] public UnityEvent equipableEvent;
     [SerializeField] public UnityEvent anyKeyEvent;
@@ -35,6 +36,7 @@ public class InputManager : MonoBehaviour
 
         playerInputs = new Inputs();
 
+        pauseEvent = new UnityEvent();
         interactEvent = new UnityEvent();
         equipableEvent = new UnityEvent();
         anyKeyEvent = new UnityEvent();
@@ -42,6 +44,7 @@ public class InputManager : MonoBehaviour
 
 
         playerInputs.ActionMap1.Enable();
+        playerInputs.ActionMap1.Pausa.performed += pauseEvent_performed;
         playerInputs.ActionMap1.Interact.performed += Interact_performed;
         playerInputs.ActionMap1.UsarEquipable.performed += UsarEquipable_performed;
         playerInputs.ActionMap1.AnyKey.performed += AnyKey_performed;
@@ -75,8 +78,14 @@ public class InputManager : MonoBehaviour
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         interactEvent.Invoke();
+    }
 
+    private void pauseEvent_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (pauseEvent == null)
+            return;
 
+        pauseEvent.Invoke();
     }
 
     void movement()
