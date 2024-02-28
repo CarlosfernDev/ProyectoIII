@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Testeos/TesteosImagenLoad/SavePancarta.unity
-    guid: 93dc3c0d52c6d704395793f557aa3cd4
-  - enabled: 1
     path: Assets/Scenes/Finales/Preload/Preload.unity
     guid: f360e7ad0a1721644bc3c8323d595298
   - enabled: 1

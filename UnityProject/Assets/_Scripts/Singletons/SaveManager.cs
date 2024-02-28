@@ -12,7 +12,14 @@ public class SaveManager : MonoBehaviour
     public static SaveData saveState = new SaveData();
     public static SavePlayerData savePlayerData = new SavePlayerData();
 
+    public PancartaScriptableObject[] pancartaScriptableObjects;
+
     #region SaveThings
+
+    private void Start()
+    {
+        foreach (PancartaScriptableObject pancarta in pancartaScriptableObjects) pancarta.LoadTexture();
+    }
 
     public static void SavePlayerData()
     {

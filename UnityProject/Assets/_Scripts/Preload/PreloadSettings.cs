@@ -8,9 +8,11 @@ public class PreloadSettings : MonoBehaviour
 {
     Resolution[] resolutions;
     [SerializeField] private AudioMixer _generalMixer;
+    [SerializeField] PancartaScriptableObject pancartaScriptableObject;
 
     private void Awake()
     {
+        pancartaScriptableObject.LoadTexture();
         /*if (PlayerPrefs.HasKey("resolutionIndex"))
         {
             resolutions = Screen.resolutions;
