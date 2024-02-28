@@ -1,18 +1,41 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float speed, conveyorSpeed;
+    [SerializeField] private Vector3 direction;
+    [SerializeField] private List<GameObject> onBelt;
+
+    private Material material;
+
+    private void Start()
     {
-        
+        material = GetComponent<MeshRenderer>().material;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnCollisionStay(Collision other)
     {
-        
+        Vector3 movement = speed * transform.forward * Time.deltaTime;
+        other.gameObject.GetComponent<Rigidbody>().MovePosition(other.gameObject.transform.position + movement);
     }
+
+    /*private void FixedUpdate()
+    {
+        for (int i = 0; i <= onBelt.Count; i++)
+        {
+            onBelt[i].GetComponent<Rigidbody>().AddForce(speed * direction);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        onBelt.Add(collision.gameObject);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        onBelt.Remove(collision.gameObject);
+    }*/
 }
