@@ -48,6 +48,5 @@ public class CentralVFX : MonoBehaviour
         _nuclearCentral.SetActive(true);
         _smoke1.Play();
         _smoke2.Play();
-        Invoke(nameof(CallCoroutine), 1);
     }
 }
