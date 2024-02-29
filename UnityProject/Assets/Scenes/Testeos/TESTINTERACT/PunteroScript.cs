@@ -70,12 +70,13 @@ public class PunteroScript : MonoBehaviour
                 if (hit.transform.gameObject.TryGetComponent<Iinteractable>(out Iinteractable inter))
                 {
                     inter.Interact();
+                    hit.transform.position = new Vector3(transform.position.x,1f,transform.position.z);
                 }
             }
         }
         else
         {
-            refObjetoInteract.transform.parent = null;
+            refObjetoInteract.transform.SetParent(null);
             refObjetoInteract.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
             refObjetoInteract.transform.rotation = Quaternion.Euler(90f, 0, 0);
             refObjetoInteract = null;
