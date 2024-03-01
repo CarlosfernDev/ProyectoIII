@@ -13,6 +13,8 @@ public class MinigameParent : MonoBehaviour
     [Header("Notes")]
     [SerializeField, Multiline(2)] private string notes;
 
+    [Header("Variables")]
+
     public bool IsDeveloping;
 
     public Action OnGameStartEvent;
