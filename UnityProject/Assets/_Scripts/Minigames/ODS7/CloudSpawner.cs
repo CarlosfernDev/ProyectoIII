@@ -132,6 +132,7 @@ public class CloudSpawner : LInteractableParent
 
     void DisableFactory()
     {
+        CentralVFX.CallCoroutine();
         _SpawnTimeOffset = Time.time - _TimeReferenceSpawn;
         myFactoryState = factoryState.Disable;
     }

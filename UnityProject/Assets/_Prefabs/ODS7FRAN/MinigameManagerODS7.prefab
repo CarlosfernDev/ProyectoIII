@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddef1eb23a9edd4cb92907ea159e979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notes: 
   IsDeveloping: 1
   MinigameData: {fileID: 11400000, guid: 293e5f254672e7547b89f5e724a6d4d9, type: 2}
   _uiAnimator: {fileID: 5084087987668786572}
@@ -208,7 +209,7 @@ MonoBehaviour:
   gameIsActive: 0
   timer: {fileID: 8361696597395301549}
   spawnersDisablingList: []
-  timeFabricaDestroy: 20
+  timeFabricaDestroy: 3
   timeCloudRestoration: []
   timeCloudSpawn: 3
   maxClouds: 3
