@@ -1,3 +1,4 @@
+using ChristinaCreatesGames.Animations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class CentralVFX : MonoBehaviour
     [SerializeField] private GameObject _eolicCentral, _nuclearCentral;
     [SerializeField] private float _transitionDuration;
     public static int PosID = Shader.PropertyToID("_MaskPos");
+    [SerializeField] private SquashAndStretch Stretch;
 
     public IEnumerator Coroutine_DissolveCentral()
     {
@@ -29,6 +31,7 @@ public class CentralVFX : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             _nuclearCentral.SetActive(false);
             _eolicCentral.SetActive(true);
+            Stretch.PlaySquashAndStretch();
         }
     }
 
@@ -49,5 +52,6 @@ public class CentralVFX : MonoBehaviour
         _smoke1.Play();
         _smoke2.Play();
         Invoke(nameof(CallCoroutine), 1);
+
     }
 }

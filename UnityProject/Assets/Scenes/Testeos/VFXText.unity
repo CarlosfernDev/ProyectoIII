@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -294,6 +294,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CentralSmokeDisappear_VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 7607356690231739251, guid: 3a55ad9baea2adc479d28a367287e2b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8338823257587468621, guid: 3a55ad9baea2adc479d28a367287e2b0,
         type: 3}
       propertyPath: m_Asset
@@ -474,6 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139569329}
   - component: {fileID: 139569328}
+  - component: {fileID: 139569331}
   m_Layer: 0
   m_Name: VFXManager
   m_TagString: Untagged
@@ -502,6 +508,7 @@ MonoBehaviour:
   _eolicCentral: {fileID: 1269167220}
   _nuclearCentral: {fileID: 2066014225}
   _transitionDuration: 0.5
+  Stretch: {fileID: 139569331}
 --- !u!4 &139569329
 Transform:
   m_ObjectHideFlags: 0
@@ -515,6 +522,106 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1398340559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139569331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139569327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f797d4f761f3443ba7ed56ef3f4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Squash Stretch en Y
+  transformToAffect: {fileID: 162297940}
+  axisToAffect: 2
+  animationDuration: 0.5
+  canBeOverwritten: 0
+  playOnStart: 0
+  playsEveryTime: 0
+  chanceToPlay: 100
+  initialScale: 1
+  maximumScale: 1.3
+  resetToInitialScaleAfterAnimation: 1
+  reverseAnimationCurveAfterPlaying: 0
+  squashAndStretchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.01392746
+      value: -0.0003297329
+      inSlope: 0.07910309
+      outSlope: 0.07910309
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.32989073
+      value: 0.9951315
+      inSlope: -0.0036136757
+      outSlope: -0.0036136757
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.687088
+      value: -1.0021362
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  looping: 0
+  loopingDelay: 0.5
+--- !u!1 &162297939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162297940}
+  m_Layer: 0
+  m_Name: FixedPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &162297940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162297939}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8842068, y: -4.4, z: -1.423254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 681447789}
   m_Father: {fileID: 1398340559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &257372405
@@ -700,7 +807,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1398340559}
+    m_TransformParent: {fileID: 162297940}
     m_Modifications:
     - target: {fileID: 2517110759610949661, guid: 1d0eaf12cf538e644b8b28a933e42204,
         type: 3}
@@ -730,17 +837,17 @@ PrefabInstance:
     - target: {fileID: 7220686727561651315, guid: 1d0eaf12cf538e644b8b28a933e42204,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.984729
+      value: -19.868935
       objectReference: {fileID: 0}
     - target: {fileID: 7220686727561651315, guid: 1d0eaf12cf538e644b8b28a933e42204,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.3814597
+      value: -1.9814596
       objectReference: {fileID: 0}
     - target: {fileID: 7220686727561651315, guid: 1d0eaf12cf538e644b8b28a933e42204,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.9364986
+      value: -5.5132446
       objectReference: {fileID: 0}
     - target: {fileID: 7220686727561651315, guid: 1d0eaf12cf538e644b8b28a933e42204,
         type: 3}
@@ -954,7 +1061,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2066014226}
-  - {fileID: 681447789}
+  - {fileID: 162297940}
   - {fileID: 139569329}
   - {fileID: 29380590}
   m_Father: {fileID: 0}
