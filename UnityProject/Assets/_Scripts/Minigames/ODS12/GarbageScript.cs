@@ -7,6 +7,8 @@ public class GarbageScript : LInteractableParent
     public enum garbageType { UNDEFINED, PAPER, PLASTIC, GLASS }
     public garbageType thisGarbageType = garbageType.UNDEFINED;
 
+    public bool isCentered;
+
     private bool isPickedUp;
     private Transform _playerPickupTransform;
     
@@ -21,6 +23,7 @@ public class GarbageScript : LInteractableParent
     public override void Interact()
     {
         base.Interact();
+        isCentered = false;
         SetInteractFalse();
         isPickedUp = true;
         _playerPickupTransform = ODS12Singleton.Instance.playerPickupTransform;
