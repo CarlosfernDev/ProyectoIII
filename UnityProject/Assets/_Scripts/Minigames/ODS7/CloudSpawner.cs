@@ -15,6 +15,7 @@ public class CloudSpawner : LInteractableParent
     [SerializeField] private float minSpawnRadius = 1f;
     [SerializeField] private float maxSpawnRadius = 5f;
 
+    public CentralVFX CentralVFX;
     public IAnube IAObjective;
 
     private bool _IsRecalculateTime;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 /// Revision: Esta god, pero deberiamos buscar una manera de que no sea en el pickup, setea como singleton el testinputs y haz que siempre en el awake sea machada por uno nuevo.
 /// De esta manera mantienes las referencias al jugador sin necesidad de que ponerselas a mano en Unity, y luego lo suyo seria crear una manera de poder implementar el powerup a mano en el inspector,
@@ -15,6 +16,7 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
     [SerializeField] private bool _isInteractable;
     [SerializeField] public bool _isCloudCaptured = false;
     [SerializeField] public GameObject cloudCaptured;
+    [SerializeField] private VisualEffect _AuraVFX;
     public string _TextoInteraccion;
 
     //Por como se implementan las interfaces se debe poner el set y get de las variables.
@@ -41,6 +43,7 @@ public class EquipableRedTest : MonoBehaviour,Iinteractable,Iequipable
 
 
         player = GameObject.Find("Player");
+        _AuraVFX.Stop();
         script = player.GetComponent<TestInputs>();
         transform.GetComponent<Collider>().enabled = false;
         

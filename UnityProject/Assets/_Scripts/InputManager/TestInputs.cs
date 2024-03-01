@@ -126,7 +126,8 @@ public class TestInputs : MonoBehaviour
             {
                 bool rampa = false;
                 RaycastHit[] hit;
-                hit = Physics.RaycastAll(transform.position, Vector3.down, 3F);
+                float grav = 0f;
+                hit = Physics.RaycastAll(transform.position, Vector3.down, 1.1F);
                 
                 foreach (var obj in hit)
                 {
@@ -134,6 +135,7 @@ public class TestInputs : MonoBehaviour
                     {
                         rampa = true;
                         transform.GetComponent<Collider>().material = materialRampa;
+                        grav = 0f;
 
                     }
                 }
@@ -141,6 +143,7 @@ public class TestInputs : MonoBehaviour
                 if (!rampa)
                 {
                     transform.GetComponent<Collider>().material = materialNormal;
+                    grav = 9.8f;
                 }
                         
                         
@@ -166,7 +169,7 @@ public class TestInputs : MonoBehaviour
                     rb.velocity = rb.velocity.normalized * actualMaxSpeed;
                 }
                 //Movement con gravedad
-                rb.AddForce(new Vector3(vec.x * actualAcceSpeed, -1 * 9.8f, vec.y * actualAcceSpeed), ForceMode.Acceleration);
+                rb.AddForce(new Vector3(vec.x * actualAcceSpeed, -1 * grav, vec.y * actualAcceSpeed), ForceMode.Acceleration);
             }
             
             
