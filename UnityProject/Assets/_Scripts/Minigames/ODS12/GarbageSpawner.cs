@@ -78,17 +78,18 @@ public class GarbageSpawner : MonoBehaviour
     private void SpawnGarbage()
     {
         int garbageType = UnityEngine.Random.Range(0, 3);
+        Vector3 spawnPosition = garbageSpawnTransform.position;
         
         switch (garbageType)
         {
             case 0:
-                GameObject Plastic = Instantiate(_plastic, garbageSpawnTransform);
+                GameObject Plastic = Instantiate(_plastic, garbageSpawnTransform.position, Quaternion.identity);
                 break;
             case 1:
-                GameObject Paper = Instantiate(_paper, garbageSpawnTransform);
+                GameObject Paper = Instantiate(_paper, garbageSpawnTransform.position, Quaternion.identity);
                 break;
             case 2:
-                GameObject Glass = Instantiate(_glass, garbageSpawnTransform);
+                GameObject Glass = Instantiate(_glass, garbageSpawnTransform.position, Quaternion.identity);
                 break;
         }
         _timeToSpawnReference = Time.time;
