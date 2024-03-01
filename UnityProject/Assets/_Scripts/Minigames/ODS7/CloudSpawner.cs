@@ -199,10 +199,10 @@ public class CloudSpawner : LInteractableParent
         return new Vector3(randomPoint2D.x, _spawnTransform.position.y, randomPoint2D.y);
     }
 
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Handles.DrawWireDisc(transform.position, Vector3.up, maxSpawnRadius);
         Handles.DrawWireDisc(transform.position, Vector3.up,minSpawnRadius);
-    }*/
+    }
 
 }

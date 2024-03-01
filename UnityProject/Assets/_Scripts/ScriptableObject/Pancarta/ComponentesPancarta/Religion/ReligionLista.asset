@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad34dbf3690075418e77ca21d865995, type: 3}
+  m_Name: ReligionLista
+  m_EditorClassIdentifier: 
+  ListaComponentes:
+  - {fileID: 11400000, guid: 646c23d9f8a2cab4ba778778896099f8, type: 2}
+  - {fileID: 11400000, guid: 4bea0c9a2850b4741802fd6ac6de6dc0, type: 2}
+  - {fileID: 11400000, guid: 2804818c5efbb544ab5cd881d1a7ecf9, type: 2}
+  - {fileID: 11400000, guid: 13012c8040c25b343b5535c3d617b990, type: 2}

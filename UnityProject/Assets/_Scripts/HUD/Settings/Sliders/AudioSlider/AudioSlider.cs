@@ -10,7 +10,7 @@ public class AudioSlider : LateralSlider
     [SerializeField] private string loadValue;
 
     // Start is called before the first frame update
-    void Start()
+    void Start()    
     {
         _slider.maxValue = TextSettings.Count - 1;
 

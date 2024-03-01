@@ -15,3 +15,4 @@ MonoBehaviour:
   _PancartaMaterial: {fileID: 2100000, guid: 5764d03c95dc2364eab9640f6cbf155b, type: 2}
   _PacartaRenderTexture: {fileID: 8400000, guid: 96d87ce5a1a7f8a4991165a185621a47,
     type: 2}
+  _PancartaName: Pancarta1
