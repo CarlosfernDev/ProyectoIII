@@ -10,6 +10,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class MinigameParent : MonoBehaviour
 {
+    [Header("Notes")]
+    [SerializeField, Multiline(2)] private string notes;
+
     public bool IsDeveloping;
 
     public Action OnGameStartEvent;
