@@ -28760,7 +28760,7 @@ PrefabInstance:
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: timeBeetweenSpawns
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5566579647034831069, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
@@ -34852,7 +34852,12 @@ PrefabInstance:
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: carSpeed
-      value: 25
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
+        type: 3}
+      propertyPath: timeBeetweenSpawns
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5566579647034831069, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
@@ -57282,12 +57287,12 @@ PrefabInstance:
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: carSpeed
-      value: 55
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: timeBeetweenSpawns
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5566579647034831069, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
@@ -59172,12 +59177,12 @@ PrefabInstance:
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: carSpeed
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: timeBeetweenSpawns
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5566579647034831069, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
@@ -65661,7 +65666,7 @@ PrefabInstance:
     - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
       propertyPath: timeBeetweenSpawns
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5566579647034831069, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}
@@ -76446,6 +76451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: carSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208754213114023760, guid: 05c66bb97bf96984f94443f440e607f2,
+        type: 3}
+      propertyPath: timeBeetweenSpawns
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5566579647034831069, guid: 05c66bb97bf96984f94443f440e607f2,
         type: 3}

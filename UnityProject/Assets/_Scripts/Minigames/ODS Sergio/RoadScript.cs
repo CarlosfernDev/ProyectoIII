@@ -14,21 +14,26 @@ public class RoadScript : MonoBehaviour
     [SerializeField] private float distanceToDestroy;
 
     private GameObject go = null;
+
+    [SerializeField] private List<GameObject> goList;
+    private List<int> index;
     
     
     void Start()
     {
-        
+        goList = new List<GameObject>();
+        index = new List<int>();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveCars();
-        if (timeBeetweenSpawns<timer && go == null)
+        if (timeBeetweenSpawns<timer)
         {
             Debug.Log(Time.time);
             go = Instantiate(car,spawnPoint.position,Quaternion.identity);
+            goList.Add(go);
             timer = 0;
         }
         else
@@ -41,7 +46,22 @@ public class RoadScript : MonoBehaviour
 
     void MoveCars()
     {
-        if(go == null) { return; }
+        if(goList.Count == 0) { return; }
+
+
+        for (int i = 0; i < goList.Count; i++)
+        {
+            if (Vector3.Distance(goList[i].transform.position, spawnPoint.transform.position) > distanceToDestroy)
+            {
+                Destroy(goList[i].transform.gameObject);
+                goList.RemoveAt(i);
+            }
+            else
+            {
+                goList[i].transform.position += carDir * carSpeed * Time.deltaTime;
+            }
+        }
+        /*
             if (Vector3.Distance(go.transform.position,spawnPoint.transform.position)> distanceToDestroy)
             {
                 Destroy(go.gameObject);
@@ -51,6 +71,7 @@ public class RoadScript : MonoBehaviour
             {
                 go.transform.position += carDir * carSpeed * Time.deltaTime;
             }
+        */
             
     }
 
