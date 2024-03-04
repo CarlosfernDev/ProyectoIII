@@ -52,4 +52,9 @@ public class CentralVFX : MonoBehaviour
         _smoke1.Play();
         _smoke2.Play();
     }
+
+    public void SpawnCloudVFX()
+    { 
+        _spawnCloud.Play();
+    }
 }

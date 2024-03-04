@@ -46,7 +46,7 @@ Material:
     - _Grass_Width: 2.11
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WindForce: 100
+    - _WindForce: 1
     - _WindSpeed: 2
     m_Colors:
     - _DarkColor: {r: 0.004401945, g: 0.04599056, b: 0, a: 0}
