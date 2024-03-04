@@ -36,7 +36,7 @@ public class MinigameParent : MonoBehaviour
 
     private void Awake()
     {
-        _TextCanvas.gameObject.transform.parent.gameObject.SetActive(false);
+        if(_TextCanvas != null) _TextCanvas.gameObject.transform.parent.gameObject.SetActive(false);
         if (!IsDeveloping)
         {
             MySceneManager.Instance.OnLoadFinish += StartCountdown;
@@ -69,6 +69,8 @@ public class MinigameParent : MonoBehaviour
 
     private void StartCountdown()
     {
+        if (_TextCanvas == null) return;
+
         if (isCountdown)
         {
             Timer(3);

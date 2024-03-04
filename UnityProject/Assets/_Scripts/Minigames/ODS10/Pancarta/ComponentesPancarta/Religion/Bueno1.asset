@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72a856f641fb9fc47a031a608abb4ac3, type: 3}
-  m_Name: Malo2
+  m_Name: Bueno1
   m_EditorClassIdentifier: 
-  ComponentMaterial: {fileID: 0}
+  ComponentMaterial: {fileID: 21300000, guid: 042c071ae528e4e4f845a2a7b0e88db1, type: 3}
   IsGood: 0
-  Scale: {x: 0, y: 0, z: 0}
+  Scale: {x: 1, y: 1, z: 1}

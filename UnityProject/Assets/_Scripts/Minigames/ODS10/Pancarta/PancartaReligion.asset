@@ -10,9 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70bbb961f4cfe824795b47e23a9abf32, type: 3}
-  m_Name: Pancarta1
+  m_Name: PancartaReligion
   m_EditorClassIdentifier: 
-  _PancartaMaterial: {fileID: 2100000, guid: 5764d03c95dc2364eab9640f6cbf155b, type: 2}
+  ListaComponentes:
+  - {fileID: 11400000, guid: 646c23d9f8a2cab4ba778778896099f8, type: 2}
+  - {fileID: 11400000, guid: 4bea0c9a2850b4741802fd6ac6de6dc0, type: 2}
+  - {fileID: 11400000, guid: 2804818c5efbb544ab5cd881d1a7ecf9, type: 2}
+  - {fileID: 11400000, guid: 13012c8040c25b343b5535c3d617b990, type: 2}
+  _PancartaMaterial: {fileID: 2100000, guid: 9400aa60345c4fc4296f61d9c8219cd4, type: 2}
   _PacartaRenderTexture: {fileID: 8400000, guid: 96d87ce5a1a7f8a4991165a185621a47,
     type: 2}
   _PancartaName: Pancarta1

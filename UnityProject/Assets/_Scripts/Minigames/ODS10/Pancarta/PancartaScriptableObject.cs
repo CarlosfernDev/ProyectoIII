@@ -7,6 +7,8 @@ using System.IO;
 [CreateAssetMenu(fileName = "PancartaData", menuName = "ScriptableObjects/ODS10/Pancarta", order = 1)]
 public class PancartaScriptableObject : ScriptableObject
 {
+    public List<ScriptableObjectComponente> ListaComponentes;
+
     public Material _PancartaMaterial;
     public RenderTexture _PacartaRenderTexture;
     public string _PancartaName;
