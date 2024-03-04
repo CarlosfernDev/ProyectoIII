@@ -14,6 +14,7 @@ public class ConveyorBelt : MonoBehaviour
 
     private void Start()
     {
+        ODS12Singleton.Instance.OnGarbageDelivered.AddListener(CheckRBAvailability);
         _rbOnBelt = new List<Rigidbody>();
         _material = GetComponent<MeshRenderer>().material;
     }
@@ -23,6 +24,10 @@ public class ConveyorBelt : MonoBehaviour
         if (_rbOnBelt == null) return;
         foreach (Rigidbody beltRb in _rbOnBelt)
         {
+            if (beltRb == null)
+            {
+                _rbOnBelt.Remove(beltRb);
+            }
             beltRb.TryGetComponent(out GarbageScript garbage);
             if (!garbage)
             {
@@ -81,5 +86,16 @@ public class ConveyorBelt : MonoBehaviour
     {
         Vector3 movement = speed * transform.forward * Time.deltaTime;
         rb.MovePosition(rb.gameObject.transform.position + movement);
+    }
+
+    private void CheckRBAvailability()
+    {
+        foreach (var rbCol in _rbOnBelt)
+        {
+            if (rbCol == null)
+            {
+                _rbOnBelt.Remove(rbCol);
+            }
+        }
     }
 }
