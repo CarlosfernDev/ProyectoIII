@@ -27,6 +27,7 @@ public class TestInputs : MonoBehaviour
     [SerializeField] public PhysicMaterial materialNormal;
     [SerializeField] public PhysicMaterial materialRampa;
     private Rigidbody rb;
+    private float grav;
     public float actualAcceSpeed;
     public float actualMaxSpeed;
     public float actualDesSpeed;
@@ -126,7 +127,7 @@ public class TestInputs : MonoBehaviour
             {
                 bool rampa = false;
                 RaycastHit[] hit;
-                float grav = 0f;
+                grav = 0f;
                 hit = Physics.RaycastAll(transform.position, Vector3.down, 1.1F);
                 
                 foreach (var obj in hit)
