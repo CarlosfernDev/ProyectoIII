@@ -27,6 +27,7 @@ public class ConveyorBelt : MonoBehaviour
             if (beltRb == null)
             {
                 _rbOnBelt.Remove(beltRb);
+                return;
             }
             beltRb.TryGetComponent(out GarbageScript garbage);
             if (!garbage)
