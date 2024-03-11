@@ -63,7 +63,8 @@ Material:
     - _StepStrength: 1.05
     - _VoronoiDensity: 10
     - _VoronoiSpeed: 1
-    - _WaveIntensity: 0.27
+    - _WaterAlpha: 0.4
+    - _WaveIntensity: 0.1
     - _WaveSpeed: 2.93
     m_Colors:
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
