@@ -6,7 +6,7 @@ public class InteraccionObjetoPuntero : LInteractableParent
 {
     public override void Interact()
     {
-        PunteroScript scriptpuntero = GameObject.Find("Puntero").GetComponent<PunteroScript>();
+        PunteroScript scriptpuntero = ODS10Singleton.Instance.puntero;
         gameObject.transform.SetParent(scriptpuntero.transform);
         scriptpuntero.refObjetoInteract = this.gameObject;
     }

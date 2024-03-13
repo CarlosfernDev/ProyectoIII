@@ -18,6 +18,7 @@ public class PunteroScript : MonoBehaviour
     public GameObject refObjetoInteract;
     private bool isInteractable = false;
 
+    public Vector2 MaxPosition;
 
 
     //Actualizador de UI? maybe hay que moverlo a los scripts interactuables y hacer que los objetos busquen la ui en la escena
@@ -32,12 +33,11 @@ public class PunteroScript : MonoBehaviour
     public void Awake()
     {
 
-
     }
 
     private void Start()
     {
-
+        ODS10Singleton.Instance.puntero = this;
     }
 
     private void OnEnable()
@@ -60,6 +60,15 @@ public class PunteroScript : MonoBehaviour
         InputManager.Instance.interactEvent.RemoveListener(Interactuo);
     }
 
+    public void LateUpdate()
+    {
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, -MaxPosition.x, MaxPosition.x),
+            transform.position.y,
+            Mathf.Clamp(transform.position.z, -MaxPosition.y, MaxPosition.y)
+            );
+    }
+
     public void Interactuo()
     {
         if (refObjetoInteract == null)
@@ -70,7 +79,9 @@ public class PunteroScript : MonoBehaviour
                 if (hit.transform.gameObject.TryGetComponent<Iinteractable>(out Iinteractable inter))
                 {
                     inter.Interact();
-                    hit.transform.position = new Vector3(transform.position.x,1f,transform.position.z);
+
+                    if(hit.transform.gameObject.TryGetComponent<InteraccionObjetoPuntero>(out InteraccionObjetoPuntero Movable))
+                        hit.transform.position = new Vector3(transform.position.x,1f,transform.position.z);
                 }
             }
         }
@@ -101,5 +112,10 @@ public class PunteroScript : MonoBehaviour
     public void hideTextFunction()
     {
         hideText.Invoke();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(MaxPosition.x * 2, 0, MaxPosition.y * 2));
     }
 }

@@ -4,17 +4,19 @@ using UnityEngine;
 using System;
 using System.IO;
 
-[CreateAssetMenu(fileName = "PancartaData", menuName = "ScriptableObjects/Pancarta", order = 1)]
+[CreateAssetMenu(fileName = "PancartaData", menuName = "ScriptableObjects/ODS10/Pancarta", order = 1)]
 public class PancartaScriptableObject : ScriptableObject
 {
+    public List<ScriptableObjectComponente> ListaComponentes;
+
     public Material _PancartaMaterial;
     public RenderTexture _PacartaRenderTexture;
-
+    public string _PancartaName;
 
     public void LoadTexture()
     {
-        if (!File.Exists(SaveManager.SAVE_FOLDER + "Pancarta.png")) return;
-        byte[] bytes = File.ReadAllBytes(SaveManager.SAVE_FOLDER + "Pancarta.png");
+        if (!File.Exists(SaveManager.SAVE_FOLDER + _PancartaName + ".png")) return;
+        byte[] bytes = File.ReadAllBytes(SaveManager.SAVE_FOLDER + _PancartaName + ".png");
 
         Texture2D LoadedImage = new Texture2D(_PacartaRenderTexture.width, _PacartaRenderTexture.height);
         LoadedImage.LoadImage(bytes);
@@ -31,7 +33,7 @@ public class PancartaScriptableObject : ScriptableObject
         screenshotTexture.Apply();
 
         byte[] byteArray = screenshotTexture.EncodeToPNG();
-        System.IO.File.WriteAllBytes(SaveManager.SAVE_FOLDER + "Pancarta.png", byteArray);
+        System.IO.File.WriteAllBytes(SaveManager.SAVE_FOLDER + _PancartaName + ".png", byteArray);
 
         RenderTexture.active = null;
         Debug.Log("Foto realizada");
