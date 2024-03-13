@@ -24,18 +24,18 @@ public class WaveManager : MonoBehaviour
             Debug.LogError("WaterManager instance already exists, destroying instance");
             Destroy(this);
         }
-        //mat = GetComponent<MeshRenderer>().material;
-        //SetWaveValues();
+        mat = GetComponent<MeshRenderer>().material;
+        SetWaveValues();
     }
 
     private void Start()
     {
-        //SetWaveValues();
+        SetWaveValues();
     }
 
     private void Update()
     {
-        //SetWaveValues();
+        SetWaveValues();
         _offset += waveSpeed * Time.deltaTime;
     }
 

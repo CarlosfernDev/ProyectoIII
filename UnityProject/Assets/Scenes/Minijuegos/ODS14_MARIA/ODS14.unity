@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &5332687
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 98214068}
   - component: {fileID: 98214067}
   - component: {fileID: 98214071}
-  - component: {fileID: 98214066}
+  - component: {fileID: 98214072}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Untagged
@@ -242,27 +242,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &98214066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98214065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14e469adaeaf0b4f9d9b7f854558977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floatPoints:
-  - {fileID: 1382079351}
-  - {fileID: 1248113212}
-  - {fileID: 451630840}
-  - {fileID: 1161540843}
-  depthBeforeSubmerged: 1
-  displacementAmount: 3
-  waterDrag: 0.99
-  waterAngularDrag: 0.5
 --- !u!65 &98214067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -343,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 98214065}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.87, z: 0}
+  m_LocalPosition: {x: 0, y: 0.512, z: 0}
   m_LocalScale: {x: 1.4046, y: 0.2707943, z: 0.4818554}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -377,6 +356,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &98214072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98214065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14e469adaeaf0b4f9d9b7f854558977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatPoints:
+  - {fileID: 1382079351}
+  - {fileID: 1248113212}
+  - {fileID: 451630840}
+  - {fileID: 1161540843}
+  depthBeforeSubmerged: 0.8
+  displacementAmount: 4
+  waterDrag: 1
+  waterAngularDrag: 5
+  floaterCount: 0
 --- !u!1 &402057547
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +425,7 @@ GameObject:
   m_Layer: 0
   m_Name: FP3
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -437,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 451630840}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: -0.502}
+  m_LocalPosition: {x: -0.5, y: -0.30999997, z: -0.502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,7 +898,7 @@ GameObject:
   m_Layer: 0
   m_Name: FP4
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -910,7 +911,7 @@ Transform:
   m_GameObject: {fileID: 1161540843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: -0.501}
+  m_LocalPosition: {x: 0.5, y: -0.30999997, z: -0.501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1151,7 +1152,7 @@ GameObject:
   m_Layer: 0
   m_Name: FP2
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1164,7 +1165,7 @@ Transform:
   m_GameObject: {fileID: 1248113212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0.498}
+  m_LocalPosition: {x: -0.5, y: -0.30999997, z: 0.498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1182,7 +1183,7 @@ GameObject:
   m_Layer: 0
   m_Name: FP1
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1195,7 +1196,7 @@ Transform:
   m_GameObject: {fileID: 1382079351}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.498}
+  m_LocalPosition: {x: 0.5, y: -0.31, z: 0.498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1219,7 +1220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1940280090
 MonoBehaviour:
   m_ObjectHideFlags: 0
