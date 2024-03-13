@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractuableMateriales : MonoBehaviour, Iinteractable
+public class SwapBridge : MonoBehaviour, Iinteractable
 {
     [SerializeField] public bool _isInteractable;
     [SerializeField] private string _TextoInteraccion;
+    [SerializeField] private int costMaterial;
     public string TextoInteraccion
     {
         get { return _TextoInteraccion; }
@@ -16,11 +17,25 @@ public class InteractuableMateriales : MonoBehaviour, Iinteractable
         get { return _isInteractable; }
         set { _isInteractable = value; }
     }
+
+    public void Start()
+    {
+        _TextoInteraccion = "Coste de construccion: " + costMaterial;
+    }
     public void Interact()
     {
+        if (GameManagerSergio.Instance.checkMaterial() >= costMaterial)
+        {
+            Debug.Log("Pago para construir puente");
+            GameManagerSergio.Instance.minusMaterial(costMaterial);
+            Swap();
+        }
+        else
+        {
+            Debug.Log("Necesito mas monedas");
+        }
         
-        GameManagerSergio.Instance.addMaterial(10);
-        //Destroy(this.gameObject);
+        
     }
 
     public void SetInteractFalse()
@@ -34,15 +49,10 @@ public class InteractuableMateriales : MonoBehaviour, Iinteractable
 
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Swap()
     {
+        GameManager.Instance.playerScript.hideTextFunction();
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(this.gameObject);
     }
 }
