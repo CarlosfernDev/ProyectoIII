@@ -19,6 +19,7 @@ public class ODS7Singleton : MinigameParent
     public int maxClouds;
     public List<IAnube> cloudList;
     public GameObject CloudPrefab;
+    public List<CloudSpawner> EnableFlats;
 
     [Header("Ghost Try")]
     public float tryintervalFix;
@@ -34,12 +35,14 @@ public class ODS7Singleton : MinigameParent
     {
         cloudList = new List<IAnube>();
         spawnersDisablingList = new List<CloudSpawner>();
+        EnableFlats = new List<CloudSpawner>();
         Instance = this;
         base.personalAwake();
     }
 
     protected override void personalStart()
     {
+        GameManager.Instance.playerScript.DisablePlayer();
         base.personalStart();
         timer.PreSetTimmer();
     }
@@ -72,8 +75,17 @@ public class ODS7Singleton : MinigameParent
         objectiveCloud.WEGOINGTOFACTORYYYYYYYYBOYSSS(objectiveFabric.transform);
     }
 
+    public override void OnGameFinish()
+    {
+        timer.PauseTimer();
+        GameManager.Instance.playerScript.DisablePlayer();
+        GameManager.Instance.playerScript.enabled = false;
+        base.OnGameFinish();
+    }
+
     protected override void OnGameStart()
     {
+        GameManager.Instance.playerScript.sloopyMovement = true;
         base.OnGameStart();
         timer.SetTimer();
         TimeTryReference = Time.time;

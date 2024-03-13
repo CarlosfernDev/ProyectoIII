@@ -154,7 +154,7 @@ public class MinigameParent : MonoBehaviour
 
     protected virtual void OnGameStart()
     {
-
+        
     }
 
     public virtual void OnGameFinish()
