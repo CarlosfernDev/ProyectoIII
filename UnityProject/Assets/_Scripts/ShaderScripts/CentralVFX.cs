@@ -7,6 +7,7 @@ using UnityEngine.VFX;
 public class CentralVFX : MonoBehaviour
 {
     [SerializeField] private Material _material;
+    [SerializeField] private List<MeshRenderer> _meshRenderers;
     [SerializeField] private VisualEffect _smoke1, _smoke2, _dissolve, _smokeDissapear, _spawnCloud;
     [SerializeField] private GameObject _eolicCentral, _nuclearCentral;
     [SerializeField] private float _transitionDuration;
@@ -18,6 +19,13 @@ public class CentralVFX : MonoBehaviour
         if(_smoke1 != null) _smoke1.Stop();
         if(_smoke2 != null) _smoke2.Stop();
         if (_dissolve != null) Invoke(nameof(PlayDissolve), 0.3f);
+        if (_meshRenderers != null)
+        {
+            foreach(MeshRenderer mr in _meshRenderers)
+            {
+                mr.material = _material;
+            }
+        }
         float lerp = 0;
         while (lerp < 1)
         {
@@ -51,5 +59,10 @@ public class CentralVFX : MonoBehaviour
         _nuclearCentral.SetActive(true);
         _smoke1.Play();
         _smoke2.Play();
+    }
+
+    public void SpawnCloudVFX()
+    { 
+        _spawnCloud.Play();
     }
 }

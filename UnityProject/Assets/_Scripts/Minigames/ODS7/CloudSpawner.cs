@@ -114,6 +114,7 @@ public class CloudSpawner : LInteractableParent
     void SpawnCloud()
     {
         GameObject Cloud = Instantiate(ODS7Singleton.Instance.CloudPrefab, _randomSpawnPoint, Quaternion.identity);
+        CentralVFX.SpawnCloudVFX();
 
         Cloud.transform.parent = ODS7Singleton.Instance.SpawnParent;
 
