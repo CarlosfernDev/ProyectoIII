@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.Oculus.Input;
 using UnityEngine;
 
 public class TroncoParent : MonoBehaviour
 {
+    public GameObject RefPlayer = null;
+    public float speed;
+    public Vector3 dir;
+    public Rigidbody rb;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Player")
         {
-            
-            other.gameObject.transform.root.parent = this.gameObject.transform;
+            other.gameObject.transform.parent = this.transform.parent.transform;
+            RefPlayer = other.gameObject;
             
         }
     }
@@ -18,7 +23,17 @@ public class TroncoParent : MonoBehaviour
     {
         if(other.gameObject.name == "Player")
         {
-            other.gameObject.transform.parent.parent = null;
+            other.gameObject.transform.parent = null;
+            RefPlayer = null;
+        }
+    }
+
+    private void Update()
+    {
+        if(RefPlayer != null)
+        {
+            Debug.Log("MOV");
+      
         }
     }
 }

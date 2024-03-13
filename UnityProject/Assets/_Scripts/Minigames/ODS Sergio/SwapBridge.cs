@@ -51,7 +51,7 @@ public class SwapBridge : MonoBehaviour, Iinteractable
 
     public void Swap()
     {
-        GameManager.Instance.playerScript.hideTextFunction();
+        GameObject.Find("Player").GetComponent<MovementSergio>().hideTextFunction();
         
         Destroy(this.gameObject);
     }
