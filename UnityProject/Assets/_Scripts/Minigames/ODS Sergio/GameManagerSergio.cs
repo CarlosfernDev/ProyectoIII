@@ -10,8 +10,9 @@ public class GameManagerSergio : MinigameParent
 
     [SerializeField] private int numMateriales;
 
-    [SerializeField] private TMP_Text uiMaterial;  
+    [SerializeField] private TMP_Text uiMaterial;
 
+    [SerializeField] public Vector3 actualSpawnPoint;
 
     void Start()
     {
