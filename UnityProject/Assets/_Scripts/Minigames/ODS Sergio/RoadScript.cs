@@ -33,13 +33,13 @@ public class RoadScript : MonoBehaviour
         MoveCars();
         if (timeBeetweenSpawns<timer)
         {
-            Debug.Log(Time.time);
+            
             go = Instantiate(car,spawnPoint.position,Quaternion.identity);
             
             script  = go.GetComponentInChildren<TroncoParent>(true);
             if (script != null)
             {
-                Debug.Log("ASIGNOVALORES");
+               
                 script.speed = carSpeed;
                 script.dir = carDir;
 

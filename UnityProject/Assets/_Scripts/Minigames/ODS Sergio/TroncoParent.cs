@@ -23,17 +23,12 @@ public class TroncoParent : MonoBehaviour
     {
         if(other.gameObject.name == "Player")
         {
-            other.gameObject.transform.parent = null;
-            RefPlayer = null;
-        }
-    }
-
-    private void Update()
-    {
-        if(RefPlayer != null)
-        {
-            Debug.Log("MOV");
-      
+            if (other.gameObject.transform.parent.gameObject == this.transform.parent.gameObject)
+            {
+                other.gameObject.transform.parent = null;
+                RefPlayer = null;
+            }
+           
         }
     }
 }

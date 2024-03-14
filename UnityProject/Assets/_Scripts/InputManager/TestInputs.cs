@@ -38,7 +38,9 @@ public class TestInputs : MonoBehaviour
     private float baseDesAccSpeed;
 
     private IEnumerator coroutineBoostVelocidad;
+
     
+
     //Actualizador de UI? maybe hay que moverlo a los scripts interactuables y hacer que los objetos busquen la ui en la escena
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
