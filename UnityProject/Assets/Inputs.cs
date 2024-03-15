@@ -185,6 +185,142 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""BoatMap"",
+            ""id"": ""3fca872b-b5b8-4d82-bf22-041dc66ccfc3"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""3279db8e-8aa2-4f0b-9d22-8d34262bf92b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Turn"",
+                    ""type"": ""Value"",
+                    ""id"": ""45e73cc6-1d7d-48b9-8b7a-7798fbf64d18"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""f997de0a-2756-4e5c-b79c-6be2f2b0288f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""51a4bfc3-9056-4415-9c4f-6985be267911"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""31a382ec-ef64-4343-9177-65ff74bd3a8e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""7f275416-2594-4506-85ce-cee1a6f5cdf2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""bed38aa0-51e0-43f3-a1c2-29c21e0a9ba4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""54a3ff0d-2d96-4b29-97b6-df39f24c1e83"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""94fe89a1-0749-40ba-9912-0c7a74645050"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e870364d-d259-49f2-ab9f-336e1dc60b2c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""65c19fc0-caf4-4a44-835f-4839fed01d69"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""06b3880f-7a78-4b11-8f72-9ddde77af036"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -219,6 +355,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_ActionMap1_Pausa = m_ActionMap1.FindAction("Pausa", throwIfNotFound: true);
         m_ActionMap1_UsarEquipable = m_ActionMap1.FindAction("UsarEquipable", throwIfNotFound: true);
         m_ActionMap1_AnyKey = m_ActionMap1.FindAction("AnyKey", throwIfNotFound: true);
+        // BoatMap
+        m_BoatMap = asset.FindActionMap("BoatMap", throwIfNotFound: true);
+        m_BoatMap_Move = m_BoatMap.FindAction("Move", throwIfNotFound: true);
+        m_BoatMap_Turn = m_BoatMap.FindAction("Turn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,6 +494,60 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         }
     }
     public ActionMap1Actions @ActionMap1 => new ActionMap1Actions(this);
+
+    // BoatMap
+    private readonly InputActionMap m_BoatMap;
+    private List<IBoatMapActions> m_BoatMapActionsCallbackInterfaces = new List<IBoatMapActions>();
+    private readonly InputAction m_BoatMap_Move;
+    private readonly InputAction m_BoatMap_Turn;
+    public struct BoatMapActions
+    {
+        private @Inputs m_Wrapper;
+        public BoatMapActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_BoatMap_Move;
+        public InputAction @Turn => m_Wrapper.m_BoatMap_Turn;
+        public InputActionMap Get() { return m_Wrapper.m_BoatMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BoatMapActions set) { return set.Get(); }
+        public void AddCallbacks(IBoatMapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BoatMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BoatMapActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Turn.started += instance.OnTurn;
+            @Turn.performed += instance.OnTurn;
+            @Turn.canceled += instance.OnTurn;
+        }
+
+        private void UnregisterCallbacks(IBoatMapActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Turn.started -= instance.OnTurn;
+            @Turn.performed -= instance.OnTurn;
+            @Turn.canceled -= instance.OnTurn;
+        }
+
+        public void RemoveCallbacks(IBoatMapActions instance)
+        {
+            if (m_Wrapper.m_BoatMapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBoatMapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BoatMapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BoatMapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BoatMapActions @BoatMap => new BoatMapActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -379,5 +573,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         void OnPausa(InputAction.CallbackContext context);
         void OnUsarEquipable(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
+    }
+    public interface IBoatMapActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnTurn(InputAction.CallbackContext context);
     }
 }
