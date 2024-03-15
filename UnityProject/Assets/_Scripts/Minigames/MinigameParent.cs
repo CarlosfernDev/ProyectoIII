@@ -107,7 +107,7 @@ public class MinigameParent : MonoBehaviour
             {
                 if (value == 0)
                 {
-                    text = "Go!";
+                    if(_TextCanvas != null) text = "Go!";
                 }
                 else
                 {
