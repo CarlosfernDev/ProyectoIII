@@ -29,13 +29,14 @@ public class BoatMovementManager : MonoBehaviour
 
     void Update()
     {
-        velocityDebug.text = _rb.velocity.magnitude.ToString();
+        transform.Translate(_inputManager.MovementInput * accel * Time.deltaTime);
+        transform.Rotate(_inputManager.TurnInput * turnSpd * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        _rb.AddRelativeTorque(_inputManager.TurnInput * turnSpd, ForceMode.Force);
-        SpeedUp();
+        /*_rb.AddRelativeTorque(_inputManager.TurnInput * turnSpd, ForceMode.Acceleration);
+        SpeedUp();*/
         // _rb.AddRelativeForce(_inputManager.MovementInput * accel, ForceMode.Acceleration);
     }
 
@@ -49,6 +50,6 @@ public class BoatMovementManager : MonoBehaviour
         {
             force = force.normalized * forceMult;
         }
-        _rb.AddRelativeForce(force);
+        _rb.AddRelativeForce(force, ForceMode.Acceleration);
     }
 }
