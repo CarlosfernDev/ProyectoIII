@@ -110,7 +110,7 @@
                 {
                     "name": "",
                     "id": "f6331dd5-9207-4353-b4aa-6de683eb8efc",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
@@ -142,8 +142,30 @@
                 },
                 {
                     "name": "",
+                    "id": "67b82a52-6874-492c-b090-f73729c7fade",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4366fcb1-8d19-4d50-b887-cad2b904042a",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UsarEquipable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b6d8f75-4dff-4f7f-9988-7d6123fa299b",
+                    "path": "<HID::Corsair 18017040AF2B94C95AFD3936F5001BC0>/button4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
