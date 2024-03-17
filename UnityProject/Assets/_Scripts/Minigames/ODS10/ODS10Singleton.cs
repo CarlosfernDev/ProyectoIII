@@ -16,6 +16,7 @@ public class ODS10Singleton : MinigameParent
     {
         Instance = this;
         base.personalAwake();
+
     }
 
     protected override void personalStart()

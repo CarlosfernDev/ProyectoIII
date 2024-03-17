@@ -1399,6 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df82b9e7240c67b4c96e9099a6fc3d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notes: 
   IsDeveloping: 1
   MinigameData: {fileID: 11400000, guid: 3e81f5459a3b63243a5f1f6da1c2fdef, type: 2}
   _uiAnimator: {fileID: 3898915191560289870}
@@ -1614,8 +1615,8 @@ SceneRoots:
   - {fileID: 1349743175912192077}
   - {fileID: 27237124}
   - {fileID: 711055643}
-  - {fileID: 876776471}
   - {fileID: 301499823}
   - {fileID: 1548174676}
   - {fileID: 2091112884}
   - {fileID: 1138290577}
+  - {fileID: 876776471}

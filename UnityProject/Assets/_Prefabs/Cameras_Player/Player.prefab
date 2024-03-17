@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5085661082730180070}
   - component: {fileID: 3977950331061450014}
   - component: {fileID: 5635789261657259236}
-  - component: {fileID: 3938696040794890221}
   - component: {fileID: 2979255115768792301}
   - component: {fileID: 7690361768158032854}
   m_Layer: 14
@@ -110,6 +109,7 @@ MonoBehaviour:
   materialStop: {fileID: 13400000, guid: 130871eeb04d9cb47ba79abba8935a2e, type: 2}
   materialDrag: {fileID: 13400000, guid: f426d13a9b14ffb428490391173c0b71, type: 2}
   materialNormal: {fileID: 13400000, guid: 3aff51da40a170c4fab4375ff31ad792, type: 2}
+  materialRampa: {fileID: 0}
   actualAcceSpeed: 10
   actualMaxSpeed: 5
   actualDesSpeed: 0.8
@@ -144,33 +144,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!54 &3938696040794890221
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195366115382933531}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 2
 --- !u!114 &2979255115768792301
 MonoBehaviour:
   m_ObjectHideFlags: 0
