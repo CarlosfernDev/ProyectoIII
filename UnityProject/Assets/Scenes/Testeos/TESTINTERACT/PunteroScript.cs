@@ -18,7 +18,7 @@ public class PunteroScript : MonoBehaviour
     public GameObject refObjetoInteract;
     private bool isInteractable = false;
 
-
+    [SerializeField] public float speed;
 
     //Actualizador de UI? maybe hay que moverlo a los scripts interactuables y hacer que los objetos busquen la ui en la escena
     [SerializeField] private UnityEvent hideText;
@@ -90,7 +90,7 @@ public class PunteroScript : MonoBehaviour
         var Matrix = Matrix4x4.Rotate(Quaternion.Euler(0, -45f, 0));
         var inputChueca = Matrix.MultiplyPoint3x4(new Vector3(vec.x, 0f, vec.y));
 
-        transform.position += new Vector3(inputChueca.x, 0, inputChueca.z);
+        transform.position += new Vector3(inputChueca.x, 0, inputChueca.z)*speed*Time.deltaTime;
 
     }
 
