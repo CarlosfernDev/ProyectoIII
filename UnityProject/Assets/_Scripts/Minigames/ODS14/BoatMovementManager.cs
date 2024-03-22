@@ -13,6 +13,7 @@ public class BoatMovementManager : MonoBehaviour
     [SerializeField] private float forceMult;
     [SerializeField] private float accel;
     [SerializeField] private float turnSpd;
+    [SerializeField] private GameObject turnPoint;
     
     private BoatInputManager _inputManager;
     private Rigidbody _rb;

@@ -23,7 +23,9 @@ public class Floater : MonoBehaviour
         foreach (var point in floatPoints)
         {
             //var pointPos = point.transform.position;
-            float waveHeight = WaveManager.Instance.GetWaveHeight(point.transform.position.x, point.transform.position.z) + WaveManager.Instance.transform.position.y;
+            // float waveHeight = WaveManager.Instance.GetWaveHeight(point.transform.position.x, point.transform.position.z) + WaveManager.Instance.transform.position.y;
+            Vector3 wavePosition = WaveManager.Instance.GetWaveDisplacement(point.transform.position);
+            float waveHeight = wavePosition.y + WaveManager.Instance.transform.position.y;
             _rb.AddForceAtPosition(Physics.gravity / floatPoints.Count, point.transform.position, ForceMode.Acceleration);
 
             if (point.transform.position.y < waveHeight)
