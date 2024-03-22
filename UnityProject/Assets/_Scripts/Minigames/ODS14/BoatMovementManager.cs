@@ -29,15 +29,15 @@ public class BoatMovementManager : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(_inputManager.MovementInput * accel * Time.deltaTime);
-        transform.Rotate(_inputManager.TurnInput * turnSpd * Time.deltaTime);
+        //transform.Translate(_inputManager.MovementInput * accel * Time.deltaTime);
+        //transform.Rotate(_inputManager.TurnInput * turnSpd * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        /*_rb.AddRelativeTorque(_inputManager.TurnInput * turnSpd, ForceMode.Acceleration);
-        SpeedUp();*/
-        // _rb.AddRelativeForce(_inputManager.MovementInput * accel, ForceMode.Acceleration);
+        _rb.AddRelativeTorque(_inputManager.TurnInput * turnSpd, ForceMode.Acceleration);
+        SpeedUp();
+        _rb.AddRelativeForce(_inputManager.MovementInput * accel, ForceMode.Acceleration);
     }
 
     private void SpeedUp()
