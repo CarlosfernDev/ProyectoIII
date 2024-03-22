@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(TimerMinigame))]
 public class ODS7Singleton : MinigameParent
 {
+    public Timer _txTime;
+
     public static ODS7Singleton Instance;
 
     public TimerMinigame timer;
@@ -55,7 +58,7 @@ public class ODS7Singleton : MinigameParent
 
         Debug.Log("Intento ciclo");
 
-        if (Random.Range(0, ChanceBase) != 1 || spawnersDisablingList.Count == 0 || cloudList.Count == 0)
+        if (UnityEngine.Random.Range(0, ChanceBase) != 1 || spawnersDisablingList.Count == 0 || cloudList.Count == 0)
         {
             TimeTryReference = Time.time;
             return;
@@ -63,8 +66,8 @@ public class ODS7Singleton : MinigameParent
 
         Debug.Log("ChanceDada");
 
-        CloudSpawner objectiveFabric = spawnersDisablingList[Random.Range(0, spawnersDisablingList.Count)];
-        IAnube objectiveCloud = cloudList[Random.Range(0, cloudList.Count)];
+        CloudSpawner objectiveFabric = spawnersDisablingList[UnityEngine.Random.Range(0, spawnersDisablingList.Count)];
+        IAnube objectiveCloud = cloudList[UnityEngine.Random.Range(0, cloudList.Count)];
 
         if (objectiveFabric.IAObjective != null || objectiveCloud.objectiveCloudSpawner != null)
             return;
@@ -89,6 +92,26 @@ public class ODS7Singleton : MinigameParent
         base.OnGameStart();
         timer.SetTimer();
         TimeTryReference = Time.time;
+    }
+
+    public override void SetResoult()
+    {
+        _txTime.ChangeText(timer.GetTimeInSeconds());
+        _ScoreText.ChangeText(Score + (int)timer.TimerValue);
+        _txHighScore.text = "Highscore: " + MinigameData.maxPoints.ToString("000000");
+    }
+
+    public override void SaveValue()
+    {
+        Debug.Log("Finished");
+        try
+        {
+            MinigameData.FinishCheckScore(Score + (int)timer.TimerValue);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("No se ha podido guardar, probablemente te falta el SaveManager");
+        }
     }
 
 }

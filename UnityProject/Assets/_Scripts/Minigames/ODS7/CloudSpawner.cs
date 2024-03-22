@@ -135,6 +135,7 @@ public class CloudSpawner : LInteractableParent
 
     void DisableFactory()
     {
+        ODS7Singleton.Instance.AddScore(100);
         CentralVFX.CallCoroutine();
         _SpawnTimeOffset = Time.time - _TimeReferenceSpawn;
         myFactoryState = factoryState.Disable;
