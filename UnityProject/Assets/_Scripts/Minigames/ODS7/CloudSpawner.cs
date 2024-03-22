@@ -202,8 +202,8 @@ public class CloudSpawner : LInteractableParent
 
     private void OnDrawGizmos()
     {
-        Handles.DrawWireDisc(transform.position, Vector3.up, maxSpawnRadius);
-        Handles.DrawWireDisc(transform.position, Vector3.up,minSpawnRadius);
+        // Handles.DrawWireDisc(transform.position, Vector3.up, maxSpawnRadius);
+        // Handles.DrawWireDisc(transform.position, Vector3.up,minSpawnRadius);
     }
 
 }
