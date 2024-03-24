@@ -9,7 +9,7 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] private bool isCorner;
     [SerializeField] private Vector3 perpDirection;
 
-    private List<Rigidbody> _rbOnBelt;
+    [SerializeField] private List<Rigidbody> _rbOnBelt;
     private Material _material;
 
     private void Start()
