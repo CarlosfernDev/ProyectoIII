@@ -187,10 +187,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8b6d8f75-4dff-4f7f-9988-7d6123fa299b"",
-                    ""path"": ""<HID::Corsair 18017040AF2B94C95AFD3936F5001BC0>/button4"",
+                    ""path"": ""<HID::Ͽ Razer Viper Ultimate Dongle>/button7"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""GamePad"",
                     ""action"": ""UsarEquipable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
