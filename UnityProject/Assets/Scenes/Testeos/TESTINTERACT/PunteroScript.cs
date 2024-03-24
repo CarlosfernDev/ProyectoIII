@@ -82,7 +82,7 @@ public class PunteroScript : MonoBehaviour
         var inputChueca = Matrix.MultiplyPoint3x4(new Vector3(vec.x, 0f, vec.y));
 
         transform.position += new Vector3(inputChueca.x, 0, inputChueca.z)*speed*Time.deltaTime;
-
+        //FormaCutre si no me veo en la pantalla vuelvo al centro de la pantalla
         if (!imVisible.isVisible)
         {
             transform.position = poInicial;
