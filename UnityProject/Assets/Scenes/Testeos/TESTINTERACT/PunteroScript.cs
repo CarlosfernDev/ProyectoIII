@@ -18,12 +18,15 @@ public class PunteroScript : MonoBehaviour
     public GameObject refObjetoInteract;
     private bool isInteractable = false;
 
-
+    [SerializeField] public float speed;
 
     //Actualizador de UI? maybe hay que moverlo a los scripts interactuables y hacer que los objetos busquen la ui en la escena
     [SerializeField] private UnityEvent hideText;
     [SerializeField] private UnityEvent<string> TextoInteractChange;
     //Modificacion de la clase event para poder pasar en las llamadas strings
+
+    [SerializeField] MeshRenderer imVisible;
+    private Vector3 poInicial;
     [System.Serializable]
     public class MyStringEvent : UnityEvent<string>
     {
@@ -37,7 +40,7 @@ public class PunteroScript : MonoBehaviour
 
     private void Start()
     {
-
+        poInicial = transform.position;
     }
 
     private void OnEnable()
@@ -62,26 +65,14 @@ public class PunteroScript : MonoBehaviour
 
     public void Interactuo()
     {
-        if (refObjetoInteract == null)
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 200f))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 40f))
+            if (hit.transform.gameObject.TryGetComponent<Iinteractable>(out Iinteractable inter))
             {
-                if (hit.transform.gameObject.TryGetComponent<Iinteractable>(out Iinteractable inter))
-                {
-                    inter.Interact();
-                    hit.transform.position = new Vector3(transform.position.x,1f,transform.position.z);
-                }
+                inter.Interact();
+                
             }
-        }
-        else
-        {
-            refObjetoInteract.transform.SetParent(null);
-            refObjetoInteract.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
-            refObjetoInteract.transform.rotation = Quaternion.Euler(90f, 0, 0);
-            refObjetoInteract = null;
-            
-
         }
        
     }
@@ -90,8 +81,12 @@ public class PunteroScript : MonoBehaviour
         var Matrix = Matrix4x4.Rotate(Quaternion.Euler(0, -45f, 0));
         var inputChueca = Matrix.MultiplyPoint3x4(new Vector3(vec.x, 0f, vec.y));
 
-        transform.position += new Vector3(inputChueca.x, 0, inputChueca.z);
-
+        transform.position += new Vector3(inputChueca.x, 0, inputChueca.z)*speed*Time.deltaTime;
+        //FormaCutre si no me veo en la pantalla vuelvo al centro de la pantalla
+        if (!imVisible.isVisible)
+        {
+            transform.position = poInicial;
+        }
     }
 
 
