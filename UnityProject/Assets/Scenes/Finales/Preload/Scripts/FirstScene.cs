@@ -15,6 +15,7 @@ public class FirstScene : MonoBehaviour
 
     void Start()
     {
+        //UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
         _coroutine = StartCoroutine(startingAnimation());
     }
 

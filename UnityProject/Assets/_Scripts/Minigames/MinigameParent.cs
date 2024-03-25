@@ -47,7 +47,15 @@ public class MinigameParent : MonoBehaviour
             MySceneManager.Instance.OnLoadFinish += StartCountdown;
         }
 
-        ResultCanvas.SetActive(false);
+        if (ResultCanvas != null)
+        {
+            ResultCanvas.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("No existe el canvas de la pantalla final");
+        }
+
 
         personalAwake();
     }
