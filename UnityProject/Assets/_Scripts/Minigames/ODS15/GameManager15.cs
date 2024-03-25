@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager15 : MonoBehaviour
 {
     public static GameManager15 Instance { get; private set; }
 
+    //
+    private int puntuacion = 0;
+    public GameObject puntuacionUI;
     //PosObjetosHabitat
     public Transform posComida;
     public Transform posHabitat;
     public Transform posDecoracion;
-    //ObjetoAnimal
-    public Animal animalActivo = new Animal();
 
+    private GameObject habitatActivoVisual;
+    private GameObject comidaActivaVisual;
+    private GameObject decoracionActivaVisual;
+
+    [Header("BullshitAssets Settings")]
     //ReferenciasHabitat
     public GameObject Habitat1;
     public GameObject Habitat2;
@@ -28,9 +36,9 @@ public class GameManager15 : MonoBehaviour
 
 
     //CosasActivas
-    public int DecoracionActiva;
-    public int ComidaActiva;
-    public int HabitatActivo;
+    public int DecoracionActiva = -1;
+    public int ComidaActiva = -1;
+    public int HabitatActivo = -1;
 
 
     //ReferenciasMenus
@@ -38,10 +46,18 @@ public class GameManager15 : MonoBehaviour
     public GameObject AlimentacionMenu;
     public GameObject DecoracionMenu;
 
-
+    [Header("Informacion de animales disponibles")]
+    //ObjetoAnimal
+    public Animal animalActivo = new Animal();
+    public AnimalData[] animales;
     //CanvasSwap
     public GameObject CanvasDialogo;
     public GameObject CanvasGameplay;
+
+    public GameObject imagenUI;
+    public GameObject textUI;
+
+
 
     private void Awake()
     {
@@ -60,10 +76,7 @@ public class GameManager15 : MonoBehaviour
 
     private void Start()
     {
-        animalActivo.Comida = Random.Range(0, 2);
-        animalActivo.Habitat = Random.Range(0, 2);
-        animalActivo.Decoracion = Random.Range(0, 2);
-        //printAnimal(animalActivo);
+        loadNewAnimal();
     }
 
 
@@ -71,6 +84,8 @@ public class GameManager15 : MonoBehaviour
     private void Update()
     {
         checkConditionsmet(animalActivo);
+
+        
     }
 
 
@@ -104,18 +119,64 @@ public class GameManager15 : MonoBehaviour
     public void SetComidaActiva(int i)
     {
         ComidaActiva = i;
-
+        Destroy(comidaActivaVisual);
+        switch (ComidaActiva)
+        {
+            case 0:
+                comidaActivaVisual = Instantiate(Comida1, posComida.transform.position,Quaternion.identity);
+                
+                break;
+            case 1:
+                comidaActivaVisual = Instantiate(Comida2, posComida.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                comidaActivaVisual = Instantiate(Comida3, posComida.transform.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetHabitatActiva(int i)
     {
         HabitatActivo = i;
+        Destroy(habitatActivoVisual);
+        switch (HabitatActivo)
+        {
+            case 0:
+                habitatActivoVisual = Instantiate(Habitat1, posHabitat.transform.position, Quaternion.identity);
+                break;
+            case 1:
+                habitatActivoVisual = Instantiate(Habitat2, posHabitat.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                habitatActivoVisual = Instantiate(Habitat3, posHabitat.transform.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
 
     }
 
     public void SetDecoracionActiva(int i)
     {
+        Debug.Log("DECORACIONCAMBIO");
         DecoracionActiva = i;
+        Destroy(decoracionActivaVisual);
+        switch (DecoracionActiva)
+        {
+            case 0:
+                decoracionActivaVisual = Instantiate(Decoracion1, posDecoracion.transform.position, Quaternion.identity);
+                break;
+            case 1:
+                decoracionActivaVisual = Instantiate(Decoracion2, posDecoracion.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                decoracionActivaVisual = Instantiate(Decoracion3, posDecoracion.transform.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -126,14 +187,23 @@ public class GameManager15 : MonoBehaviour
         if (animal.Comida == ComidaActiva && animal.Habitat == HabitatActivo && animal.Decoracion == DecoracionActiva)
         {
             Debug.Log("win");
+            puntuacion += 1;
+            puntuacionUI.GetComponent<TMP_Text>().text = puntuacion.ToString();
+            Destroy(comidaActivaVisual);
+            Destroy(habitatActivoVisual);
+            Destroy(decoracionActivaVisual);
+            DecoracionActiva = -1;
+            ComidaActiva = -1;
+            HabitatActivo = -1;
+            loadNewAnimal();
         }
         else
         {
-            printAnimal(animal);
-            Debug.Log("ACTUAL PARAMETERS");
-            Debug.Log("HAB " +HabitatActivo);
-            Debug.Log("COM " + ComidaActiva);
-            Debug.Log("DEC " + DecoracionActiva);
+         //   printAnimal(animal);
+         //   Debug.Log("ACTUAL PARAMETERS");
+         //   Debug.Log("HAB " +HabitatActivo);
+         //   Debug.Log("COM " + ComidaActiva);
+         //   Debug.Log("DEC " + DecoracionActiva);
 
 
         }
@@ -162,11 +232,30 @@ public class GameManager15 : MonoBehaviour
             CanvasGameplay.SetActive(false);
         }
     }
+
+    void loadNewAnimal()
+    {
+        
+        int randomNumber = Random.Range(0, animales.Length);
+        animalActivo.Comida = animales[randomNumber].Comida;
+        animalActivo.Habitat = animales[randomNumber].Habitat;
+        animalActivo.Decoracion = animales[randomNumber].Decoracion;
+        imagenUI.GetComponent<Image>().sprite = animales[randomNumber].imagenAnimal;
+        textUI.GetComponent<TMP_Text>().text = animales[randomNumber].AnimalDescription;
+        printAnimal(animalActivo);
+        
+
+    
+    }
 }
+
 
 public class Animal
 {
     public int Habitat;
     public int Comida;
     public int Decoracion;
+
+    public string AnimalDescription;
+    public Sprite imagenAnimal;
 }
