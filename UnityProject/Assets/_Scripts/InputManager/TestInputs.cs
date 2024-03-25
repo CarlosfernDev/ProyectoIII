@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[DefaultExecutionOrder(1)]
+
 public class TestInputs : MonoBehaviour
 {
 
@@ -86,6 +86,13 @@ public class TestInputs : MonoBehaviour
         InputManager.Instance.movementEvent.RemoveListener(MeMuevo);
         InputManager.Instance.equipableEvent.RemoveListener(UsarObjetoEquipable);
         InputManager.Instance.interactEvent.RemoveListener(Interactuo);
+
+    }
+
+    public void DisablePlayer()
+    {
+        sloopyMovement = false;
+        rb.velocity = Vector3.zero;
     }
 
     public void Interactuo()
@@ -105,7 +112,7 @@ public class TestInputs : MonoBehaviour
     public void MeMuevo(Vector2 vec)
     {
         //  Comento la linea por que si no el char controller no va en la escena de inputtest
-       // if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false) && (GameManager.Instance == null ? GameManager.Instance.isPaused : false)) return;
+        if (GameManager.Instance.isDialogueActive && (MySceneManager.Instance == null ? MySceneManager.Instance.isLoading : false) && (GameManager.Instance == null ? GameManager.Instance.isPaused : false)) return;
         if (sloopyMovement)
         {
             if (vec.magnitude == 0)

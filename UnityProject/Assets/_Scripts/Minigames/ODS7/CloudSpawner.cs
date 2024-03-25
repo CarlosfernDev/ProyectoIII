@@ -30,6 +30,8 @@ public class CloudSpawner : LInteractableParent
 
     private void Start()
     {
+        ODS7Singleton.Instance.EnableFlats.Add(this);
+
         FixSlider.gameObject.SetActive(false);
         FixSlider.maxValue = ODS7Singleton.Instance.timeFabricaDestroy;
         FixSlider.value = 0;
@@ -133,9 +135,12 @@ public class CloudSpawner : LInteractableParent
 
     void DisableFactory()
     {
+        ODS7Singleton.Instance.AddScore(100);
         CentralVFX.CallCoroutine();
         _SpawnTimeOffset = Time.time - _TimeReferenceSpawn;
         myFactoryState = factoryState.Disable;
+        ODS7Singleton.Instance.EnableFlats.Remove(this);
+        if (ODS7Singleton.Instance.EnableFlats.Count <= 0) ODS7Singleton.Instance.OnGameFinish();
     }
 
     public void RestoreFactory()
@@ -200,10 +205,10 @@ public class CloudSpawner : LInteractableParent
         return new Vector3(randomPoint2D.x, _spawnTransform.position.y, randomPoint2D.y);
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
-        // Handles.DrawWireDisc(transform.position, Vector3.up, maxSpawnRadius);
-        // Handles.DrawWireDisc(transform.position, Vector3.up,minSpawnRadius);
-    }
+        Handles.DrawWireDisc(transform.position, Vector3.up, maxSpawnRadius);
+        Handles.DrawWireDisc(transform.position, Vector3.up,minSpawnRadius);
+    }*/
 
 }
