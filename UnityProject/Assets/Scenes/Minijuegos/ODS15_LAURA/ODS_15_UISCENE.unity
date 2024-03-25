@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2267,7 +2267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 617683365}
-  - component: {fileID: 617683361}
+  - component: {fileID: 617683366}
   m_Layer: 0
   m_Name: Puntero
   m_TagString: Untagged
@@ -2275,32 +2275,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &617683361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617683360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb2564927ee3b2f459a589ed7e680344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positionEquipable: {fileID: 0}
-  isEquipado: 0
-  refObjetoEquipado: {fileID: 0}
-  isEquipableInCooldown: 0
-  interactZone: {fileID: 0}
-  refObjetoInteract: {fileID: 0}
-  speed: 10
-  hideText:
-    m_PersistentCalls:
-      m_Calls: []
-  TextoInteractChange:
-    m_PersistentCalls:
-      m_Calls: []
-  imVisible: {fileID: 772322013}
 --- !u!4 &617683365
 Transform:
   m_ObjectHideFlags: 0
@@ -2317,6 +2291,32 @@ Transform:
   - {fileID: 772322012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &617683366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617683360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa75d5644163ab459e76e7de39c0fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionEquipable: {fileID: 0}
+  isEquipado: 0
+  refObjetoEquipado: {fileID: 0}
+  isEquipableInCooldown: 0
+  interactZone: {fileID: 0}
+  refObjetoInteract: {fileID: 0}
+  speed: 10
+  hideText:
+    m_PersistentCalls:
+      m_Calls: []
+  TextoInteractChange:
+    m_PersistentCalls:
+      m_Calls: []
+  imVisible: {fileID: 772322013}
 --- !u!1 &620063781
 GameObject:
   m_ObjectHideFlags: 0
