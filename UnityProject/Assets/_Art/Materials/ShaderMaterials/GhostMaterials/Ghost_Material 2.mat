@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ghost_Material
+  m_Name: Ghost_Material 2
   m_Shader: {fileID: -6465566751694194690, guid: 57c7d3f59aee67445b43b88c1ab6771f,
     type: 3}
   m_Parent: {fileID: 0}
