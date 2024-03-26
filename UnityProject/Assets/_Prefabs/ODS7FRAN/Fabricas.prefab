@@ -316,8 +316,8 @@ MonoBehaviour:
   _isInteractable: 1
   myFactoryState: 1
   spawnTransform: {fileID: 0}
-  SpawnSlider: {fileID: 0}
-  FixSlider: {fileID: 0}
+  SpawnSlider: {fileID: 6013042451773052431}
+  FixSlider: {fileID: 2335679005871763711}
   minSpawnRadius: 1
   maxSpawnRadius: 5
   CentralVFX: {fileID: 1503413529694528639}
