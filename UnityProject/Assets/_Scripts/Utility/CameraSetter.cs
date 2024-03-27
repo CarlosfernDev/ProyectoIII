@@ -9,8 +9,20 @@ public class CameraSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(GameManager.Instance == null)
+        {
+            Debug.LogWarning("No hay GameManager");
+            return;
+        }
+
         if (Camera.main != null && _camera != Camera.main)
+        {
             Destroy(Camera.main.gameObject);
+        }
+        else
+        {
+            return;
+        }
 
         _camera.tag = "MainCamera";
         DontDestroyOnLoad(Camera.main);
