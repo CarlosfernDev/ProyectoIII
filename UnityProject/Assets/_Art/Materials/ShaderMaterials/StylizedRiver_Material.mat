@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SylizedWater_Material
+  m_Name: StylizedRiver_Material
   m_Shader: {fileID: -6465566751694194690, guid: 14fb741551251df4fadd83255d35ddfd,
     type: 3}
   m_Parent: {fileID: 0}
@@ -61,8 +61,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _StepStrength: 1.05
-    - _VoronoiDensity: 10
+    - _VoronoiDensity: 2.5
     - _VoronoiSpeed: 1
+    - _WaterAlpha: 1
     - _WaveIntensity: 0.15
     - _WaveSpeed: 1
     m_Colors:
