@@ -28,6 +28,11 @@ public class MinigameParent : MonoBehaviour
     [SerializeField] private TMP_Text _TextCanvas;
     private Coroutine _Coroutine;
 
+    [Header("ScoreStats")]
+    [SerializeField] private GameObject ResultCanvas;
+    [SerializeField] protected ScoreText _ScoreText;
+    [SerializeField] protected TMP_Text _txHighScore;
+
     [HideInInspector] public int Score;
     public UnityEvent<int> OnScoreUpdate;
     private bool anyKeyIsPressed = false;
@@ -41,6 +46,16 @@ public class MinigameParent : MonoBehaviour
         {
             MySceneManager.Instance.OnLoadFinish += StartCountdown;
         }
+
+        if (ResultCanvas != null)
+        {
+            ResultCanvas.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("No existe el canvas de la pantalla final");
+        }
+
 
         personalAwake();
     }
@@ -154,12 +169,20 @@ public class MinigameParent : MonoBehaviour
 
     protected virtual void OnGameStart()
     {
-
+        
     }
 
     public virtual void OnGameFinish()
     {
         gameIsActive = false;
+
+        SaveValue();
+
+        _Coroutine = StartCoroutine(CoroutineOnGameFinish());
+    }
+
+    public virtual void SaveValue()
+    {
         Debug.Log("Finished");
         try
         {
@@ -169,7 +192,6 @@ public class MinigameParent : MonoBehaviour
         {
             Debug.LogWarning("No se ha podido guardar, probablemente te falta el SaveManager");
         }
-        _Coroutine = StartCoroutine(CoroutineOnGameFinish());
     }
 
     IEnumerator CoroutineOnGameFinish()
@@ -181,7 +203,9 @@ public class MinigameParent : MonoBehaviour
 
         InputManager.Instance.anyKeyEvent.AddListener(SetPressedButton);
 
-        _TextCanvas.text = "Press A to continue";
+        ResultCanvas.SetActive(true);
+        SetResoult();
+
         while (true)
         {
             if (anyKeyIsPressed)
@@ -194,6 +218,14 @@ public class MinigameParent : MonoBehaviour
 
         MySceneManager.Instance.NextScene(2, 1, 1, 0);
         // SceneManager hara cosas
+    }
+
+    public virtual void SetResoult()
+    {
+        Debug.Log(Score);
+        _ScoreText.ChangeText(Score);
+
+        _txHighScore.text = "Highscore: " + MinigameData.maxPoints.ToString("000000");
     }
 
     public void SetPressedButton()

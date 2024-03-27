@@ -17,8 +17,10 @@ public class RoadScript : MonoBehaviour
 
     [SerializeField] private List<GameObject> goList;
     private List<int> index;
-    
-    
+
+    private TroncoParent script;
+
+
     void Start()
     {
         goList = new List<GameObject>();
@@ -31,8 +33,17 @@ public class RoadScript : MonoBehaviour
         MoveCars();
         if (timeBeetweenSpawns<timer)
         {
-            Debug.Log(Time.time);
+            
             go = Instantiate(car,spawnPoint.position,Quaternion.identity);
+            
+            script  = go.GetComponentInChildren<TroncoParent>(true);
+            if (script != null)
+            {
+               
+                script.speed = carSpeed;
+                script.dir = carDir;
+
+            }
             goList.Add(go);
             timer = 0;
         }

@@ -10,6 +10,14 @@ public class GarbageCollectionPoint : MonoBehaviour
     public enum collectorType { UNDEFINED, PAPER, PLASTIC, GLASS }
     public collectorType thisCollectorType = collectorType.UNDEFINED;
 
+    private void Update()
+    {
+        if (thisCollectorType == collectorType.UNDEFINED)
+        {
+            Debug.LogError("Garbage Collector Type Not Defined");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent(out GarbageScript thisGarbage)) return;
