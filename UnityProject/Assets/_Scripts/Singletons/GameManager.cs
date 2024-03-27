@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public MinigamesScriptableObjectScript[] MinigameScripts;
 
     [Header("PauseUI")]
+    [SerializeField] public Canvas PauseCanvas;
+    [SerializeField] public Canvas SettingCanvas;
     [SerializeField] public GameObject PauseUI;
     [SerializeField] public Button FirstButton;
     [SerializeField] public EventSystem eventSystem;
@@ -80,6 +82,15 @@ public class GameManager : MonoBehaviour
     {
         state = (GameState)Mathf.Clamp(value, 0, 8);
         SaveManager.SavePlayerData();
+    }
+
+    public void SetCamera(Camera Component)
+    {
+        PauseCanvas.worldCamera = Component;
+        PauseCanvas.planeDistance = -20f;
+
+        SettingCanvas.worldCamera = Component;
+        SettingCanvas.planeDistance = -20f;
     }
 
     #endregion
