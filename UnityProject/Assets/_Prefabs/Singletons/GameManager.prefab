@@ -296,7 +296,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1017940826995483333}
           m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-          m_MethodName: SetResolution
+          m_MethodName: SetQualitty
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1017940826995483333}
           m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-          m_MethodName: SetResolution
+          m_MethodName: SetQualitty
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -328,7 +328,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1017940826995483333}
           m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-          m_MethodName: SetResolution
+          m_MethodName: SetQualitty
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -927,7 +927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8038182334594209081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4280,7 +4280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1963557744806800275
 RectTransform:
   m_ObjectHideFlags: 0
