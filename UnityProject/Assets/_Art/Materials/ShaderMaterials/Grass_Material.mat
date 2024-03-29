@@ -40,18 +40,18 @@ Material:
     m_Floats:
     - _Amplitude: 1
     - _BladeRandomMaxLimit: 0
-    - _BladeRandomOffset: 5
-    - _BladeXSeed: 0.52
-    - _Grass_Height: -0.36
-    - _Grass_Width: 2.11
+    - _BladeRandomOffset: 4.86
+    - _BladeXSeed: 0.48
+    - _Grass_Height: -0.86
+    - _Grass_Width: -0.6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WindForce: 1
     - _WindSpeed: 2
     m_Colors:
     - _DarkColor: {r: 0.004401945, g: 0.04599056, b: 0, a: 0}
-    - _Grass_Offset: {r: 1, g: 0.1, b: 0, a: 0}
-    - _Grass_Tiling: {r: 3, g: 1, b: 0, a: 0}
+    - _Grass_Offset: {r: 1.03, g: 0.09, b: 0, a: 0}
+    - _Grass_Tiling: {r: 0.94, g: 0.95, b: 0, a: 0}
     - _LightColor: {r: 0.3682138, g: 1, b: 0, a: 0}
     - _WindDirection: {r: 1, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
