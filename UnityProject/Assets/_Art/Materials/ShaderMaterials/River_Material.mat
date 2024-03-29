@@ -40,11 +40,11 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaterFoamScale: 103.57
+    - _WaterFoamScale: 79.1
     m_Colors:
     - _WaterColor: {r: 0, g: 0.7603097, b: 1, a: 0}
-    - _WaterFoamSpeed: {r: 0, g: 0.98, b: 0, a: 0}
-    - _WaterFoamTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _WaterFoamSpeed: {r: 0, g: 0.35, b: 0, a: 0}
+    - _WaterFoamTiling: {r: 8.66, g: 0.18, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1266623496862884765
 MonoBehaviour:

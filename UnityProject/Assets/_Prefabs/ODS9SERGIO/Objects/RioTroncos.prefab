@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d82cfbe2411a37469eabcc62f3e9459, type: 2}
+  - {fileID: 2100000, guid: ac37728f00b6e0342a64206043d842f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +141,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 53.3, y: -12.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1792893, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8867807191297080152}
@@ -163,7 +163,7 @@ MonoBehaviour:
   car: {fileID: 1928712645926180883, guid: 4e3e8ec30dcb30847ac58115b490b72b, type: 3}
   spawnPoint: {fileID: 9159594710101705462}
   carDir: {x: 0, y: 0, z: -1}
-  timeBeetweenSpawns: 1
-  carSpeed: 24
-  distanceToDestroy: 80
+  timeBeetweenSpawns: 2
+  carSpeed: 5
+  distanceToDestroy: 200
   goList: []
