@@ -2404,16 +2404,21 @@ MonoBehaviour:
   PancartaCamera: {fileID: 2122336846}
   scriptables:
   - {fileID: 11400000, guid: 2bbb69362353fa24aa1153658a94c710, type: 2}
+  - {fileID: 11400000, guid: cf7dd91835a65634590c7c3e50308c1c, type: 2}
+  - {fileID: 11400000, guid: e8426498412476f4d9e4c0ede04737cd, type: 2}
+  - {fileID: 11400000, guid: c53542870f89ea34b8be0af186124f02, type: 2}
+  - {fileID: 11400000, guid: e17d9f2fb3f42ae4d936b5543f785ae9, type: 2}
+  - {fileID: 11400000, guid: 8473e54ece519d546982fa566a4ebf23, type: 2}
   Carteles:
   - cartel: {fileID: 1698699839}
     material: {fileID: 383129725}
   - cartel: {fileID: 204538262}
-    material: {fileID: 383129725}
+    material: {fileID: 1797566256}
   - cartel: {fileID: 1137937297}
     material: {fileID: 573540697}
   - cartel: {fileID: 78834657}
-    material: {fileID: 383129725}
-  pancartaScriptableObject: {fileID: 11400000, guid: 2bbb69362353fa24aa1153658a94c710,
+    material: {fileID: 1796332129}
+  pancartaScriptableObject: {fileID: 11400000, guid: e17d9f2fb3f42ae4d936b5543f785ae9,
     type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

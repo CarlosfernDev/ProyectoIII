@@ -30,18 +30,26 @@ public class ODS10Singleton : MinigameParent
     {
         Instance = this;
         base.personalAwake();
-        ExecuteGame(0);
+        ExecuteGame();
     }
 
     public void ExecuteGame(int Value)
     {
-        List<ScriptableObjectComponente> TemporalList =  new List<ScriptableObjectComponente>(scriptables[Value].ListaComponentes);
+        pancartaScriptableObject = scriptables[Value];
+        ExecuteGame();
+    }
 
-        ListValue = Value;
+    public void ExecuteGame()
+    {
+        if (pancartaScriptableObject == null)
+            Debug.LogError("No se ha definido el tipo de pancarta");
 
-        foreach(InGameComponentCartel cartel in Carteles)
+        List<ScriptableObjectComponente> TemporalList = new List<ScriptableObjectComponente>(pancartaScriptableObject.ListaComponentes);
+
+        foreach (InGameComponentCartel cartel in Carteles)
         {
             int temporalValue = UnityEngine.Random.Range(0, TemporalList.Count);
+            Debug.Log(temporalValue);
             ScriptableObjectComponente Script = TemporalList[temporalValue];
 
             cartel.cartel.transform.localScale = Script.Scale;
@@ -59,8 +67,8 @@ public class ODS10Singleton : MinigameParent
 
     public void SavePhoto()
     {
-        scriptables[ListValue].SaveTexture();
-        scriptables[ListValue].LoadTexture();
+        pancartaScriptableObject.SaveTexture();
+        pancartaScriptableObject.LoadTexture();
     }
 
     private void Update()
