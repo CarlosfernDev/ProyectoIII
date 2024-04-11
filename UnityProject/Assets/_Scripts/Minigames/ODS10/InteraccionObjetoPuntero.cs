@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InteraccionObjetoPuntero : LInteractableParent
 {
+
+
+
     public override void Interact()
     {
         PunteroScript scriptpuntero = ODS10Singleton.Instance.puntero;

@@ -7,6 +7,9 @@ public class TimerMinigame : MonoBehaviour
 {
     public float TimerValue;
     public UnityEvent<string> UpdateText;
+    public UnityEvent<string> UpdateSeconds;
+    public UnityEvent<string> UpdateMinutes;
+    public UnityEvent OnTimerStart;
     public UnityEvent OnTimerOver;
 
     private float ExtraTime;
@@ -15,12 +18,23 @@ public class TimerMinigame : MonoBehaviour
 
     private float Value;
 
+    private int MinuteSecondsValue;
+
     private void Update()
     {
         if (!isCountdown)
             return;
 
         Value = Mathf.Clamp((TimerValue + ExtraTime) - (Time.time - TimeReference), 0, TimerValue + ExtraTime);
+
+        if(MinuteSecondsValue != Mathf.FloorToInt(Value))
+        {
+            MinuteSecondsValue = Mathf.FloorToInt(Value);
+            UpdateSeconds?.Invoke(GetSeconds());
+            UpdateMinutes?.Invoke(GetMinutes());
+        }
+
+
 
         if (UpdateText != null)
         {
@@ -56,6 +70,7 @@ public class TimerMinigame : MonoBehaviour
     {
         TimeReference = Time.time;
         isCountdown = true;
+        OnTimerStart?.Invoke();
     }
 
     public void RestartTimer()
@@ -88,9 +103,23 @@ public class TimerMinigame : MonoBehaviour
     {
         int minutos = Mathf.FloorToInt(Value / 60);
         int segundos = Mathf.FloorToInt(Value % 60);
-        float milisegundos = (Value * 100) % 100;
-        milisegundos = Mathf.Floor(milisegundos);
+        //float milisegundos = (Value * 100) % 100;
+        //milisegundos = Mathf.Floor(milisegundos);
 
-        return string.Format("{0:00}:{1:00}:{2:00}", minutos, segundos, milisegundos);
+        return string.Format("{0:00}:{1:00}", minutos, segundos/*, milisegundos*/);
+    }
+
+    public string GetSeconds()
+    {
+        int segundos = Mathf.FloorToInt(Value % 60);
+
+        return segundos.ToString("00");
+    }
+
+    public string GetMinutes()
+    {
+        int minutos = Mathf.FloorToInt(Value / 60);
+
+        return minutos.ToString("00");
     }
 }
