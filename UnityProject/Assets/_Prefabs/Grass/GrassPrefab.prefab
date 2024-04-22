@@ -47,6 +47,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91928
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -126,6 +141,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91944
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -205,6 +235,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91984
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,6 +329,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91936
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -363,6 +423,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91976
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -442,6 +517,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91952
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -521,6 +611,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91968
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -600,6 +705,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5626925460842721403}
     m_Modifications:
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.name
+      value: PolybrushMesh-91960
+      objectReference: {fileID: 0}
+    - target: {fileID: -5653827752214518334, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519928419008544595, guid: 305d35b1ab30396409b6f4ca1013e753,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5667046376530183173, guid: 305d35b1ab30396409b6f4ca1013e753,
         type: 3}
       propertyPath: m_LocalPosition.x
