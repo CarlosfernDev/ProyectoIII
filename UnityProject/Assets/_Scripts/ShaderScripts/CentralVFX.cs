@@ -8,7 +8,8 @@ public class CentralVFX : MonoBehaviour
 {
     [SerializeField] private Material _material;
     [SerializeField] private List<MeshRenderer> _meshRenderers;
-    [SerializeField] private VisualEffect _smoke1, _smoke2, _dissolve, _smokeDissapear, _spawnCloud;
+    [SerializeField] private List<VisualEffect> _dissolveEffects;
+    [SerializeField] private VisualEffect _smoke1, _smoke2, _smokeDissapear, _spawnCloud;
     [SerializeField] private GameObject _eolicCentral, _nuclearCentral;
     [SerializeField] private float _transitionDuration;
     public static int PosID = Shader.PropertyToID("_MaskPos");
@@ -18,7 +19,7 @@ public class CentralVFX : MonoBehaviour
     {
         if(_smoke1 != null) _smoke1.Stop();
         if(_smoke2 != null) _smoke2.Stop();
-        if (_dissolve != null) Invoke(nameof(PlayDissolve), 0.3f);
+        if (_dissolveEffects != null) Invoke(nameof(PlayDissolve), 0.3f);
         if (_meshRenderers != null)
         {
             foreach(MeshRenderer mr in _meshRenderers)
@@ -44,8 +45,11 @@ public class CentralVFX : MonoBehaviour
     }
 
     public void PlayDissolve()
-    { 
-        _dissolve.Play();
+    {
+        foreach (VisualEffect disolver in _dissolveEffects)
+        { 
+            disolver.Play(); 
+        }
     }
 
     public void CallCoroutine()

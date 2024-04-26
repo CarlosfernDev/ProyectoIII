@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class InteractuableMateriales : MonoBehaviour, Iinteractable
 {
-    [SerializeField] GameObject scriptGameobject;
-    [SerializeField] private bool _isInteractable;
+    [SerializeField] public bool _isInteractable;
     [SerializeField] private string _TextoInteraccion;
     public string TextoInteraccion
     {
@@ -19,7 +18,9 @@ public class InteractuableMateriales : MonoBehaviour, Iinteractable
     }
     public void Interact()
     {
-        //Sumar a materiales
+        
+        GameManagerSergio.Instance.addMaterial(10);
+        //Destroy(this.gameObject);
     }
 
     public void SetInteractFalse()
@@ -36,8 +37,7 @@ public class InteractuableMateriales : MonoBehaviour, Iinteractable
     // Start is called before the first frame update
     void Start()
     {
-        //Buscar refrencia de donde se guarda el script de materiales
-        //UItext = GameObject.Find("UIMATERIAL");
+        
     }
 
     // Update is called once per frame

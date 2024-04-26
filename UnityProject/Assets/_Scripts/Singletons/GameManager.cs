@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public MinigamesScriptableObjectScript[] MinigameScripts;
 
     [Header("PauseUI")]
+    [SerializeField] public Canvas PauseCanvas;
+    [SerializeField] public Canvas SettingCanvas;
     [SerializeField] public GameObject PauseUI;
     [SerializeField] public Button FirstButton;
+    [SerializeField] private Button RestartButton;
     [SerializeField] public EventSystem eventSystem;
     [SerializeField] public SettingsMenu settingsScript;
 
@@ -27,7 +30,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isPaused = false;
     [HideInInspector] public bool isPlaying = false;
 
-    [HideInInspector] public enum GameState{Aire, Puentes, Reciclaje, Mar, AguaLimpia, GranjaPlantas, GranjaZoo, Pancarta, PostGame}
+    [HideInInspector] public enum ProgramState { Menu, Hub, Minigame }
+    [HideInInspector] public ProgramState programState = ProgramState.Menu;
+
+    [HideInInspector] public enum GameState { Aire, Puentes, Reciclaje, Mar, AguaLimpia, GranjaPlantas, GranjaZoo, Pancarta, PostGame }
     [HideInInspector] public GameState state = GameState.Aire;
 
     // GamesUnlocked
@@ -82,6 +88,15 @@ public class GameManager : MonoBehaviour
         SaveManager.SavePlayerData();
     }
 
+    public void SetCamera(Camera Component)
+    {
+        PauseCanvas.worldCamera = Component;
+        PauseCanvas.planeDistance = -20f;
+
+        SettingCanvas.worldCamera = Component;
+        SettingCanvas.planeDistance = -20f;
+    }
+
     #endregion
 
     #region Private Functions
@@ -128,7 +143,12 @@ public class GameManager : MonoBehaviour
     public void CheckPause()
     {
         PauseUI.SetActive(isPaused);
-        if (isPaused) eventSystem.SetSelectedGameObject(FirstButton.gameObject);
+        if (isPaused)
+        {
+            RestartButton.gameObject.SetActive(programState == ProgramState.Minigame);
+
+            eventSystem.SetSelectedGameObject(FirstButton.gameObject);
+        }
     }
 
     public void OpenSettings()

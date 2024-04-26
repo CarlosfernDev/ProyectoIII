@@ -82,6 +82,20 @@ public class MySceneManager : MonoBehaviour
 
         if (SceneDictionary.ContainsKey(Value))
         {
+            if(GameManager.Instance != null)
+            {
+                if (Value <= 9)
+                    GameManager.Instance.programState = GameManager.ProgramState.Menu;
+                else if (Value >= 10 && Value <= 79)
+                    GameManager.Instance.programState = GameManager.ProgramState.Minigame;
+                else if (Value >= 100)
+                    GameManager.Instance.programState = GameManager.ProgramState.Hub;
+            }
+            else
+            {
+                Debug.LogWarning("No hay GameManager");
+            }
+
             loadLevel = SceneManager.LoadSceneAsync(SceneDictionary[Value]);
         }
         else

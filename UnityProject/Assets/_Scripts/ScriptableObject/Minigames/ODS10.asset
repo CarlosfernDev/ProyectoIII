@@ -1,18 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08509db7b18ced94fb126d60ade9104d, type: 3}
-  m_Name: ODS10
-  m_EditorClassIdentifier: 
-  ID: 5
-  maxPoints: 0
-  sceneID: 0
-  isDone: 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:f8da9a3094fe18ce1c16f2cbc67c6a26f40d2bb419319125713ec949b53f3f88
+size 442
